@@ -1,0 +1,27 @@
+[
+	{
+		"title":"个人意见：为什么中国没有梵高一样天才的画家",
+		"content":"我们这一代人的成长年代，真正的诗歌课从来都是缺席的。",
+		"image_hlarge":"/static/images/cell/4.jpg",
+		"author":"Shing.chow"
+	},
+	{
+		"title":"火影忍者：漩涡鸣人超级强大的查克拉",
+		"content":"这么多年始终是离不开火影忍者，老实说我并不是一个火影迷，但是`````",
+		"image_hlarge":"/static/images/cell/9.jpg",
+		"author":"迪迦奥特曼"
+	},
+	{
+		"title":"变形金刚：擎天柱王者归来",
+		"content":"遥远的赛博坦星球，擎天柱打败了威震天带着火种重塑了他的家园，然后美滋滋",
+		"image_hlarge":"/static/images/cell/6.JPG",
+		"author":"擎天柱"
+	},
+	{
+		"title":"一个倾国倾城的女子",
+		"content":"从前，我喜欢一个女孩。虽然老实说她并不漂亮，但是从接触她那一刻起，我就认定了，我很喜欢很喜欢他",
+		"image_hlarge":"/static/images/cell/11111.JPG",
+		"author":"Stephen.shing",
+		"category_name":"来自CCTV"
+	}
+]

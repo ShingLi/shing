@@ -1,0 +1,25 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+
+import App from './App'
+import VeeValidate from 'vee-validate'
+import router from './router'
+import store from './store'
+import VueLazyLoad from 'vue-lazyload'  //vue 的图片懒加载
+Vue.use(VeeValidate)
+
+Vue.use(VueLazyLoad,{
+    loading:require('./assets/images/ico/loading.gif')
+})
+Vue.config.productionTip = false
+
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  template: '<App/>',
+  components: { App }
+})
