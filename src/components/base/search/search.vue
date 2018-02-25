@@ -9,8 +9,18 @@
 			</div>
 			<a slot='right' @click="$router.go(-1)">取消</a>
 		</search-box>
-        <div class="search-wrap">
-            
+        <div class="search-main">
+            <scroll>
+                <div>
+                    <div class="search-history">
+                        <!-- 搜索记录部分 -->
+                        <div class="search-describe">
+                            <h2>搜索历史</h2>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </scroll>
         </div>
     </div>
 </template>
@@ -18,18 +28,18 @@
     import searchBox from '@/components/common/header'
     import scroll    from '@/components/base/scroll/scroll'
     export default{
-        components:{searchBox},
+        components:{searchBox,scroll},
         activated(){
             this.$nextTick(()=>{
                 this.focusInput();
             })
         },
-        
+
         methods:{
             focusInput(){
                 let focusInput = document.getElementById('focusInput');
                 focusInput.focus();
-                
+
             }
         }
     }
@@ -62,6 +72,9 @@ div.search-warp{
         height: 90%;
         font-size: 1rem;
     }
+
+}
+.serarch-main{
 
 }
 </style>
