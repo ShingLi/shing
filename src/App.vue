@@ -6,9 +6,9 @@
         </keep-alive>
     </section>
     <!-- 进入页面部分的遮罩层 -->
-    <transition name='fade'>
+    <!-- <transition name='fade'>
         <loading v-if='!show'></loading>
-    </transition>
+    </transition> -->
     <!-- <login></login> -->
   </div>
 </template>
@@ -52,6 +52,4 @@ export default {
 }
 </script>
 
-<style scoped>
-  @import 'assets/less/app.css'
-</style>
+<style  lang='less' src='./assets/less/app.less'></style>

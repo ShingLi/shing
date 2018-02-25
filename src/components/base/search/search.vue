@@ -16,7 +16,7 @@
                         <!-- 搜索记录部分 -->
                         <div class="search-describe">
                             <h2>搜索历史</h2>
-                            <span></span>
+                            <i class="icon iconfont icon-lajitong"></i>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,21 @@ div.search-warp{
     }
 
 }
-.serarch-main{
+.search-main{
+    position: fixed;
+    top:3.7rem;
+    width: 100%;
+    bottom: 0;
+    
+    padding: 0 15px;
+    overflow: hidden;
 
+        .search-history{
+                .search-describe{
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+        }
 }
 </style>
