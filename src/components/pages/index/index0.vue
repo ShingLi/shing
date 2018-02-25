@@ -182,7 +182,8 @@
 			// 这段代码当初的想法是从index切换其他页面的时候吧当前页面的y记录下来
 			// 然后提交vuex里面  
 			//然后使用守卫导航 afterEach((to,from)=>{
-			// 		再次进入index的时候设置为之前的高度
+			// 		再次进入index的时候设置为之前的高度,但是发现keep-alive有个钩子函数
+			//activated()这个神器
 			//  
 			// })
 			if(from.name==='index'){
