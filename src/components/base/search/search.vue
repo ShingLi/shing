@@ -1,23 +1,33 @@
 <template>
     <div>
-        <m-header title='' :bg='true' fixed>
+        <search-box title='' :bg='true' fixed>
 			<div class="search-warp">
 				<input class="searchBtn" type="submit">
-				<input type="text" class="search" placeholder="请输入搜索内容"
-
+				<input type="text" class="search" placeholder="请输入"
+                    id='focusInput'
 				>
 			</div>
 			<a slot='right' @click="$router.go(-1)">取消</a>
-		</m-header>
+		</search-box>
+        
     </div>
 </template>
 <script>
-    import mHeader from '@/components/common/header'
+    import searchBox from '@/components/common/header'
 
     export default{
-        components:{mHeader},
+        components:{searchBox},
+        activated(){
+            this.$nextTick(()=>{
+                this.focusInput();
+            })
+        },
         methods:{
-
+            focusInput(){
+                let focusInput = document.getElementById('focusInput');
+                focusInput.focus();
+                
+            }
         }
     }
 </script>
