@@ -9,12 +9,14 @@
 			</div>
 			<a slot='right' @click="$router.go(-1)">取消</a>
 		</search-box>
-        
+        <div class="search-wrap">
+            
+        </div>
     </div>
 </template>
 <script>
     import searchBox from '@/components/common/header'
-
+    import scroll    from '@/components/base/scroll/scroll'
     export default{
         components:{searchBox},
         activated(){
@@ -22,6 +24,7 @@
                 this.focusInput();
             })
         },
+        
         methods:{
             focusInput(){
                 let focusInput = document.getElementById('focusInput');
