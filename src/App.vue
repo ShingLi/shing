@@ -6,9 +6,9 @@
         </keep-alive>
     </section>
     <!-- 进入页面部分的遮罩层 -->
-   <!--  <transition name='fade'>
+    <transition name='fade'>
         <loading v-if='!show'></loading>
-    </transition> -->
+    </transition>
     <!-- <login></login> -->
   </div>
 </template>

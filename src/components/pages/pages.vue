@@ -1,7 +1,7 @@
 <template>
 	<div>
 	<keep-alive>
-			<router-view></router-view>
+			<router-view @isShow = 'isShow'></router-view>
 	</keep-alive>
 
     	<footer>
@@ -11,11 +11,17 @@
 </template>
 <script>
 	import tabbar from '@/components/common/tabbar'
+
 	export default{
 		name:'pages',
-		
+
 		components:{
 			tabbar
+		},
+		methods:{
+			isShow(){
+				this.$emit('isShow')
+			}
 		}
 
 	}
