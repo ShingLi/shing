@@ -13,12 +13,14 @@
   ],
   "plugins": [
     "transform-runtime",
-    ["component",[
-      {
-        "libraryName":"mint-ui",
-        "style":true
-      }
-    ]]
+    ["component",
+        [
+          {
+            "libraryName":"mint-ui",
+            "style":true
+          }
+        ]
+    ]
     ],
   "env": {
     "test": {
