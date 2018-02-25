@@ -74,7 +74,7 @@
 	import axios from "axios"
 	import getCellList from '../../api/index/getCellList'
 	import {mapState} from 'vuex'
-	const cellListCount = 5
+	const cellListCount = 10
 	export default {
 		name:'index',
 		data(){
@@ -87,7 +87,7 @@
 				topStatus:0, //mint-ui 的上拉状态
 				loadingFlag:true,//每次加载完成后成功的标志
 				show:true,//true是默认有数据的
-				scrollY:-1,//默认的滚动位置
+				scrollY:0,//默认的滚动位置
 				
 			}
 		},
@@ -102,6 +102,7 @@
 		computed:{
 			...mapState({
 				pageIndex :state=>state.scrollY.index,//目前点击在首页
+
 			})
 		},
 
@@ -170,10 +171,35 @@
 
 			},
 			scrollTo(){
-				this.$refs.scrollTo(0,this.scrollY)
-			}
+				this.$refs.full.refresh();//确保获得正确的高度
+				this.$refs.full.scrollTo(0,this.scrollY)//切换回来的时候保存之前的浏览记录
+				
+			},
+			
 
+		},
+		beforeRouteLeave(to,from,next){
+			// 这段代码当初的想法是从index切换其他页面的时候吧当前页面的y记录下来
+			// 然后提交vuex里面  
+			//然后使用守卫导航 afterEach((to,from)=>{
+			// 		再次进入index的时候设置为之前的高度
+			//  
+			// })
+			if(from.name==='index'){
+				let scrollY = this.scrollY;
+				
+				this.$store.commit({
+					type:'scrollY',
+					scrollY:scrollY
+				})
+			}
+			next()
+		},
+		activated(){
+			// keep-alive 的生命周期钩子 再次加载组件的时候进行调用
+			this.scrollTo()
 		}
+
 	}
 </script>
 <style lang='less' scoped>

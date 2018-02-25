@@ -39,7 +39,7 @@ export default {
         &.full{
             position: absolute;
             width: 100%;
-            // top:50%;
+            top:50%;
             transform: translateY(-50%);
 
         }

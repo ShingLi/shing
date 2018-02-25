@@ -73,7 +73,17 @@ const routes =[
 //    2  const routes  这里必须是routes  ===>母鸡不知道换成其他的就不可以
 //    3
 const router = new Router({
-  routes
+	mode:'history',
+  routes,
+  // scrollBehavior(to,from,savedPosition){
+  // 	// if(to.name==='index'){
+  // 	// 	return {
+  // 	// 		x:0,
+  // 	// 		y:500
+  // 	// 	}
+  // 	// }
+
+  // }
 })
 
 // beforeEach 注册一个全局前置守卫

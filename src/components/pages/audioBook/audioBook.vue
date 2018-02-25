@@ -32,6 +32,8 @@
 				
 				</div>
 			</scroll>
+			<!-- tab切换的时候显示加载的动画 -->
+			<loadmore :fullScreen='true' v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&!comingMovies.length"></loadmore>
 		</div>
 	</div>
 </template>
@@ -52,7 +54,8 @@
 					{id:1,name:'即将上映'}
 				],
 				currentIndex:0,//tab切换的当前索引
-				hotMovies:[],//电影列表
+				hotMovies:[],//正在热映电影列表
+				comingMovies:[],//即将上映的电影列表
 				hotMovieIndex:0,//热映电影的下标 start
 				pullup: true, // 支持滚动加载
 				loadingFlag:true, //控制加载的速度
@@ -60,7 +63,9 @@
 				scrollY:-1,//默认的滚动位置
 			}
 		},
-		components:{ mHeader,navbar,scroll,'movie-list':movieList},
+		components:{ mHeader,navbar,scroll,'movie-list':movieList,
+			loadmore:resolve=>require(['@/components/base/loadmore/loadmore.vue'],resolve)
+		},
 
 		created(){
 			this._getMovie();
