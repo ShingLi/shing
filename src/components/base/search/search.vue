@@ -19,7 +19,7 @@
                             <h2>搜索历史</h2>
                             <i class="icon iconfont icon-lajitong"></i>
                         </div>
-                        <history-list></history-list>
+                        <history-list :searchs='searchs' @delete='deleteOne'></history-list>
                     </div>
                 </div>
             </scroll>
@@ -34,6 +34,17 @@
             return {
                 query:'', //用户搜索的参数
                 throttle:false, //节流操作
+                searchs:[
+                    {
+                        name:'红海行动'
+                    },
+                    {
+                        name:'红海行动'
+                    },
+                    {
+                        name:'红海行动'
+                    }
+                ]
             }
         },
         components:{searchBox,scroll,
@@ -53,7 +64,10 @@
             },
             onchangeQuery(newQuery){
                 console.log(1)
-                
+
+            },
+            deleteOne(index){
+                console.log(index);
             }
         },
         watch:{
@@ -62,13 +76,13 @@
                 if(!this.throttle){//前端节流
                     if(this.timer){
                         clearTimeout(this.timer)
-                    
+
                     }
                     this.timer = setTimeout(()=>{
                         this.onchangeQuery(newQuery);
                     },200)
                 }
-               
+
 
             }
         }
@@ -110,7 +124,7 @@
         top:3.7rem;
         width: 100%;
         bottom: 0;
-        
+
         padding: 0 15px;
         overflow: hidden;
 
@@ -118,7 +132,7 @@
                     .search-describe{
                         display: flex;
                         width: 100%;
-                    
+
                         justify-content: space-between;
                         padding:10px 0;
                         margin-top: 1rem;
