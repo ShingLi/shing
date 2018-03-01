@@ -65,7 +65,7 @@ const routes =[
 	{
 		path:'/search',
 		name:"search",
-		component:resolve=>require(['../components/base/search/search'],resolve)
+		component:resolve=>require(['../components/search/search'],resolve)
 	}
 ]
 

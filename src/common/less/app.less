@@ -1,0 +1,110 @@
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+      text-decoration:none;
+    }
+    a,img,button,input,span,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+      left: 35% !important;
+    }
+    img{
+      border:0;
+      vertical-align: middle;
+    }
+    a{
+      text-decoration: none;
+    }
+html{
+  font-size:10px;
+}
+html,body,section{
+   height: 100%;
+}
+
+.is-height{
+  height: 100%;
+}
+ul>li{
+  list-style: none;
+}
+*{  -webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: transparent; /* For some Androids */ }
+input[type=button], input[type=submit], input[type=file], button {
+  cursor: pointer; -webkit-appearance: none;
+}
+html::-webkit-scrollbar{
+  width:0px
+}
+::-webkit-scrollbar-track{
+  border-radius:7px;
+  background-color:#f5f5f5;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+}
+::-webkit-scrollbar{
+  width:7px;
+  height:7px;
+  background-color:#f5f5f5;
+}
+::-webkit-scrollbar-thumb{
+  border-radius:7px;
+  background-color:#aaa;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color:#666;
+}
+html{
+  @media screen{
+    @media (min-width:320px){
+      font-size:10px;
+    }
+    @media (min-width:360px){
+      font-size:11px;
+    }
+    @media (min-width:375px){
+      font-size:12px;
+    }
+    @media (min-width:414px){
+      font-size:14px
+    }
+    @media (min-width:768px){
+      font-size:15px;
+    }
+    @media (min-width:1024px){
+      font-size:16px;
+    }
+  }
+}
+footer{
+  position:fixed;
+  bottom: 0;
+  height: 4.2rem;
+  width: 100%;
+}
+.fade-enter,.fade-leave-to{
+  opacity: 0
+}
+.fade-enter-active,.fade-leave-active{
+  transition: opacity .5s
+}
+.view-enter{
+  opacity:0
+}
+.view-enter-active{
+  transition:opacity .5s
+}
+.view-leave{
+  opacity:1
+}
+.view-leave-active{
+  opacity:0;
+  transition:opacity .5s
+}

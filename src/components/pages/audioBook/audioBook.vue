@@ -2,10 +2,10 @@
 	<div>
 		<m-header title='书影音'>
 			<a href="javascript:void" slot='right'>
-				<img src="../../../assets/images/ic_actionbar_search_icon.png" alt="" class="m-icon-img is-margin">
+				<img src="../../../common/images/ic_actionbar_search_icon.png" alt="" class="m-icon-img is-margin">
 			</a>
 			<a href="javascript:void" slot='right'>
-				<img src="../../../assets/images/ic_chat_green.png" alt="" class="m-icon-img">
+				<img src="../../../common/images/ic_chat_green.png" alt="" class="m-icon-img">
 			</a>
 		</m-header>
 		<!-- tab切换 -->
@@ -38,12 +38,12 @@
 	</div>
 </template>
 <script>
-	import mHeader from '@/components/common/header'
-	import navbar  from '@/components/common/navbar/navbar'
-	import scroll  from '@/components/base/scroll/scroll'
-	import movieList from '@/components/common/movieList/movie-list'
-	import {getMovie} from '../../api/movie-show'
-	import {createMovieList} from '../../api/movieList'
+	import mHeader from '@/base/header/header'
+	import navbar  from '@/base/navbar/navbar'
+	import scroll  from '@/base/scroll/scroll'
+	import movieList from '@/base/movieList/movie-list'
+	import {getMovie} from '@/api/movie-show'
+	import {createMovieList} from '@/api/movieList'
 	const search_more = 10; //每次请求数据的长度 count
 	export default {
 		name:'audioBook',
@@ -64,7 +64,7 @@
 			}
 		},
 		components:{ mHeader,navbar,scroll,'movie-list':movieList,
-			loadmore:resolve=>require(['@/components/base/loadmore/loadmore.vue'],resolve)
+			loadmore:resolve=>require(['@/base/loading/loadmore.vue'],resolve)
 		},
 
 		created(){

@@ -55,7 +55,7 @@
 	</div>
 </template>
 <script>
-	import mHeader from '@/components/common/header'
+	import mHeader from '@/base/header/header'
 	import cell from '@/components/common/cell'
 	export default {
 		name:'mine',

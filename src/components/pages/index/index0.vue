@@ -10,7 +10,7 @@
 				<input type="file" class="search-img">
 			</div>
 			<a href="" slot='right'>
-				<img src="../../../assets/images/ic_chat_white.png" alt="" class="m-icon-img">
+				<img src="../../../common/images/ic_chat_white.png" alt="" class="m-icon-img">
 			</a>
 		</m-header>
 		<!-- scroll -->
@@ -36,7 +36,7 @@
 						</swiper>
 					<!-- cell -->
 						<cell title='设置' is-link to="/emplace">
-							<img src="../../../assets/images/ic_mine_notification.png" alt="" class="m-cell-icon" slot='icon'>
+							<img src="../../../common/images/ic_mine_notification.png" alt="" class="m-cell-icon" slot='icon'>
 						</cell>
 					<!-- 媒体数据部分 -->
 						<media-cell :author="item.author" :source="item.category_name"  v-for='(item,index) of events' :key="index" v-cloak>
@@ -57,12 +57,12 @@
 	</div>
 </template>
 <script>
-	import mHeader from '@/components/common/header'
-	import swiper  from "@/components/common/swiper"
-	import cell  from "@/components/common/cell"
-	import mediaCell from "@/components/common/mediaCell"
+	import mHeader from '@/base/header/header'
+	import swiper  from "@/base/swiper/swiper"
+	import cell  from "@/base/cell/cell"
+	import mediaCell from "@/base/media-cell/mediaCell"
 	// 加载组件
-	import loading from "@/components/common/loadmore"
+	import loading from "@/base/loadmore/loadmore"
 	// awesome vue无限滚动的组件
 	//import infiniteLoading from 'vue-infinite-loading'
 	// 使用mint的toast组件
@@ -70,9 +70,9 @@
 	import { Loadmore } from 'mint-ui'
 
 // 纠结想来想去还是使用better-scroll
-	import scroll from '../../base/scroll/scroll'
+	import scroll from '@/base/scroll/scroll'
 	import axios from "axios"
-	import getCellList from '../../api/index/getCellList'
+	import getCellList from '@/api/index/getCellList'
 	import {mapState} from 'vuex'
 	const cellListCount = 10
 	export default {
@@ -88,7 +88,7 @@
 				loadingFlag:true,//每次加载完成后成功的标志
 				show:true,//true是默认有数据的
 				scrollY:0,//默认的滚动位置
-				
+
 			}
 		},
 
@@ -173,22 +173,22 @@
 			scrollTo(){
 				this.$refs.full.refresh();//确保获得正确的高度
 				this.$refs.full.scrollTo(0,this.scrollY)//切换回来的时候保存之前的浏览记录
-				
+
 			},
-			
+
 
 		},
 		beforeRouteLeave(to,from,next){
 			// 这段代码当初的想法是从index切换其他页面的时候吧当前页面的y记录下来
-			// 然后提交vuex里面  
+			// 然后提交vuex里面
 			//然后使用守卫导航 afterEach((to,from)=>{
 			// 		再次进入index的时候设置为之前的高度,但是发现keep-alive有个钩子函数
 			//activated()这个神器
-			//  
+			//
 			// })
 			if(from.name==='index'){
 				let scrollY = this.scrollY;
-				
+
 				this.$store.commit({
 					type:'scrollY',
 					scrollY:scrollY
@@ -218,7 +218,7 @@
 			border: none;
 			outline: none;
 			display: inline-block;
-			background: url('../../../assets/images/ic_search_gray.png')  no-repeat;
+			background: url('../../../common/images/ic_search_gray.png')  no-repeat;
 			text-indent: -99px;
 			width: 20px;
 			height: 20px;
@@ -232,7 +232,7 @@
 			font-size: 1rem;
 		}
 		.search-img{
-			background:url('../../../assets/images/ic_scan_gray.png');
+			background:url('../../../common/images/ic_scan_gray.png');
 			background-repeat: no-repeat;
 			text-indent:-99px;
 			background-size: cover;
