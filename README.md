@@ -3,4 +3,5 @@
 <br/>
 ![](https://github.com/ShingLi/spa/blob/master/static/readme/3.gif)
 <br/>
-录制的图片很大，所以导致clone的时候很慢。。。。。
+git clone 很慢备注 解决C:\Windows\System32\drivers\etc\hosts文件，在文件中追加
+219.76.4.4 github-cloud.s3.amazonaws.com 
