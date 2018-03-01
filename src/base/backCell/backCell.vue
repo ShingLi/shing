@@ -1,7 +1,7 @@
 <template>
     <div class="back_wrap" :class="{'is-fixed':fixed}">
         <div class="arrow">
-            <img src="../../../assets/images/ic_bar_back_green.png" alt="" @click="$router.go(-1)">
+            <img src="../../common/images/ic_bar_back_green.png" alt="" @click="$router.go(-1)">
             <span class="description">{{title}}</span>
         </div>
         <div class="icons_right">
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    @import "../../../assets/less/header";
+    @import "../../common/less/header";
     .flex(){
         display: flex;
         align-items: center;

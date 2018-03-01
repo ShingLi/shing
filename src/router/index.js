@@ -36,7 +36,7 @@ const routes =[
 				path:'/mine',
 				name:'mine',
 				component:resolve=>require(['../components/pages/Mine/mine.vue'],resolve)
-				
+
 			},
 			{
 				path:'/index',
@@ -55,12 +55,12 @@ const routes =[
 	{
 		path:'/login',//登录的页面
 		name:'login',
-		component:resolve=>require(['../components/common/login.vue'],resolve)
+		component:resolve=>require(['../components/login/login.vue'],resolve)
 	},
 	{
 		path:'*',
 		name:'error',
-		component:resolve=>require(['../components/common/error.vue'],resolve)
+		component:resolve=>require(['../components/error/error.vue'],resolve)
 	},
 	{
 		path:'/search',

@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import backCell from '@/components/common/backCell/backCell'
-import cell from "@/components/common/cell"
+import backCell from '@/base/backCell/backCell'
+import cell from "@/base/cell/cell"
 export default {
     name:'emplace',
     components:{

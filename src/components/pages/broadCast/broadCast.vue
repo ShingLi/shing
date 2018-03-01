@@ -2,10 +2,10 @@
 	<div>
 		<m-header title='广播'>
 			<a href="javascript:void" slot='right'>
-				<img src="../../../assets/images/ic_status_search_user.png" alt="" class="m-icon-img is-margin">
+				<img src="../../../common/images/ic_status_search_user.png" alt="" class="m-icon-img is-margin">
 			</a>
 			<a href="javascript:void" slot='right'>
-				<img src="../../../assets/images/ic_chat_green.png" alt="" class="m-icon-img">
+				<img src="../../../common/images/ic_chat_green.png" alt="" class="m-icon-img">
 			</a>
 		</m-header>
 	</div>

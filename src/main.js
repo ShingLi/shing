@@ -10,7 +10,7 @@ import VueLazyLoad from 'vue-lazyload'  //vue 的图片懒加载
 Vue.use(VeeValidate)
 
 Vue.use(VueLazyLoad,{
-    loading:require('./assets/images/ico/loading.gif')
+    loading:require('./common/images/ico/loading.gif')
 })
 Vue.config.productionTip = false
 

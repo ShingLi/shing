@@ -2,7 +2,7 @@
 	<div class="login-wrap">
 		<div class="back_wrap">
 			<a @click="$router.go(-1)">
-				<img src="../../assets/images/ic_bar_back_green.png" alt="" class="default_back">
+				<img src="../../common/images/ic_bar_back_green.png" alt="" class="default_back">
 			</a>
 		</div>
 		<form @submit.prevent='submit'>

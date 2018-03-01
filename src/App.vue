@@ -7,7 +7,7 @@
     </section>
     <!-- 进入页面部分的遮罩层 -->
     <!-- <transition name='fade'>
-        <loading v-if='!show'></loading>
+        <welcome v-if='!show'></welcome>
     </transition> -->
     <!-- <login></login> -->
   </div>
@@ -15,8 +15,7 @@
 
 <script>
 // import tabbar from '@/components/common/tabbar'
-import loading from '@/components/common/loading'
-import login   from '@/components/common/login.vue'
+// import login   from '@/components/login/login.vue'
 export default {
   name: 'app',
   data(){
@@ -26,8 +25,7 @@ export default {
   },
 
   components:{
-    loading,
-    login
+
   },
 
   computed:{

@@ -10,7 +10,8 @@
 			</div>
 			<a slot='right' @click="$router.go(-1)">取消</a>
 		</search-box>
-        <div class="search-main">
+        <!-- 搜索记录历史 -->
+        <div class="search-main" v-if="!query">
             <scroll>
                 <div>
                     <div class="search-history">
@@ -24,6 +25,7 @@
                 </div>
             </scroll>
         </div>
+        <!-- 搜索结果 -->
     </div>
 </template>
 <script type='text/ecmascript-6'>

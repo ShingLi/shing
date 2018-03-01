@@ -4,7 +4,6 @@
 			<ul>
 				<li v-for='(item,index) of searchs'
 
-
 				>
 					<span>{{item.name}}</span>
 					<div class="delete" @click.stop='deleteOne(index)'>
@@ -14,7 +13,8 @@
 			</ul>
 		</div>
 		<div class="nomore-history" v-show="!searchs.length">
-			<span>还没有搜索记录，赶快去搜索吧！:)</span>
+			<span>还没有搜索记录，赶快去搜索吧&nbsp;!</span>
+			<i class="smile"></i>
 		</div>
 	</div>
 </template>
@@ -45,7 +45,7 @@
 				font-size: @size-default;
 				padding:10px 0;
 					.delete{
-						width: 2rem;
+						width: 3rem;
 						height: 2rem;
 						line-height: 2rem;
 						text-align: right;
@@ -59,6 +59,21 @@
 		.nomore-history{
 			text-align: center;
 			font-size: 1.2rem;
+			display: flex;
+			align-items: center;
+				span{
+					font-size: @size-default+0.1;
+				}
+				.smile{
+					display: inline-block;
+					background: url('../../common/images/default_splash_image_small.png');
+					background-repeat: no-repeat;
+					width: 1.5rem;
+					height: 1.5rem;
+					background-size: contain;
+					margin-left: 1rem;
+
+				}
 		}
 	}
 </style>
