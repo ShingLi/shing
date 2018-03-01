@@ -6,16 +6,16 @@
         </keep-alive>
     </section>
     <!-- 进入页面部分的遮罩层 -->
-    <!-- <transition name='fade'>
-        <welcome v-if='!show'></welcome>
-    </transition> -->
+    <transition name='fade'>
+        <welcome v-if='!show' :class="{other}"></welcome>
+    </transition>
     <!-- <login></login> -->
   </div>
 </template>
 
 <script>
-// import tabbar from '@/components/common/tabbar'
-// import login   from '@/components/login/login.vue'
+import welcome from '@/base/welcome/welcome'
+
 export default {
   name: 'app',
   data(){
@@ -25,29 +25,30 @@ export default {
   },
 
   components:{
-
+      welcome
   },
 
   computed:{
     // 这个方法是单独控制我的那个页面的高度是100%
-    hide(){
-      if(this.$route.name==='mine'){
-        return true
+      hide(){
+          if(this.$route.name==='mine')return true;
+      },
+      other(){
+          if(this.$route.name!='index')return true;
       }
-    }
   },
 
   methods:{
     // 这个方法是进入主页后读取到数据然后inex.vue emit('isShow') 然后关闭欢迎页
-    isShow(){
-      var that = this;
-      setTimeout(function(){
+      isShow(){
+          var that = this;
+          setTimeout(function(){
 
-        that.show=true
-      },1500)
-    }
+            that.show=true
+          },1500)
+      }
   }
 }
 </script>
 
-<style  lang='less' src='./assets/less/app.less'></style>
+<style  lang='less' src='./common/less/app.less'></style>

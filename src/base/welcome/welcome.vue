@@ -2,7 +2,7 @@
 	<div class="loading">
 		<div class="welcome-wrap">
 			<div class="smile">
-				<img src="../../assets/images/ico/smile.jpg" alt="">
+				<img src="../../common/images/ico/smile.jpg" alt="">
 			</div>
 			<div class="date">{{date}}</div>
 			<div class="text">遇见你，真美好！</div>
@@ -21,7 +21,7 @@
 					month = now.getMonth()+1,
 					year  = now.getFullYear();
 				return  `${year}年-${month}月-${day}日-${currentWeek}`
-				
+
 			}
 		}
 	}
