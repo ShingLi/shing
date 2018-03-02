@@ -8,7 +8,7 @@
                     v-model = 'query'
 				>
 			</div>
-			<a slot='right' @click="$router.go(-1)">取消</a>
+			<a slot='right' @click="cancel">取消</a>
 		</search-box>
         <!-- 搜索记录历史 -->
         <div class="search-main" v-if="!query">
@@ -26,6 +26,7 @@
             </scroll>
         </div>
         <!-- 搜索结果 -->
+        <suggest v-show='query' :results = 'results'></suggest>s
     </div>
 </template>
 <script type='text/ecmascript-6'>
@@ -46,11 +47,13 @@
                     {
                         name:'捉妖记'
                     }
-                ]
+                ],
+                results:[]
             }
         },
         components:{searchBox,scroll,
-            historyList:res=>require(['../../base/historyList/historyList.vue'],res)
+            historyList:res=>require(['../../base/historyList/historyList.vue'],res),
+            suggest:res=>require(['../../base/suggest/suggest.vue'],res) //路由的懒加载
         },
         activated(){
             this.$nextTick(()=>{
@@ -59,17 +62,21 @@
         },
 
         methods:{
+            cancel(){
+                this.$router.go(-1);
+                this.query = '';
+            },
             focusInput(){
                 let focusInput = document.getElementById('focusInput');
                 focusInput.focus();
 
             },
             onchangeQuery(newQuery){
-                console.log(1)
+                
 
             },
             deleteOne(index){
-                console.log(index);
+                // console.log(index);
                 this.searchs.splice(index,1)
             }
         },
