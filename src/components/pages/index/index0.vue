@@ -98,7 +98,9 @@
 			this.loadData();
 			this.probeType =3
 		},
-
+		mounted(){
+			console.log(this.$route.query.user)
+		},
 		computed:{
 			...mapState({
 				pageIndex :state=>state.scrollY.index,//目前点击在首页

@@ -47,7 +47,7 @@ const routes =[
 		]
 	},
 	{
-		path:'/emplace',
+		path:'/emplace',//设置的页面
 		name:'emplace',
 		component:resolve=>require(['../components/pages/Mine/emplace/emplace'],resolve)
 
@@ -58,14 +58,20 @@ const routes =[
 		component:resolve=>require(['../components/login/login.vue'],resolve)
 	},
 	{
-		path:'*',
+		path:'*',//匹配不到的页面 404页面
 		name:'error',
 		component:resolve=>require(['../components/error/error.vue'],resolve)
 	},
 	{
-		path:'/search',
+		path:'/search',//搜索的页面
 		name:"search",
 		component:resolve=>require(['../components/search/search'],resolve)
+	},
+	{
+		path:'/movie',//电影详情的页面
+		name:'movie',
+		component:resolve=>require(['../components/movie-detail/movie-detail.vue'],resolve),
+
 	}
 ]
 

@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="movie-list">
         <ul>
-            <li v-for='(movie,index) of movies'>
+            <li v-for='(movie,index) of movies' @click='selectMovie(movie.id)'>
                 <!-- <div class="date">2月06日 星期二</div> -->
                 <div class="item">
                     <div class="info-img">
@@ -46,6 +46,13 @@
         },
         components:{star,loadmore},
         methods:{
+            selectMovie(id){
+                // 转到电影详情页的方法
+                this.$emit('select',id)
+                this.$router.push({
+                    path:'/movie'
+                })
+            },
             replaceUrl(srcUrl){
                 if (srcUrl !== undefined) { // 图片防盗链处理
                      return ('https://images.weserv.nl/?url=' + srcUrl.replace(/http\w{0,1}:\/\//, ''));

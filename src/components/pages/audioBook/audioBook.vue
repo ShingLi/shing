@@ -23,13 +23,13 @@
 					@scroll = 'scroll'
 			>
 				<div class="list-inner">
-					<movie-list :movies='hotMovies' :hasMore = 'hasMoreHotMovies'></movie-list>
+					<movie-list :movies='hotMovies' :hasMore = 'hasMoreHotMovies' @select = 'selectMovie'></movie-list>
 				</div>
 			</scroll>
 			<!-- 即将上映的电影 -->
 			<scroll v-show="currentIndex!=0">
 				<div class="list-inner">
-				
+
 				</div>
 			</scroll>
 			<!-- tab切换的时候显示加载的动画 -->
@@ -41,7 +41,7 @@
 	import mHeader from '@/base/header/header'
 	import navbar  from '@/base/navbar/navbar'
 	import scroll  from '@/base/scroll/scroll'
-	import movieList from '@/base/movieList/movie-list'
+	import movieList from '@/base/movie-list/movie-list'
 	import {getMovie} from '@/api/movie-show'
 	import {createMovieList} from '@/api/movieList'
 	const search_more = 10; //每次请求数据的长度 count
@@ -122,9 +122,15 @@
 			},
 			// 记录滚动的位置
 			scroll(pos){
-				
+
 				this.scrollY = pos.y;
 				// console.log(this.scrollY)
+			},
+			selectMovie(movie){
+				console.log(movie);
+				this.$router.push({
+
+				})
 			}
 
 
