@@ -45,6 +45,7 @@
 	import {getMovie} from '@/api/movie-show'
 	import {createMovieList} from '@/api/movieList'
 	const search_more = 10; //每次请求数据的长度 count
+	import {mapMutations} from 'vuex'
 	export default {
 		name:'audioBook',
 		data(){
@@ -127,11 +128,15 @@
 				// console.log(this.scrollY)
 			},
 			selectMovie(movie){
-				console.log(movie);
+				// console.log(movie);
+				this.setMovie(movie)
 				this.$router.push({
-
-				})
-			}
+                    path:'/movie'
+                })
+			},
+			...mapMutations({
+				setMovie:'setMovie'
+			})
 
 
 		}

@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="movie-list">
         <ul>
-            <li v-for='(movie,index) of movies' @click='selectMovie(movie.id)'>
+            <li v-for='(movie,index) of movies' @click='selectMovie(movie)'>
                 <!-- <div class="date">2月06日 星期二</div> -->
                 <div class="item">
                     <div class="info-img">
@@ -46,12 +46,10 @@
         },
         components:{star,loadmore},
         methods:{
-            selectMovie(id){
+            selectMovie(movie){
                 // 转到电影详情页的方法
-                this.$emit('select',id)
-                this.$router.push({
-                    path:'/movie'
-                })
+                this.$emit('select',movie)
+                
             },
             replaceUrl(srcUrl){
                 if (srcUrl !== undefined) { // 图片防盗链处理

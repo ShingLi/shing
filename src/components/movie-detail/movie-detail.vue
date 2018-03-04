@@ -6,11 +6,13 @@
             </span>
             <span class="title-description">
                 <i class="icon iconfont icon-dianying"></i>
-                <span>电影</span>
+                <span>{{movieDetail.title}}</span>
             </span>
         </div>
         <!--  -->
-        <scroll class="list-scroll">
+        <scroll class="list-scroll"
+            ref="wrapper"
+        >
             <div class="scroll-wrapper">
                 <!-- 电影图片 -->
                 <div class="scroll-content">
@@ -18,7 +20,7 @@
                         <img alt="" src='https://images.weserv.nl/?url=img3.doubanio.com/view/photo/s_ratio_poster/public/p2514175916.jpg'>
                     </div>
                     <!-- 电影信息 -->
-                    
+                    <movie-info :movieDetail ="movieDetail"></movie-info>
                 </div>
             </div>
         </scroll>
@@ -27,8 +29,39 @@
 
 <script>
     import scroll from '@/base/scroll/scroll'
+    import movieInfo from '@/base/movie-info/movie-info'
+    import {mapState , mapGetters } from 'vuex'
     export default {
-        components:{scroll}
+        name:"movieDetail",
+
+        data(){
+            return {
+                movieDetail:{},
+
+            }
+        },
+        created(){
+            this._getDetail()
+        },
+        mounted(){
+            this.$refs.wrapper.refresh()
+        },
+        components:{scroll,movieInfo},
+        computed:{
+
+            ...mapGetters ([
+                'movie'
+            ])
+        },
+        methods:{
+            _getDetail(){
+                this.movieDetail = this.movie
+                console.log(this.movie);
+            }
+        }
+        // beforeRouteLeave(){
+        //     console.log(this.movieDetai);
+        // }
     }
 </script>
 
