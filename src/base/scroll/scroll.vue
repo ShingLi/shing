@@ -41,7 +41,7 @@
 	       * 列表的数据
 	       */
 	      data: {
-	        type: Array,
+	        // type: Array,
 	        default: null
 	      },
 	      /**
@@ -137,6 +137,7 @@
 		      refresh() {
 		        // 代理better-scroll的refresh方法
 		        this.scroll && this.scroll.refresh()
+		        
 		      },
 		      scrollTo() {
 		        // 代理better-scroll的scrollTo方法

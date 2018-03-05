@@ -35,7 +35,7 @@ export function createMovieList(movieList){
               pubdates: movie.pubdates
         }))
     })
-    console.dir(ret)
+    // console.dir(ret)
     return ret;
 }
 // 获取主导演
