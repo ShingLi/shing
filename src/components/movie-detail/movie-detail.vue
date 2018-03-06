@@ -11,15 +11,15 @@
         </div>
         <!--  -->
         <scroll class="list-scroll"
-            ref="wrapper"
+            ref="scroll"
             :data = "movieDetail"
-            
+
         >
             <div class="scroll-wrapper">
                 <!-- 电影图片 -->
                 <div class="scroll-content">
                     <div class="movie-pic">
-                        <img v-lazy="replaceUrl(movieDetail.images.small)">
+                        <img v-lazy="replaceUrl(movieDetail.images.large)">
                     </div>
                     <!-- 电影信息 -->
                     <movie-info :movieDetail ="movieDetail"></movie-info>
@@ -32,7 +32,7 @@
 
 
     </div>
-    
+
 </template>
 
 <script>
@@ -55,9 +55,8 @@
             this._getDetail()
         },
         mounted(){
-            this.$nextTick(()=>{
-                this.$refs.wrapper.refresh();
-                
+            setTimeout(()=>{
+                this.$refs.scroll.refresh();
             })
         },
         components:{scroll,movieInfo,loadmore},
@@ -71,19 +70,13 @@
             _getDetail(){
                 if(!this.movie.id){//当前页面刷新就返回
                     this.$router.go(-1)
-                    return 
+                    return
                 }
-                
+
                 getMovieDetail(this.movie.id).then(res=>{
                     this.movieDetail = res
-                    console.log(this.movieDetail.images)
                     this.isShow = !this.isShow
-                    
-                    setTimeout(()=>{
-                        this.$refs.wrapper.refresh();
 
-                    },20)
-                    
                 }).catch(err=>{
                     console.log(err)
                 })

@@ -5,13 +5,13 @@
             <div class="dec">
                 <h4>{{movieDetail.title}}</h4>
                 <p>{{tags}}</p>
-                <p>原名：红海</p>
-                <p>上映时间：2018-12-16(中国大陆)</p>
-                <p>片长：100</p>
+                <p>原名:&nbsp;{{movieDetail.original_title}}</p>
+                <p>上映时间:&nbsp;{{pubdates}}</p>
+                <p>片长:&nbsp;{{durations}}</p>
             </div>
             <div class="rank">
                 <span>豆瓣评分</span>
-                <span>8.5</span>
+                <span>{{}}</span>
                 <span>
                     <star :size='24'></star>
                 </span>
@@ -56,9 +56,18 @@
         components:{star},
         computed:{
             tags(){
-                let tags = this.movieDetail.genres.join('/'),
+                let tags = this.movieDetail.genres.join("/"),
                     year = this.movieDetail.year;
                 return `${year}/${tags}`
+            },
+            pubdates(){
+                let pubdates= this.movieDetail.pubdates.join("/")
+                return pubdates
+            },
+            // 时长
+            durations(){
+                let durations = this.movieDetail.durations.join("/")
+                return durations
             }
         },
         methods:{
