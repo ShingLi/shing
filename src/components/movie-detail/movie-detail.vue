@@ -6,21 +6,20 @@
             </span>
             <span class="title-description">
                 <i class="icon iconfont icon-dianying"></i>
-                <span>{{movieDetail.title}}</span>
+                <span v-text='movieDetail.title'></span>
             </span>
         </div>
         <!--  -->
         <scroll class="list-scroll"
             ref="wrapper"
             :data = "movieDetail"
-            :pullup = 'true'
-            :pulldown ='true'
+            
         >
             <div class="scroll-wrapper">
                 <!-- 电影图片 -->
                 <div class="scroll-content">
                     <div class="movie-pic">
-                        <img alt="" src='https://images.weserv.nl/?url=img3.doubanio.com/view/photo/s_ratio_poster/public/p2514175916.jpg'>
+                        <img v-lazy="replaceUrl(movieDetail.images.small)">
                     </div>
                     <!-- 电影信息 -->
                     <movie-info :movieDetail ="movieDetail"></movie-info>
@@ -30,8 +29,10 @@
         <div class="modal" v-show='isShow'>
             <loadmore :fullScreen='true'></loadmore>
         </div>
-    </div>
 
+
+    </div>
+    
 </template>
 
 <script>
@@ -46,14 +47,18 @@
         data(){
             return {
                 movieDetail:{},
-                isShow:true
+                isShow:true,
+
             }
         },
         created(){
             this._getDetail()
         },
         mounted(){
-            this.$refs.wrapper.refresh()
+            this.$nextTick(()=>{
+                this.$refs.wrapper.refresh();
+                
+            })
         },
         components:{scroll,movieInfo,loadmore},
         computed:{
@@ -66,22 +71,29 @@
             _getDetail(){
                 if(!this.movie.id){//当前页面刷新就返回
                     this.$router.go(-1)
+                    return 
                 }
-                const id = this.movie.id
-                let that = this;
-                getMovieDetail(id).then(res=>{
-                    that.movieDetail = res
+                
+                getMovieDetail(this.movie.id).then(res=>{
+                    this.movieDetail = res
+                    console.log(this.movieDetail.images)
                     this.isShow = !this.isShow
-                    console.dir(res)
+                    
+                    setTimeout(()=>{
+                        this.$refs.wrapper.refresh();
+
+                    },20)
                     
                 }).catch(err=>{
-                    console.log("error")
+                    console.log(err)
                 })
+            },
+            replaceUrl(srcUrl) {
+                if (srcUrl !== undefined) { // 图片防盗链处理
+                  return ('https://images.weserv.nl/?url=' + srcUrl.replace(/http\w{0,1}:\/\//, ''));
+                }
             }
         }
-        // beforeRouteLeave(){
-        //     console.log(this.movieDetai);
-        // }
     }
 </script>
 

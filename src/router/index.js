@@ -68,9 +68,10 @@ const routes =[
 		component:resolve=>require(['../components/search/search'],resolve)
 	},
 	{
-		path:'/movie',//电影详情的页面
-		name:'movie',
+		path:'/movie/:id',//电影详情的页面
+		
 		component:resolve=>require(['../components/movie-detail/movie-detail.vue'],resolve),
+
 
 	}
 ]

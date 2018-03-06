@@ -131,7 +131,7 @@
 				// console.log(movie);
 				this.setMovie(movie)
 				this.$router.push({
-                    path:'/movie'
+                    path:`/movie/${movie.id}`
                 })
 			},
 			...mapMutations({

@@ -3,8 +3,8 @@
         <!-- 总体 -->
         <div class="overall">
             <div class="dec">
-                <h4>红海行动</h4>
-                <p>2018/剧情</p>
+                <h4>{{movieDetail.title}}</h4>
+                <p>{{tags}}</p>
                 <p>原名：红海</p>
                 <p>上映时间：2018-12-16(中国大陆)</p>
                 <p>片长：100</p>
@@ -54,6 +54,13 @@
             }
         },
         components:{star},
+        computed:{
+            tags(){
+                let tags = this.movieDetail.genres.join('/'),
+                    year = this.movieDetail.year;
+                return `${year}/${tags}`
+            }
+        },
         methods:{
             wantWatch(){
                 this.wantText==='想看'?this.wantText ="已想看":this.wantText ="想看";

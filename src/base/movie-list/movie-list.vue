@@ -26,7 +26,7 @@
 
 <script>
     import star from '@/base/star/star'
-    import loadmore from '@/base/loadmore/loadmore'
+    import loadmore from '@/base/loading/loadmore'
     export default {
         name:'movieList',
         props:{
