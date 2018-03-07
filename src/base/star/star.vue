@@ -3,8 +3,6 @@
         <span class="star-item" v-for='item in itemClasses'
                 :class="item"
                 v-if="score || needNullStar"
-
-
         ></span>
         <span v-if="!score" class="no-score" :class="{'block':needNullStar}">暂无评分</span>
         <span v-if="showScore && score" class="show-score">{{normalizeScore}}</span>

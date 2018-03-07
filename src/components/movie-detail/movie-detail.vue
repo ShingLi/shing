@@ -9,7 +9,7 @@
                 <span v-text='movieDetail.title'></span>
             </span>
         </div>
-        <!--  -->
+        <!-- 主体部分 -->
         <scroll class="list-scroll"
             ref="scroll"
             :data = "movieDetail"
@@ -47,7 +47,7 @@
         data(){
             return {
                 movieDetail:{
-                   
+
                 },
                 isShow:true,
 

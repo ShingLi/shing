@@ -13,7 +13,7 @@
                 <span>豆瓣评分</span>
                 <span>{{movieDetail.rating.average}}</span>
                 <span>
-                    <star :size='24'></star>
+                    <star :size='24'  :score='movieDetail.rating.average'></star>
                 </span>
                 <span>{{movieDetail.ratings_count}}&nbsp;人</span>
             </div>
