@@ -1,8 +1,8 @@
 <template lang="html">
     <div class="info-wrapper">
         <!-- 总体 -->
-        <div class="overall">
-            <div class="dec" v-if='movieDetail.id'>
+        <div class="overall" v-if='movieDetail.id'>
+            <div class="dec">
                 <h4>{{movieDetail.title}}</h4>
                 <p>{{tags}}</p>
                 <p>原名:&nbsp;{{movieDetail.original_title}}</p>
@@ -11,11 +11,11 @@
             </div>
             <div class="rank">
                 <span>豆瓣评分</span>
-                <span>{{}}</span>
+                <span>{{movieDetail.rating.average}}</span>
                 <span>
                     <star :size='24'></star>
                 </span>
-                <span>100人</span>
+                <span>{{movieDetail.ratings_count}}&nbsp;人</span>
             </div>
         </div>
         <!-- 操作 -->

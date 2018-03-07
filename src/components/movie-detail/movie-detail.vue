@@ -18,8 +18,10 @@
             <div class="scroll-wrapper">
                 <!-- 电影图片 -->
                 <div class="scroll-content">
-                    <div class="movie-pic" v-if="movieDetail.images">
-                        <img v-lazy="replaceUrl(movieDetail.images.large)">
+                    <div class="movie-pic">
+                        <div v-if="movieDetail.images">
+                            <img v-lazy="replaceUrl(movieDetail.images.large)">
+                        </div>
                     </div>
                     <!-- 电影信息 -->
                     <movie-info :movieDetail ="movieDetail"></movie-info>
