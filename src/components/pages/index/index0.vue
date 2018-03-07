@@ -99,7 +99,7 @@
 			this.probeType =3
 		},
 		mounted(){
-			console.log(this.$route.query.user)
+			// console.log(this.$route.query.user)
 		},
 		computed:{
 			...mapState({
@@ -145,7 +145,11 @@
 				}
 				this.skip += cellListCount;
 				getCellList(this.skip,cellListCount).then(res=>{
+                    // console.log(res.events)
+
 					this.events = this.events.concat(res.events)
+                    // console.log(this.events)
+
 					// 检查有没有数据
 					this._checkMore(res)
 					// console.log(res);

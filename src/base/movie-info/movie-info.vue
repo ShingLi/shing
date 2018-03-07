@@ -2,7 +2,7 @@
     <div class="info-wrapper">
         <!-- 总体 -->
         <div class="overall">
-            <div class="dec">
+            <div class="dec" v-if='movieDetail.id'>
                 <h4>{{movieDetail.title}}</h4>
                 <p>{{tags}}</p>
                 <p>原名:&nbsp;{{movieDetail.original_title}}</p>

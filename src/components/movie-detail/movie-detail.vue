@@ -18,7 +18,7 @@
             <div class="scroll-wrapper">
                 <!-- 电影图片 -->
                 <div class="scroll-content">
-                    <div class="movie-pic">
+                    <div class="movie-pic" v-if="movieDetail.images">
                         <img v-lazy="replaceUrl(movieDetail.images.large)">
                     </div>
                     <!-- 电影信息 -->
@@ -29,8 +29,6 @@
         <div class="modal" v-show='isShow'>
             <loadmore :fullScreen='true'></loadmore>
         </div>
-
-
     </div>
 
 </template>
@@ -46,7 +44,9 @@
 
         data(){
             return {
-                movieDetail:{},
+                movieDetail:{
+                   
+                },
                 isShow:true,
 
             }
@@ -74,8 +74,8 @@
                 }
 
                 getMovieDetail(this.movie.id).then(res=>{
-                    this.movieDetail = res
-                    this.isShow = !this.isShow
+                    this.movieDetail = res;
+                    this.isShow = !this.isShow;
 
                 }).catch(err=>{
                     console.log(err)
