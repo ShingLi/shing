@@ -35,15 +35,16 @@
         </div>
 
         <!-- 影人 -->
-        <div v-if="this.movieDetail.id" class="scroll-wrapper">
-            <scroll 
+        <div  class="scroll-wrapper">
+            <scroll
+
                 :data= 'celebritys'
                 :scrollX = 'this.scrollX'
                 :eventPassthrough = 'this.eventPassthrough'
                 ref='scroll'
 
             >
-                <div class="celebrity" >
+                <div class="celebrity" ref='content'>
                     <span>影人</span>
                     <ul>
                         <li v-for= "(item,index) in celebritys">
@@ -82,7 +83,8 @@
         },
         mounted(){
             this.$nextTick(()=>{
-                
+                this._initSetWidth();
+                this.$refs.scroll.refresh();
             })
         },
         components:{star,scroll},
@@ -106,19 +108,13 @@
             },
             // 影人
             celebritys(){
-                this.movieDetail.directors.forEach((item,index)=>{
-                    if(item.avatars===null){//没有导演
-                        return false
-                    }
-                    return true
-                })
-                return this.movieDetail.directors.concat(this.movieDetail.casts)   
+                return this.movieDetail.directors.concat(this.movieDetail.casts)
             }
         },
         methods:{
             wantWatch(){
                 this.wantText==='想看'?this.wantText ="已想看":this.wantText ="想看";
-                // this.isWanted = !this.isWanted
+
                 this.isWanted = this.isWanted?0:1;
             },
             hasWatched(){
@@ -132,8 +128,10 @@
                 }
             },
             _initSetWidth(){
-                let num = this.$refs.scroll
-                console.log(num)
+                let w = 90,
+                    r =10,
+                    totalWidth = (w+r)*(this.celebritys.length) - 10;
+                    this.$refs.content.style.width=totalWidth+"px";
             }
         }
 
@@ -255,7 +253,7 @@
                 width: 100%;
                 overflow-x: hidden;
                 .celebrity{
-
+                    
                     ul{
                         margin-top: 10px;
                         display: flex;
@@ -264,7 +262,7 @@
                                 &:last-child{
                                     margin-right: 0;
                                 }
-                                
+
                                 span{
 
                                 }

@@ -46,9 +46,7 @@
 
         data(){
             return {
-                movieDetail:{
-
-                },
+                movieDetail:{},
                 isShow:true,
 
             }
@@ -57,7 +55,7 @@
             this._getDetail()
         },
         mounted(){
-            setTimeout(()=>{
+            this.$nextTick(()=>{
                 this.$refs.scroll.refresh();
             })
         },
@@ -77,6 +75,9 @@
 
                 getMovieDetail(this.movie.id).then(res=>{
                     this.movieDetail = res;
+                    this.$nextTick(()=>{
+                        this.$refs.scroll.refresh();
+                    })
                     this.isShow = !this.isShow;
 
                 }).catch(err=>{
