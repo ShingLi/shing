@@ -33,11 +33,35 @@
             <h4>剧情简介</h4>
             <p>{{movieDetail.summary}}</p>
         </div>
+
+        <!-- 影人 -->
+        <div v-if="this.movieDetail.id" class="scroll-wrapper">
+            <scroll 
+                :data= 'celebritys'
+                :scrollX = 'this.scrollX'
+                :eventPassthrough = 'this.eventPassthrough'
+                ref='scroll'
+
+            >
+                <div class="celebrity" >
+                    <span>影人</span>
+                    <ul>
+                        <li v-for= "(item,index) in celebritys">
+                            <img :src="replaceUrl(item.avatars.large)" alt="" width="90" height="120">
+                            <span></span>
+                        </li>
+                    </ul>
+                </div>
+            </scroll>
+        </div>
     </div>
 </template>
 
 <script>
     import star from '@/base/star/star'
+    import scroll from '@/base/scroll/scroll'
+    import { getCelebrity } from '@/api/get-movie/get-movie'
+    import {mapGetters}  from 'vuex'
     export default {
         data(){
             return {
@@ -45,6 +69,9 @@
                 watchedText:"看过 ☆☆☆☆☆",
                 isWatched:false,
                 isWanted:0,
+                eventPassthrough:'vertical',//纵向滚动
+                scrollX:true,
+
             }
         },
         props:{
@@ -53,8 +80,16 @@
                 default:{}
             }
         },
-        components:{star},
+        mounted(){
+            this.$nextTick(()=>{
+                
+            })
+        },
+        components:{star,scroll},
         computed:{
+            ...mapGetters([
+                'movie'
+                ]),
             tags(){
                 let tags = this.movieDetail.genres.join("/"),
                     year = this.movieDetail.year;
@@ -68,6 +103,16 @@
             durations(){
                 let durations = this.movieDetail.durations.join("/")
                 return durations
+            },
+            // 影人
+            celebritys(){
+                this.movieDetail.directors.forEach((item,index)=>{
+                    if(item.avatars===null){//没有导演
+                        return false
+                    }
+                    return true
+                })
+                return this.movieDetail.directors.concat(this.movieDetail.casts)   
             }
         },
         methods:{
@@ -80,6 +125,15 @@
                 this.watchedText==='看过 ☆☆☆☆☆'?this.watchedText ="已看过":this.watchedText ="看过 ☆☆☆☆☆";
                 this.isWatched = !this.isWatched
 
+            },
+            replaceUrl(srcUrl) {
+                if (srcUrl !== undefined) { // 图片防盗链处理
+                    return ('https://images.weserv.nl/?url=' + srcUrl.replace(/http\w{0,1}:\/\//, ''));
+                }
+            },
+            _initSetWidth(){
+                let num = this.$refs.scroll
+                console.log(num)
             }
         }
 
@@ -194,6 +248,29 @@
                         color: #333;
                         line-height: 25px;
                     }
+            }
+            // 影人部分
+            .scroll-wrapper{
+                position: relative;
+                width: 100%;
+                overflow-x: hidden;
+                .celebrity{
+
+                    ul{
+                        margin-top: 10px;
+                        display: flex;
+                            li{
+                                margin-right: 10px;
+                                &:last-child{
+                                    margin-right: 0;
+                                }
+                                
+                                span{
+
+                                }
+                            }
+                    }
+                }
             }
     }
 </style>
