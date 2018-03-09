@@ -7,7 +7,7 @@
             >
                 <span class="content">{{item.name}}</span>
             </li>
-
+            
         </ul>
     </div>
 </template>

@@ -40,9 +40,8 @@
 
                 :data= 'celebritys'
                 :scrollX = 'this.scrollX'
-                :eventPassthrough = 'this.eventPassthrough'
-                ref='scroll'    
-
+                ref='scroll'
+                
             >
                 <div class="celebrity" ref='content'>
                     <span>影人</span>

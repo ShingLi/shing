@@ -25,6 +25,8 @@
                     </div>
                     <!-- 电影信息 -->
                     <movie-info :movieDetail ="movieDetail"></movie-info>
+                    <!-- 影评 -->
+                    <reviews></reviews>
                 </div>
             </div>
         </scroll>
@@ -37,9 +39,10 @@
 
 <script>
     import scroll from '@/base/scroll/scroll'
-    import movieInfo from '@/base/movie-info/movie-info'
-    import loadmore from '@/base/loading/loadmore'
-    import {getMovieDetail} from '@/api/get-movie/get-movie'
+    import movieInfo from '@/base/movie-info/movie-info' //电影的信息
+    import loadmore from '@/base/loading/loadmore' //加载点遮罩层
+    import {getMovieDetail} from '@/api/get-movie/get-movie' //获取电影详情的api
+    import reviews from "@/base/movie-reviews/reviews"
     import {mapState , mapGetters } from 'vuex'
     export default {
         name:"movieDetail",
@@ -59,7 +62,7 @@
                 this.$refs.scroll.refresh();
             })
         },
-        components:{scroll,movieInfo,loadmore},
+        components:{scroll,movieInfo,reviews,loadmore},
         computed:{
 
             ...mapGetters ([
@@ -77,7 +80,9 @@
                     this.movieDetail = res;
                    
                     this.isShow = !this.isShow;
-
+                    this.$nextTick(()=>{
+                        this.$refs.scroll.refresh();
+                    })
                 }).catch(err=>{
                     console.log(err)
                 })
