@@ -1,7 +1,7 @@
 <template lang="html">
-    <div class="info-wrapper">
+    <div class="info-wrapper" v-if='movieDetail.id'>
         <!-- 总体 -->
-        <div class="overall" v-if='movieDetail.id'>
+        <div class="overall">
             <div class="dec">
                 <h4>{{movieDetail.title}}</h4>
                 <p>{{tags}}</p>
@@ -41,15 +41,15 @@
                 :data= 'celebritys'
                 :scrollX = 'this.scrollX'
                 :eventPassthrough = 'this.eventPassthrough'
-                ref='scroll'
+                ref='scroll'    
 
             >
                 <div class="celebrity" ref='content'>
                     <span>影人</span>
                     <ul>
                         <li v-for= "(item,index) in celebritys">
-                            <img :src="replaceUrl(item.avatars.large)" alt="" width="90" height="120">
-                            <span></span>
+                            <img v-lazy='replaceUrl(item.avatars.large)' width="90" height="120">
+                            <span>{{item.name}}</span>
                         </li>
                     </ul>
                 </div>
@@ -64,6 +64,7 @@
     import { getCelebrity } from '@/api/get-movie/get-movie'
     import {mapGetters}  from 'vuex'
     export default {
+        name:"movie-info",
         data(){
             return {
                 wantText:"想看",
@@ -81,11 +82,9 @@
                 default:{}
             }
         },
-        mounted(){
-            this.$nextTick(()=>{
-                this._initSetWidth();
-                this.$refs.scroll.refresh();
-            })
+        updated(){
+            this.$refs.scroll.refresh();
+            this._initSetWidth();
         },
         components:{star,scroll},
         computed:{
@@ -220,6 +219,9 @@
                                 width: 20px;
                                 height: 20px;
                             }
+                            span{
+
+                            }
                     }
             }
             // 简介部分
@@ -258,13 +260,16 @@
                         margin-top: 10px;
                         display: flex;
                             li{
+                                text-align: center;
                                 margin-right: 10px;
                                 &:last-child{
                                     margin-right: 0;
                                 }
 
                                 span{
-
+                                    font-size: 12px;
+                                    display: inline-block;
+                                    margin-top: 10px;
                                 }
                             }
                     }

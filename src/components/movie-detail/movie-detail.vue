@@ -75,9 +75,7 @@
 
                 getMovieDetail(this.movie.id).then(res=>{
                     this.movieDetail = res;
-                    this.$nextTick(()=>{
-                        this.$refs.scroll.refresh();
-                    })
+                   
                     this.isShow = !this.isShow;
 
                 }).catch(err=>{
