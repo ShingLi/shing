@@ -1,0 +1,1 @@
+import {loadFromLocal } from "./store"
