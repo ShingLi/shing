@@ -26,7 +26,7 @@
                     <!-- 电影信息 -->
                     <movie-info :movieDetail ="movieDetail"></movie-info>
                     <!-- 影评 -->
-                    <reviews></reviews>
+                    <reviews :movieDetail='movieDetail'></reviews>
                 </div>
             </div>
         </scroll>
@@ -78,7 +78,7 @@
 
                 getMovieDetail(this.movie.id).then(res=>{
                     this.movieDetail = res;
-                   
+
                     this.isShow = !this.isShow;
                     this.$nextTick(()=>{
                         this.$refs.scroll.refresh();

@@ -12,10 +12,10 @@ export  function getMovieDetail(id){
 		console.log(err);
 	})
 }
-// 影人
+// 短评
 
-export function getCelebrity(id){
-	const url = `/api/movie/celebrity/${id}`,
+export function getComments(id){
+	const url = `/api/movie/subject/${id}/comments`,
 			data = Object.assign({},commonParams);
 
 	return axios.get(url,{

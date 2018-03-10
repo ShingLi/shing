@@ -4,20 +4,27 @@
 			<navbar :items = "items" @switchs="selectItem" :currentIndex='currentIndex'></navbar>
 			<!-- 短评列表 -->
 			<div class="comments" v-show="currentIndex===0">
-				
+				<movie-comment :popular_comments='movieDetail.popular_comments'></movie-comment>
 			</div>
 			<!-- 影评 -->
 			<div class="reviews" v-show="currentIndex===1">
-				
+
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 	import navbar from "@/base/navbar/navbar"
+	import movieComment from "@/base/movie-reviews/comments/comments"
+
 	export default {
 		name:'reviews',
-
+		props:{
+			movieDetail:{
+				type:Object,
+				default:{}
+			}
+		},
 		data(){
 			return {
 				items:[{id:"0",name:'短评'},{id:"1",name:'影评'}],
@@ -25,7 +32,8 @@
 			}
 		},
 		components:{
-			navbar
+			navbar,
+			movieComment
 		},
 		methods:{
 			selectItem(index){
@@ -40,8 +48,8 @@
 	.reviews-wrapper{
 		background-color: @base-white-color;
 		padding:30px 15px 0px 15px;
-		
-		
+
+
 		.reviews-content{
 			position: relative;
 				&::before{
@@ -52,12 +60,8 @@
 					transform: scaleY(.5);
 					background-color: @default-screen-color;
 				}
-				.comments{
-					height: 100px;
-				}
-				.reviews{
-					height: 100px;
-
+				.comments,.reviews{
+					margin-top: 20px;
 				}
 		}
 	}
