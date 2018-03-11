@@ -1,30 +1,28 @@
-// import { saveComment} from "../../common/js/cache"
+import { saveComment,loadComment } from "../../common/js/cache" ;
 const state ={
     movie:{},
-    // favoriteComments:loadComment()
+    favoriteComments:loadComment()
 }
 
 const mutations ={
     setMovie(state,payload){
         state.movie= payload
     },
-    SET_FAVORITE_COMMENTS(state,comments){
+    set_favorite_comments(state,comments){
         console.log(comments);
-        // state.favoriteComments = comments;
+        state.favoriteComments = comments;
 
-    },
-    hehe(state,payload){
-        console.log(payload);
     }
 }
 
 const getters={
-    movie:state=>state.movie
+    movie:state=>state.movie,
+    favoriteComments:state => state.favoriteComments
 }
 
 const actions = {
     markComment({commit},id){
-        commit('hehe',id)
+        commit('set_favorite_comments',saveComment(id))
     }
 }
 export default {

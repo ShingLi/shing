@@ -12,7 +12,9 @@
                 <p class="desc">{{item.content}}</p>
                 <span>{{item.created_at}}</span>
                 <!-- 点赞 -->
-                <div class="useful_count" @click='mark(item.id,index)'>
+                <div class="useful_count" @click='mark(item.id,index)'
+                    :class="{like:isLike(item.id)}"
+                >
                     <i class="icon iconfont icon-dianzan"></i>
                     <span v-text='item.useful_count'></span>
                 </div>
@@ -37,13 +39,35 @@
             }
         },
         components:{star},
+        computed:{
+            ...mapGetters([
+                'favoriteComments'
+            ])
+        },
         methods:{
+            isLike(id){
+                const index = this.favoriteComments.findIndex((item) => {
+                      return item === id;
+                });
+                if (index > -1) {
+                  return true;
+                }
+                return false;
+            },
             mark(id,index){
-                this.$store.dispatch({
-                    type:'markComment',
-                    id
-                })
-            }
+                this.$store.dispatch("markComment",id)
+                const CommentIndex = this.favoriteComments.findIndex((item) => {
+                      return item === id;
+                });
+                if (CommentIndex > -1) {
+                      this.popular_comments[index].useful_count ++;
+                } else {
+                      this.popular_comments[index].useful_count --;
+                }
+            },
+            // ...mapActions([
+            //     'markComment'
+            // ])
         }
 
     }
@@ -84,7 +108,14 @@
                                 font-size: 16px;
                                 color: #777;
                                 margin-right: 6px;
+
                             }
+                            &.like{
+                                i,span{
+                                    color:#42bd56;
+                                }
+                            }
+
                     }
             }
         }
