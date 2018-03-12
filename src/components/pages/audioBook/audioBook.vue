@@ -65,7 +65,7 @@
 			}
 		},
 		components:{ mHeader,navbar,scroll,'movie-list':movieList,
-			loadmore:resolve=>require(['@/base/loading/loadmore.vue'],resolve)
+			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore')
 		},
 
 		created(){

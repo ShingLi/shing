@@ -20,12 +20,13 @@ const routes =[
 			{
 				path:'/audioBook',
 				name:'audioBook',
-				component:resolve=>require(['../components/pages/audioBook/audioBook.vue'],resolve) //路由的懒加载
+				// component:resolve=>require(['../components/pages/audioBook/audioBook.vue'],resolve) //路由的懒加载
+				component:()=>import(/* webpackChunkName: 'audioBook' */'@/components/pages/audioBook/audioBook')
 			},
 			{
 				path:'/broadCast',
 				name:'broadCast',
-				component:resolve=>require(['../components/pages/broadCast/broadCast.vue'],resolve)
+				component:()=>import(/*webpackChunkName:'broadCast'*/'@/components/pages/broadCast/broadCast')
 			},
 			{
 				path:'/group',
