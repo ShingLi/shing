@@ -13,7 +13,6 @@
         <scroll class="list-scroll"
             ref="scroll"
             :data = "movieDetail"
-
         >
             <div class="scroll-wrapper">
                 <!-- 电影图片 -->

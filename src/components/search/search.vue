@@ -18,7 +18,7 @@
                         <!-- 搜索记录部分 -->
                         <div class="search-describe">
                             <h2>搜索历史</h2>
-                            <i class="icon iconfont icon-lajitong"></i>
+                            <i class="icon iconfont icon-lajitong" @click='clearAll'></i>
                         </div>
                         <history-list :searchs='searchs' @delete='deleteOne'></history-list>
                     </div>
@@ -32,6 +32,7 @@
 <script type='text/ecmascript-6'>
     import searchBox from '@/base/header/header'
     import scroll    from '@/base/scroll/scroll'
+    import { MessageBox } from 'mint-ui' //引入mint-ui 组件
     export default{
         data(){
             return {
@@ -78,6 +79,12 @@
             deleteOne(index){
                 // console.log(index);
                 this.searchs.splice(index,1)
+            },
+            clearAll(){
+                if(!this.searchs.length)return false
+                MessageBox.confirm('确定清空搜索记录?').then(action => {
+                    this.searchs  = []
+                });
             }
         },
         watch:{
