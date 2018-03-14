@@ -8,7 +8,7 @@ Vue.use(Router)
 const routes =[
 
 	{
-		path:'/',
+		path:'/',//根路径
 		component:pages,
 		children:[
 			{

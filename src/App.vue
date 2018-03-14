@@ -41,10 +41,8 @@ export default {
   methods:{
     // 这个方法是进入主页后读取到数据然后inex.vue emit('isShow') 然后关闭欢迎页
       isShow(){
-          var that = this;
-          setTimeout(function(){
-
-            that.show=true
+          setTimeout(()=>{
+            this.show = true
           },1500)
       }
   }

@@ -4,21 +4,21 @@
 			<navbar :items = "items" @switchs="selectItem" :currentIndex='currentIndex'></navbar>
 			<!-- 短评列表 -->
 			<div class="comments" v-show="currentIndex===0">
-				<movie-comment :popular_comments='movieDetail.popular_comments'></movie-comment>
+				<comments :popular_comments='movieDetail.popular_comments'></comments>
 			</div>
 			<!-- 影评 -->
-			<div class="reviews" v-show="currentIndex===1">
-
+			<div class="reviews" v-if="currentIndex===1">
+				<reviews :popular_reviews='movieDetail.popular_reviews'></reviews>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 	import navbar from "@/base/navbar/navbar"
-	import movieComment from "@/base/movie-reviews/comments/comments"
+	import comments from "@/base/movie-reviews/comments/comments"
 
 	export default {
-		name:'reviews',
+		name:'movie-reviews',
 		props:{
 			movieDetail:{
 				type:Object,
@@ -33,7 +33,8 @@
 		},
 		components:{
 			navbar,
-			movieComment
+			comments,
+			reviews:()=>import (/*webpackChunkName:'reviews'*/'@/base/movie-reviews/reviews/reviews')
 		},
 		methods:{
 			selectItem(index){

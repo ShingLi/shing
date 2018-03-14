@@ -41,12 +41,12 @@
                 :data= 'celebritys'
                 :scrollX = 'this.scrollX'
                 ref='scroll'
-                
+                :eventPassthrough="this.eventPassthrough"
             >
                 <div class="celebrity" ref='content'>
                     <span>影人</span>
                     <ul>
-                        <li v-for= "(item,index) in celebritys">
+                        <li v-for= "(item,index) in celebritys" @click='selectCelebrity(item.id,$event)' :key='item.id'>
                             <img v-lazy='replaceUrl(item.avatars.large)' width="90" height="120">
                             <span>{{item.name}}</span>
                         </li>
@@ -130,6 +130,12 @@
                     r =10,
                     totalWidth = (w+r)*(this.celebritys.length) - 10;
                     this.$refs.content.style.width=totalWidth+"px";
+            },
+            selectCelebrity(id,e){
+                // 选择影人
+                
+                if(!e._constructed ){ return }
+                console.log(id)
             }
         }
 
