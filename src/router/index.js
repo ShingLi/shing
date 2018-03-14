@@ -70,10 +70,13 @@ const routes =[
 	},
 	{
 		path:'/movie/:id',//电影详情的页面
-		
+
 		component:resolve=>require(['../components/movie-detail/movie-detail.vue'],resolve),
-
-
+	},
+	{
+		path:'/celebrity/:id',//影人
+		// component:()=>import(/*webpackChunkName:'celebrity'*/'@/components/celebrity/celebrity') 坑  生命周期不执行动态路由
+		component:resolve=>require(['@/components/celebrity/celebrity'],resolve),
 	}
 ]
 

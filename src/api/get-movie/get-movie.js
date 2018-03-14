@@ -14,14 +14,14 @@ export  function getMovieDetail(id){
 }
 // 短评
 
-export function getComments(id){
-	const url = `/api/movie/subject/${id}/comments`,
+export function celebrity(id){
+	const url = `/api/movie/celebrity/${id}`,
 			data = Object.assign({},commonParams);
 
 	return axios.get(url,{
 		params:data
 	}).then(res=>{
-		return Promise.resolve(res)
+		return Promise.resolve(res.data)
 	}).catch(err=>{
 		console.log(err)
 	})

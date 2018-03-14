@@ -133,9 +133,11 @@
             },
             selectCelebrity(id,e){
                 // 选择影人
-                
                 if(!e._constructed ){ return }
-                console.log(id)
+                
+                this.$router.push({
+                    path:`/celebrity/${id}` //动态路由匹配
+                })
             }
         }
 
@@ -260,7 +262,7 @@
                 width: 100%;
                 overflow-x: hidden;
                 .celebrity{
-                    
+
                     ul{
                         margin-top: 10px;
                         display: flex;
