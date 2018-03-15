@@ -35,6 +35,7 @@
 			<!-- tab切换的时候显示加载的动画 -->
 			<loadmore :fullScreen='true' v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&!comingMovies.length"></loadmore>
 		</div>
+		<Toast type='warn' v-model='toastShow'>网络错误</Toast>
 	</div>
 </template>
 <script>
@@ -46,6 +47,7 @@
 	import {createMovieList} from '@/api/movieList'
 	const search_more = 10; //每次请求数据的长度 count
 	import {mapMutations} from 'vuex'
+	import { Toast } from 'vux'
 	export default {
 		name:'audioBook',
 		data(){
@@ -62,9 +64,10 @@
 				loadingFlag:true, //控制加载的速度
 				hasMoreHotMovies:true, //显示底线的
 				scrollY:-1,//默认的滚动位置
+				toastShow:false,//默认toast 是不显示的
 			}
 		},
-		components:{ mHeader,navbar,scroll,'movie-list':movieList,
+		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,
 			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore')
 		},
 
@@ -86,7 +89,8 @@
 					//创建类封住数据  createMovieList(res.subjects)
 					this.hotMovies = createMovieList(res.subjects)
 				}).catch(err=>{
-					alert("网络错误！")
+					console.log(err);
+					this.toastShow = true
 				})
 			},
 			loadMore:function(){

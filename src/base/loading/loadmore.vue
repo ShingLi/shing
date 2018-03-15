@@ -8,8 +8,6 @@
         </div>
         <div class="nomore" v-else>
             <Divider>我是有底线的</Divider>
-            <!-- <span>我是有底线的`````</span> -->
-            
         </div>
     </div>
 </template>

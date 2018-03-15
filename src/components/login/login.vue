@@ -39,7 +39,7 @@
 				<span class="show-pwd" :class="{show:isShow}" @click='showPwd'></span>
 			</div>
 			<div class="login-button">
-				<button type="submit">登录</button>
+				<x-button type="primary" action-type="button">登录</x-button>
 			</div>
 		</form>
 		<div class="forget_pwd">
@@ -51,7 +51,7 @@
 </template>
 <script>
 import axios from "axios"
-
+	import { XButton } from 'vux'
 	import { mapState ,mapMutations, mapActions} from 'vuex'
 	export default{
 		name:'login',
@@ -70,6 +70,7 @@ import axios from "axios"
 			})
 
 		},
+		components:{ XButton },
 		methods:{
 			showPwd(){
 				this.isShow = this.isShow ? 0 : 1;
@@ -99,6 +100,6 @@ import axios from "axios"
 	}
 </script>
 <style lang='less' scoped>
-	@import "../../assets/less/header";
-	@import "../../assets/less/login";
+	@import "../../common/less/header";
+	@import "../../common/less/login";
 </style>
