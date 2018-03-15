@@ -7,14 +7,15 @@
             <span></span>
         </div>
         <div class="nomore" v-else>
-            <!-- <div class="line"></div> -->
-            <span>我是有底线的`````</span>
-            <!-- <div class="line"></div> -->
+            <!-- <Divider>我是有底线的</divider> -->
+            <!-- <span>我是有底线的`````</span> -->
+            
         </div>
     </div>
 </template>
 
 <script type='text/ecmascript-6'>
+// import { Divider } from 'vux'
 export default {
     props:{
         fullScreen:{
@@ -25,7 +26,8 @@ export default {
             type:Boolean,
             default:true
         }
-    }
+    },
+    // components:{Divider}
 }
 </script>
 

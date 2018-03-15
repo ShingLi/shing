@@ -33,6 +33,7 @@
     import searchBox from '@/base/header/header'
     import scroll    from '@/base/scroll/scroll'
     import { MessageBox } from 'mint-ui' //引入mint-ui 组件
+    
     export default{
         data(){
             return {
