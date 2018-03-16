@@ -26,3 +26,4 @@ export function saveToLocal(id,key,val){
     userInfo[id][key] = val;
     window.localStorage._doubanMovie_ = JSON.stringify(userInfo)
 }
+

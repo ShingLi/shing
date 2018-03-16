@@ -1,8 +1,9 @@
-import {saveToLocal,loadFromLocal } from "./store"
+import { saveToLocal , loadFromLocal  } from "./store"
 
 const USER_ID = "licheng";
 const COMMENT_KEY = '__comment__';//点赞的key
 const COMMENT_MAX_LENGTH = 300;
+
 
 // 储存评论人的id号
 export function saveComment(id){
@@ -26,3 +27,8 @@ export function saveComment(id){
 export function loadComment(){
     return loadFromLocal(USER_ID, COMMENT_KEY, []);
 }
+
+export function saveIndex(id){
+    
+}
+

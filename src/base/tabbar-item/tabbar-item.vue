@@ -17,12 +17,9 @@
 			href(){
 
 				this.$parent.$emit('input',this.id);
-
 				this.$router.push(this.id);
-				if(this.id==='index'){
-					this.$store.commit('index')
-
-				}
+				// 提交到vuex中
+				// this.$store.dispatch('async',this.id)
 			}
 		},
 		computed:{

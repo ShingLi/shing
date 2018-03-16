@@ -1,19 +1,23 @@
 <template>
 	<div class="celebrity-wrap">
 		<div class="head">
-			<span class="arrow" @click='$router.go(-1)'>
-                <i class="icon iconfont icon-fanhui1"></i>
-            </span>
-			<p>影人</p>
+			<div style="display:inline-block" @click='$router.go(-1)'>
+				<span class="arrow">
+                	<i class="icon iconfont icon-fanhui1"></i>
+            	</span>
+				<p>影人</p>
+			</div>
 		</div>
 		<!--  -->
 		<scroll
-
+			:data='celebrity'
+			ref='scroll'
+			class='list-scroll'
 			>
 			<div class="scroll-wrapper">
 				<div class="movie-pic">
-					<div>
-						<img src="https://images.weserv.nl/?url=img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1372934445.18.jpg" alt="">
+					<div v-if='celebrity.avatars'>
+						<img v-lazy='replaceUrl(celebrity.avatars.large)'>
 					</div>
 				</div>
 			</div>
@@ -22,33 +26,62 @@
 </template>
 <script>
 	import scroll from '@/base/scroll/scroll'
-	import {celebrity} from "@/api/get-movie/get-movie"
+	import { celebrity } from "@/api/get-movie/get-movie"
+	import { mapGetters , mapState } from 'vuex'
+
 	export default{
 		name:'celebrity',
 		data(){
 			return{
-				
+				celebrity:{}
 			}
 		},
 		created(){
 			this._getCelebrity();
 		},
+		mounted(){
+			// this.$nextTick(()=>{
+			// 	this.$refs.scroll.refresh();
+			// })
+			 
+		},
 		components:{scroll},
+		computed:{
+			...mapState({
+					celebrityId :state=>state.movie.celebrityId
+			})
+		},
 		methods:{
 			_getCelebrity(){
+				if(!this.celebrityId){
+					this.$router.push({path:'/audioBook'})
+					return 
+					// 当前页面刷新就返回上一级
+				}
+				celebrity(this.celebrityId).then(res=>{
+					this.celebrity = res
 
-				celebrity(1274761).then(res=>{
-					console.log(res);
 				}).catch(err=>{
 					console.log(err);
 				})
-			}
+			},
+			replaceUrl(srcUrl) {
+                if (srcUrl !== undefined) { // 图片防盗链处理
+                    return ('https://images.weserv.nl/?url=' + srcUrl.replace(/http\w{0,1}:\/\//, ''));
+                }
+            }
 		}
 	}
 </script>
 <style lang='less' scoped>
 	.celebrity-wrap{
-
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		background-color:rgba(85,85,85,.6);
+	
 		.head{
 			position: fixed;
 			top:0;
@@ -74,19 +107,25 @@
 					color: #fff;
 					margin-left: 10px;
 				}
-			}
-			.scroll-wrapper{
-				position: fixed;
-				width: 100%;
-				top: 0;
-				.movie-pic{
-					padding: 50px 0 20px 0;
-					text-align: center;
-					background-color: #555;
-						img{
-							width: 40%;
-						}
+		}
+		.list-scroll{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			overflow: hidden;
+				.scroll-wrapper{
+					
+					.movie-pic{
+						padding: 50px 0 20px 0;
+						text-align: center;
+						background-color: #555;
+							img{
+								width: 40%;
+								border-radius: 4px;
+							}
 					}
-			}
+				}
+		}
 	}
 </style>

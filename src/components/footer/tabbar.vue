@@ -46,7 +46,22 @@
 		components:{
 			tabbar,
 			tabbarItem
+		},
+		created(){
+
+			let localData = window.sessionStorage.getItem('navTabIndex')
+			if(!localData){
+				this.select = 'index';
+				return false
+			}
+			this.select = localData
+		},
+		watch:{
+			select:function(val,oldVal){
+				window.sessionStorage.setItem('navTabIndex',val)
+			}
 		}
+
 	}
 </script>
 <style src='../../common/less/tabbar.less' lang='less'></style>

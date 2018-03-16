@@ -1,7 +1,8 @@
 import { saveComment,loadComment } from "../../common/js/cache" ;
 const state ={
     movie:{},
-    favoriteComments:loadComment()
+    favoriteComments:loadComment(),
+    celebrityId:''
 }
 
 const mutations ={
@@ -12,6 +13,9 @@ const mutations ={
         console.log(comments);
         state.favoriteComments = comments;
 
+    },
+    setCelebrity(state,payload){
+        state.celebrityId  = payload;
     }
 }
 

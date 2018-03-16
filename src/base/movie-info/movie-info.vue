@@ -49,6 +49,8 @@
                         <li v-for= "(item,index) in celebritys" @click='selectCelebrity(item.id,$event)' :key='item.id'>
                             <img v-lazy='replaceUrl(item.avatars.large)' width="90" height="120">
                             <span>{{item.name}}</span>
+                            <br>
+                            <span></span>
                         </li>
                     </ul>
                 </div>
@@ -133,8 +135,8 @@
             },
             selectCelebrity(id,e){
                 // 选择影人
-                if(!e._constructed ){ return }
-                
+                if(!e._constructed ){ return }//这里或触发点击事件2次，暂时没有解决
+                this.$store.commit("setCelebrity",id)
                 this.$router.push({
                     path:`/celebrity/${id}` //动态路由匹配
                 })

@@ -147,6 +147,7 @@
                                         text-align: center;
                                         img{
                                             width: 50%;
+                                            border-radius: 4px;
                                         }
                                     }
                             }

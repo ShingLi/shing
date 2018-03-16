@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <section>
-        <keep-alive exclude='movieDetail'>
+        <keep-alive exclude='movieDetail,celebrity'>
             <router-view @isShow='isShow' :class="{'is-height':hide}"></router-view>
         </keep-alive>
     </section>
