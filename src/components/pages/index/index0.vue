@@ -192,14 +192,7 @@
 			//activated()这个神器
 			//
 			// })
-			if(from.name==='index'){
-				let scrollY = this.scrollY;
-
-				this.$store.commit({
-					type:'scrollY',
-					scrollY:scrollY
-				})
-			}
+			
 			next()
 		},
 		activated(){
