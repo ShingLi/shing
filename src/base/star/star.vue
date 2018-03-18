@@ -93,10 +93,10 @@
                 }
             }
             .show-score{
-                font-size: 1rem;
+                font-size: 12px;
             }
             .no-score{
-                font-size: 1rem;
+                font-size: 12px;
             }
         }
     }

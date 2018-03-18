@@ -94,7 +94,7 @@
 		.m-header-title{
 			flex: 1;
 			text-align: center;
-			font-size: 1.3rem;
+			font-size: 1.2rem;
 			text-overflow: ellipsis;
 			white-space:nowrap;
 			overflow: hidden;

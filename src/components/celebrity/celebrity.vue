@@ -33,7 +33,12 @@
 					</div>
 					<div class="summary_wrap">
 						<h5 class="title">个人简介</h5>
-						<p class="summary">{{celebrity.summary}}</p>
+						<p class="summary" v-if='celebrity.summary' @click='hasShow'>
+							{{celebrity.summary}}
+							<i></i>
+						</p>
+						<p class="summary" v-else>暂无个人简介</p>
+
 					</div>
 				</div>
 				<!-- works -->
@@ -41,26 +46,39 @@
 					<h2>代表作品</h2>
 					<scroll :data='arr'
 							:scrollX='scrollX'
-
+							:click='false'
 					>
 						<ul ref='listWrap'>
-							<li v-for='(item,index) of arr' :key='index'>
-								<img width="90" height="120" v-lazy='replaceUrl(item.subject.images.large)'>
-								<p></p>
-								<span></span>
+							<li v-for='(item,index) of works' :key='index' @click='selectMovie(item)'>
+								<img width="90" height="120" v-lazy='replaceUrl(item.image)'>
+								<p class="title">{{item.title}}</p>
+								<star :score='item.rating' :size='24' :show-score='true'></star>
 							</li>
 						</ul>
 					</scroll>
 				</div>
+
+				<!-- 更多作品 -->
+				<div class="hasMore">
+					<router-link to='/g'>
+						<span>查看全部作品</span>
+						<img src="./ic_arrow_gray_small.png" alt="" width="28" height="28">
+					</router-link>
+				</div>
 			</div>
 		</scroll>
+		<!--详细的个人介绍  -->
+		<celebrity-info :celebrity='celebrity' ref='info'></celebrity-info>
 	</div>
 </template>
 <script>
 	import scroll from '@/base/scroll/scroll'
 	import { celebrity } from "@/api/get-movie/get-movie"
-	import { mapGetters , mapState } from 'vuex'
 	import { Toast } from 'mint-ui'
+	import star from "@/base/star/star"
+	import celebrityInfo from "@/base/celebrityInfo/celebrity-info"
+	import { mapGetters , mapState } from 'vuex'
+	import { createMovieList } from '@/api/movieList'
 	export default{
 		name:'celebrity',
 		data(){
@@ -69,7 +87,7 @@
 				pulldown:true,//
 				text:"收藏",
 				hasCollected:0,
-				arr:[],
+				works:[],
 				scrollX:true,
 			}
 		},
@@ -80,7 +98,7 @@
 			this.$refs.scroll.refresh();
 			this._initWidth();
 		},
-		components:{ scroll },
+		components:{ scroll , star , celebrityInfo },
 		computed:{
 			...mapState({
 					celebrityId :state=>state.movie.celebrityId
@@ -96,7 +114,13 @@
 				celebrity(this.celebrityId).then(res=>{
 					this.celebrity = res,
 					this.arr = this.celebrity.works
-
+					// 封装对象传递到vuex中
+					let ret = [];
+					res.works.forEach(item=>{
+						ret.push(item.subject)
+					})
+					this.works = createMovieList(ret)
+					// console.log(this.works);
 				}).catch(err=>{
 					Toast({
 						message:'加载失败',
@@ -124,7 +148,19 @@
 				// console.log(num);
 				const _width = (w+r)*num-8;
 				this.$refs.listWrap.style.width = _width +"px"
-			}
+			},
+			selectMovie(movie){
+				// console.log(id);
+				let id = movie.id
+				this.$store.commit('setMovie',movie)
+				this.$router.push({
+					path:`/movie/${id}`
+				})
+			},
+			hasShow(){
+				this.$refs.info.show()
+			},
+
 		}
 	}
 </script>

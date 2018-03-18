@@ -91,7 +91,12 @@
                   return ('https://images.weserv.nl/?url=' + srcUrl.replace(/http\w{0,1}:\/\//, ''));
                 }
             }
-        }
+        },
+        // watch:{
+        //     '$route'(to,from){
+        //         this._getDetail(to.path)
+        //     }
+        // }
     }
 </script>
 
