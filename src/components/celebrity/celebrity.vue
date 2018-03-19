@@ -74,11 +74,11 @@
 <script>
 	import scroll from '@/base/scroll/scroll'
 	import { celebrity } from "@/api/get-movie/get-movie"
-	import { Toast } from 'mint-ui'
 	import star from "@/base/star/star"
 	import celebrityInfo from "@/base/celebrityInfo/celebrity-info"
 	import { mapGetters , mapState } from 'vuex'
 	import { createMovieList } from '@/api/movieList'
+	import { Toast } from 'mint-ui'
 	export default{
 		name:'celebrity',
 		data(){
@@ -94,11 +94,14 @@
 		created(){
 			this._getCelebrity();
 		},
+		
 		updated(){
-			this.$refs.scroll.refresh();
-			this._initWidth();
+			// this.$refs.scroll.refresh();
+			// this._initWidth();
 		},
-		components:{ scroll , star , celebrityInfo },
+		components:{ scroll , star , 
+			celebrityInfo:()=>import(/*webpackChunkName:'celebrityInfo'*/'@/base/celebrityInfo/celebrity-info') 
+		},
 		computed:{
 			...mapState({
 					celebrityId :state=>state.movie.celebrityId
@@ -120,6 +123,10 @@
 						ret.push(item.subject)
 					})
 					this.works = createMovieList(ret)
+					this.$nextTick(()=>{
+						this._initWidth();
+						this.$refs.scroll.refresh();
+					})
 					// console.log(this.works);
 				}).catch(err=>{
 					Toast({

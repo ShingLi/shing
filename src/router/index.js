@@ -31,13 +31,13 @@ const routes =[
 			{
 				path:'/group',
 				name:'group',
-				component:resolve=>require(['../components/pages/group/group.vue'],resolve)
+				component:()=>import(/*webpackChunkName:'group'*/'@/components/pages/group/group')
+				
 			},
 			{
 				path:'/mine',
 				name:'mine',
-				component:resolve=>require(['../components/pages/Mine/mine.vue'],resolve)
-
+				component:()=>import(/*webpackChunkName:'mine'*/'@/components/pages/Mine/mine')
 			},
 			{
 				path:'/index',
@@ -70,7 +70,6 @@ const routes =[
 	},
 	{
 		path:'/movie/:id',//电影详情的页面
-
 		component:resolve=>require(['../components/movie-detail/movie-detail.vue'],resolve),
 	},
 	{

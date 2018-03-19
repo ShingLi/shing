@@ -66,8 +66,7 @@
 	// awesome vue无限滚动的组件
 	//import infiniteLoading from 'vue-infinite-loading'
 	// 使用mint的toast组件
-	import { Toast } from 'mint-ui'
-	import { Loadmore } from 'mint-ui'
+	import { Toast , Loadmore} from 'mint-ui'
 
 // 纠结想来想去还是使用better-scroll
 	import scroll from '@/base/scroll/scroll'
