@@ -46,20 +46,22 @@
 			<router-link to="" class='forget'>忘记密码？</router-link>
 			<router-link :to="{name:'index'}" class='back_home'>注册账号</router-link>
 		</div>
-
+		<!-- 表单验证 -->
+		<toast v-model="flag" type="text">{{err}}</toast>
 	</div>
 </template>
 <script>
 import axios from "axios"
-	import { XButton } from 'vux'
-	import { Toast } from 'mint-ui'
+	import { XButton , Toast } from 'vux'
 	import { mapState ,mapMutations, mapActions} from 'vuex'
 	export default{
 		name:'login',
 		data(){
 			return {
 				loginType:'pwd',
-				isShow:0
+				isShow:0,
+				flag:false,
+				err:''
 			}
 		},
 		computed:{
@@ -71,7 +73,7 @@ import axios from "axios"
 			})
 
 		},
-		components:{ XButton },
+		components:{ XButton , Toast},
 		methods:{
 			showPwd(){
 				this.isShow = this.isShow ? 0 : 1;
@@ -87,7 +89,21 @@ import axios from "axios"
 			},
 
 			submit:function(){
-				
+				// 表单的验证部分 这段是垃圾代码······
+				let email = this.email,
+					pwd   = this.pwd,
+					testEmail=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+				if(this.email===""||!testEmail.test(email)){
+					this.flag = true
+					this.err='请填写邮箱'
+					return false
+				}
+				if(this.pwd.length===0){
+					this.flag = true
+					this.err='请填写密码'
+					return false
+				}
+				//
 				this.$store.dispatch({
 					// 对象的形式分发
 					type:'login',

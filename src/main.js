@@ -7,14 +7,15 @@ import VeeValidate from 'vee-validate'
 import router from './router'
 import store from './store'
 import VueLazyLoad from 'vue-lazyload'  //vue 的图片懒加载
-Vue.use(VeeValidate)
+
+Vue.use(VeeValidate)//vue 的表单验证
 
 Vue.use(VueLazyLoad,{
     loading:require('./common/images/ico/loading.gif')
 })
 Vue.config.productionTip = false
 
-// require('./mock.js') 
+// require('./mock.js')
 /* eslint-disable no-new */
 new Vue({
   router,
