@@ -39,7 +39,7 @@
 				<span class="show-pwd" :class="{show:isShow}" @click='showPwd'></span>
 			</div>
 			<div class="login-button">
-				<x-button type="primary" action-type="button">登录</x-button>
+				<x-button type="primary" action-type="submit">登录</x-button>
 			</div>
 		</form>
 		<div class="forget_pwd">
@@ -52,6 +52,7 @@
 <script>
 import axios from "axios"
 	import { XButton } from 'vux'
+	import { Toast } from 'mint-ui'
 	import { mapState ,mapMutations, mapActions} from 'vuex'
 	export default{
 		name:'login',
@@ -86,12 +87,17 @@ import axios from "axios"
 			},
 
 			submit:function(){
+				
 				this.$store.dispatch({
 					// 对象的形式分发
 					type:'login',
-					emali:this.email,
+					email:this.email,
 					pwd :this.pwd
 
+				}).then(()=>{
+					this.$router.push({path:'/'})
+				}).catch(err=>{
+					alert("登录失败")
 				})
 			},
 

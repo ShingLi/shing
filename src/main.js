@@ -14,7 +14,7 @@ Vue.use(VueLazyLoad,{
 })
 Vue.config.productionTip = false
 
-
+// require('./mock.js') 
 /* eslint-disable no-new */
 new Vue({
   router,

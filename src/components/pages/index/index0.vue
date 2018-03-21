@@ -110,6 +110,7 @@
 		methods:{
 
 			loadData(){
+				
 				axios.all(
 				[
 					axios.get("/static/data/data_banner.php"),

@@ -21,17 +21,20 @@ const mutations = {
 
 const actions ={
 	login({commit},payload){
-		console.log(payload)
+		// console.log(payload)
 		return new Promise((resolve,reject)=>{
 
-			axios.post('/static/data/user/login.php',{
-				email:this.email,
-				pwd:this.pwd
-			}).then(response=>{
-				console.log(response)
+			axios.post('/test/WX/index.php/qibao/index/test',{
+				email:payload.email,
+				pwd:payload.pwd
+			}).then(res=>{
+				
+				const data = res.data
+				console.log(data)
 			}).catch(error=>{
 				console.log(error)
 			})
+
 		})
 	}
 }

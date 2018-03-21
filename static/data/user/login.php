@@ -2,7 +2,8 @@
 	header('Content-type:text/plain');
 	@$em = $_REQUEST['email'] or die ('请输入邮箱！');
 	@$pwd= $_REQUEST['pwd']   or die ("请输入密码！");
-
+	print_r($em);
+	exit;
 	require('init.php');
 
 	$sql = "SELECT * FROM logininfo WHERE email = '$em' AND pwd = '$pwd'";
