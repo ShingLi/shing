@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/components/pages/index/index0'
 import pages from '@/components/pages/pages'
+import store from '../store'
+
 // import index from '@/components/common/loading'
 Vue.use(Router)
 
@@ -32,12 +34,16 @@ const routes =[
 				path:'/group',
 				name:'group',
 				component:()=>import(/*webpackChunkName:'group'*/'@/components/pages/group/group')
-				
+
 			},
 			{
 				path:'/mine',
 				name:'mine',
+				meta:{
+					auth:true
+				},
 				component:()=>import(/*webpackChunkName:'mine'*/'@/components/pages/Mine/mine')
+
 			},
 			{
 				path:'/index',
@@ -96,28 +102,19 @@ const router = new Router({
   // }
 })
 
-// beforeEach 注册一个全局前置守卫
-// router.beforeEach((to,from ,next)=>{
-// 	// to :Route 即将进入的目标路由对象
-// 	// from：Route 	当前导航正要离开的路由
-// 	// next:function(){} 一定要调用这个方法来resolve 这个钩子
-// 	let nextRoute = ['mine'],
-// 		isLogin   = global.isLogin;
-
-// 	if(nextRoute.indexOf(to.name)>=0){
-// 		// 没有登录
-// 		if(!isLogin){
-// 			router.push({'name':'login'})
-// 		}
-
-// 	}
-// 	// 已经登录
-// 	if(to.name==='login'){
-// 		//
-// 	}
-// 	next()
-// })
-
+router.beforeEach(( to , from ,next )=>{
+	if(to.matched.some( m => m.meta.auth)){
+        // 对路由进行验证
+		console.log(store.state.login.login);
+        if(store.state.login.login) { // 已经登陆
+            next()
+        }else{
+            next({path:'/login' })
+        }
+    }else{
+        next()
+    }
+})
 
 
 export default router

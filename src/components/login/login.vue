@@ -111,7 +111,7 @@ import axios from "axios"
 					pwd :this.pwd
 
 				}).then(()=>{
-					this.$router.push({path:'/'})
+					this.$router.push({path:'/mine'})
 				}).catch(err=>{
 					// 登录失败
 					this.flag = true
@@ -119,7 +119,7 @@ import axios from "axios"
 						this.err='账号密码错误'
 
 					})
-					
+
 				})
 			},
 
