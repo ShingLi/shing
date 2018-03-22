@@ -47,7 +47,7 @@
 			<router-link :to="{name:'index'}" class='back_home'>注册账号</router-link>
 		</div>
 		<!-- 表单验证 -->
-		<toast v-model="flag" type="text">{{err}}</toast>
+		<toast v-model="flag" type="text" width='10em'>{{err}}</toast>
 	</div>
 </template>
 <script>
@@ -95,7 +95,7 @@ import axios from "axios"
 					testEmail=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
 				if(this.email===""||!testEmail.test(email)){
 					this.flag = true
-					this.err='请填写邮箱'
+					this.err='请填写邮箱~~'
 					return false
 				}
 				if(this.pwd.length===0){
@@ -113,7 +113,13 @@ import axios from "axios"
 				}).then(()=>{
 					this.$router.push({path:'/'})
 				}).catch(err=>{
-					alert("登录失败")
+					// 登录失败
+					this.flag = true
+					this.$nextTick(()=>{
+						this.err='账号密码错误'
+
+					})
+					
 				})
 			},
 

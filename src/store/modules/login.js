@@ -28,13 +28,24 @@ const actions ={
 				email:payload.email,
 				pwd:payload.pwd
 			}).then(res=>{
-
-				const data = res.data
+				const data = res.data.flag; //1正确 0 //密码错误 /2 用户名不存在
+				switch(data){
+					case 0 :
+						reject()
+						break;
+					case 1 :
+						resolve();
+						break;
+					case 2 :
+						reject()
+						break	
+				}
 				// 服务返回Token
 				// 然后把Token 存到vuex中
 				// 下次登录的时候路由beforeEach  判断是否有Token  有的话直接next() 没遇到话拦截跳转
-				console.log(data)
-				resolve()//这里需要调用下好给dispath返回一个promise();
+				
+				// resolve()
+				 //这里需要调用下好给dispath返回一个promise();
 			})
 
 		})
