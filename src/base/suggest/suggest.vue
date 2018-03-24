@@ -2,7 +2,7 @@
     <scroll class='list-scroll'
 			:pullup = 'pullup'
     >
-    	
+
     	<ul class="suggest-list">
     		<li class="suggest-item">
     			<div class="item-pic">
@@ -10,15 +10,18 @@
     			</div>
     			<div class="item-info">
     				<h5>红海行动</h5>
+                    <p>暂无评分</p>
     			</div>
+
     		</li>
     	</ul>
-    	
+
     </scroll>
 </template>
 
 <script>
 	import scroll from '@/base/scroll/scroll'
+
 	export default {
 		data(){
 			return {
@@ -48,11 +51,12 @@
 					.suggest-item{
 						display: flex;
 						width: 100%;
+                        margin-bottom: 15px;
 								.item-pic{
 									flex:0 0 5rem;
 									width: 5rem;
 									img{
-										
+
 										height: 7rem;
 
 									}
@@ -60,9 +64,12 @@
 								.item-info{
 									margin-left:@size-default;
 									flex:1;
-									h5{
-										color:@default-color;
-									}
+                                    color:@default-color;
+
+                                    p{
+                                        font-size: 12px;
+                                        margin: 5px 0;
+                                    }
 								}
 					}
 			}
