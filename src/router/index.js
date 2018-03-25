@@ -72,7 +72,8 @@ const routes =[
 	{
 		path:'/search',//搜索的页面
 		name:"search",
-		component:resolve=>require(['../components/search/search'],resolve)
+		// component:resolve=>require(['../components/search/search'],resolve)
+		component:()=>import(/*webpackChunkName:'search'*/'../components/search/search')
 	},
 	{
 		path:'/movie/:id',//电影详情的页面

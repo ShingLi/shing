@@ -26,14 +26,14 @@
             </scroll>
         </div>
         <!-- 搜索结果 -->
-        <suggest v-show='query' :results = 'results'></suggest>s
+        <suggest v-show='query' :query = 'query'></suggest>
     </div>
 </template>
 <script type='text/ecmascript-6'>
     import searchBox from '@/base/header/header'
     import scroll    from '@/base/scroll/scroll'
     import { MessageBox } from 'mint-ui' //引入mint-ui 组件
-    
+
     export default{
         data(){
             return {
@@ -49,13 +49,12 @@
                     {
                         name:'捉妖记'
                     }
-                ],
-                results:[]
+                ]
             }
         },
         components:{searchBox,scroll,
-            historyList:res=>require(['../../base/historyList/historyList.vue'],res),
-            suggest:res=>require(['../../base/suggest/suggest.vue'],res) //路由的懒加载
+            historyList:()=>import(/*webpackChunkName:'historyList'*/'@/base/historyList/historyList'),
+            suggest:()=>import(/*webpackChunkName:'suggest'*/'@/base/suggest/suggest')
         },
         activated(){
             this.$nextTick(()=>{
@@ -74,7 +73,6 @@
 
             },
             onchangeQuery(newQuery){
-                
 
             },
             deleteOne(index){
