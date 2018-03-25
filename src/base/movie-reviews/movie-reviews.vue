@@ -7,7 +7,7 @@
 				<comments :popular_comments='movieDetail.popular_comments'></comments>
 			</div>
 			<!-- 影评 -->
-			<div class="reviews" v-if="currentIndex===1">
+			<div class="reviews" v-show="currentIndex===1">
 				<reviews :popular_reviews='movieDetail.popular_reviews'></reviews>
 			</div>
 		</div>
