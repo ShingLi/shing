@@ -52,9 +52,14 @@
             search(){
                 this.result =[];
                 this.searchIndex =0;
+                if(this.query===""){return false} //去掉空格
                 searchMovie(this.query,this.searchIndex,count).then(res=>{
                     // console.log(res);
                     this.result  = res.subjects
+                    // 把搜索的query存进vuex
+                    this.$store.dispatch('saveSearchHistory',{
+                        query:this.query
+                    })
                 }).catch(err=>{
                     Toast({
                           message: '网络错误',
@@ -72,6 +77,7 @@
         watch:{
             query(){
                 // 值的变化 检索数据
+
                 this.search();
             }
         }

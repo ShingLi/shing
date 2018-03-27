@@ -5,7 +5,8 @@
 				<input class="searchBtn" type="submit">
 				<input type="text" class="search" placeholder="请输入"
                     id='focusInput'
-                    v-model = 'query'
+                    v-model.trim="query"
+
 				>
 			</div>
 			<a slot='right' @click="cancel">取消</a>
@@ -73,7 +74,8 @@
 
             },
             onchangeQuery(newQuery){
-
+                if(newQuery===""){return false}
+                this.query = newQuery;
             },
             deleteOne(index){
                 // console.log(index);
@@ -88,7 +90,6 @@
         },
         watch:{
             query(newQuery){
-
                 if(!this.throttle){//前端节流
                     if(this.timer){
                         clearTimeout(this.timer)

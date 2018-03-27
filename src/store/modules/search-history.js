@@ -1,14 +1,18 @@
 const state = {
-	searchHistory:[
-
-	]
+	searchHistory:[]
 }
 
 const mutations = {
 
 }
 
+const actions = {
+	saveSearchHistory({commit},payload){
+		console.log(payload.query);
+	}
+}
 export default {
 	state,
-	mutations
+	mutations,
+	actions
 }
