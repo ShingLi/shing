@@ -20,7 +20,7 @@
 				      handler: () => this.$messagebox('delete')
 				    }
 				  ]">
-				  <i class="icon iconfont icon-delete"></i>
+				  <i class="icon iconfont icon-jiantou-copy-copy-copy"></i>
 			</mt-cell-swipe>
 		</div>
 		<div class="nomore-history" v-show="!searchs.length">
@@ -60,21 +60,9 @@
 
 	.history-list-wrap{
 		.has-history{
-			li{
-				display: flex;
-				justify-content: space-between;
-				font-size: @size-default;
-				padding:10px 0;
-					.delete{
-						width: 3rem;
-						height: 2rem;
-						line-height: 2rem;
-						text-align: right;
-							i{
-								font-size: @size-default;
-							}
-					}
-
+			i{
+				font-size: 20px;
+				margin-right: 10px;
 			}
 		}
 		.nomore-history{
