@@ -3,12 +3,14 @@ const state = {
 }
 
 const mutations = {
-
+	saveSearchHistory(state,payload){
+		state.searchHistory = payload.query
+	}
 }
 
 const actions = {
 	saveSearchHistory({commit},payload){
-		console.log(payload.query);
+		commit("saveSearchHistory",payload)
 	}
 }
 export default {

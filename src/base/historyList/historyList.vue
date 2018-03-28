@@ -1,7 +1,7 @@
 <template>
 	<div class="history-list-wrap">
 		<div class="has-history">
-			<ul>
+			<!-- <ul>
 				<li v-for='(item,index) of searchs'
 
 				>
@@ -10,7 +10,18 @@
 						<i class="icon iconfont icon-delete"></i>
 					</div>
 				</li>
-			</ul>
+			</ul> -->
+			<mt-cell-swipe v-for='item in searchs'
+				  :title="item.name"
+				  :right="[
+				    {
+				      content: '删 除',
+				      style: { background: 'red', color: '#fff' },
+				      handler: () => this.$messagebox('delete')
+				    }
+				  ]">
+				  <i class="icon iconfont icon-delete"></i>
+			</mt-cell-swipe>
 		</div>
 		<div class="nomore-history" v-show="!searchs.length">
 			<span>还没有搜索记录，赶快去搜索吧&nbsp;!</span>
@@ -19,6 +30,7 @@
 	</div>
 </template>
 <script>
+	import { CellSwipe } from 'mint-ui'
 	export default {
 
 		name:'historyList',
@@ -32,11 +44,20 @@
 			deleteOne(index){
 				this.$emit('delete',index)
 			}
-		}
+		},
+		components:{ 'mtCellSwipe':CellSwipe }
 	}
 </script>
+<style>
+	.mint-cell-wrapper{
+		padding: 0 !important;
+		font-size: 1rem !important;
+		background-image:none !important;
+	}
+</style>
 <style scoped lang='less'>
 	@import '../../common/less/color.less';
+
 	.history-list-wrap{
 		.has-history{
 			li{
@@ -76,4 +97,5 @@
 				}
 		}
 	}
+
 </style>

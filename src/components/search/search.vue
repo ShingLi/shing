@@ -3,11 +3,11 @@
         <search-box title='' :bg='true' fixed>
 			<div class="search-warp">
 				<input class="searchBtn" type="submit">
-				<input type="text" class="search" placeholder="请输入"
+				<input type="text" class="search" placeholder="搜索"
                     id='focusInput'
                     v-model.trim="query"
-
 				>
+                <i class="delete" v-show='query' @click="query=''"></i>
 			</div>
 			<a slot='right' @click="cancel">取消</a>
 		</search-box>
@@ -114,6 +114,7 @@
         margin-left: 1rem;
         align-items: center;
         justify-content: space-around;
+        position: relative;
         .searchBtn{
             border: none;
             outline: none;
@@ -130,6 +131,18 @@
             width: 80%;
             height: 90%;
             font-size: 1rem;
+        }
+        .delete{
+            position: absolute;
+            right: 10px;
+            top: 1.4rem;
+            transform: translateY(-50%);
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url('./ic_fanta_delete.png');
+            background-size: 18px 18px;
+
         }
 
     }
