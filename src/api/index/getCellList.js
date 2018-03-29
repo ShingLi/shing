@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default function getCellList(start,count){
-    const url = '/api/event/list?loc=108288',
+    const url = '/api/v2/event/list?loc=108288',
             data = Object.assign({},{
                 start,
                 count

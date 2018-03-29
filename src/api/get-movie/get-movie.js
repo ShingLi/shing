@@ -2,7 +2,7 @@ import axios from 'axios';
 import {commonParams} from '../config';
 // 电影条目
 export  function getMovieDetail(id){
-	const url = `/api/movie/subject/${id}`,
+	const url = `/api/v2/movie/subject/${id}`,
 			data = Object.assign({},commonParams)
 	return axios.get(url,{
 		params:data
@@ -15,7 +15,7 @@ export  function getMovieDetail(id){
 // 短评
 
 export function celebrity(id){
-	const url = `/api/movie/celebrity/${id}`,
+	const url = `/api/v2/movie/celebrity/${id}`,
 			data = Object.assign({},commonParams);
 
 	return axios.get(url,{

@@ -4,7 +4,7 @@ import { commonParams } from './config';
 // es6 的函数导出
 // start ,count 为豆瓣规定的参数
 export function getMovie(start,count){
-    const url ='/api/movie/in_theaters';
+    const url ='/api/v2/movie/in_theaters';
     // 浅拷贝 对象属性的合并
     // {}目标对象，commonParames 源对象
 

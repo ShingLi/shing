@@ -6,7 +6,7 @@ export function searchMovie(q,start,count){
         start,
         count
     })
-    let url = '/api/movie/search'
+    let url = '/api/v2/movie/search'
     return axios.get(url,{
         params:data
     }).then(res=>{
