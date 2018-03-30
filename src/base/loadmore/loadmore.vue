@@ -2,7 +2,8 @@
 	<div class="loadmore">
 		<img src="../../common/images/ico/loading_green.gif" alt="" v-if='show'>
 		<div class="nomore" v-else>
-			<span>没有更多数据了啊·····</span>
+			<!-- <span>没有更多数据了啊·····</span> -->
+			<span>抱歉，暂无搜索结果 :(</span>
 		</div>
 	</div>
 </template>

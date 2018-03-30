@@ -21,8 +21,11 @@
     		</li>
     	</ul>
         <!-- 搜索不到  -->
-        <div class="noResult" v-if='!result.length'>
+        <div class="noResult" v-if='!result.length&&flag'>
             抱歉，暂无搜索结果 :(
+        </div>
+        <div class="loading" v-show='!result.length&&isShow'>
+            <loadmore :show='isShow' class="show"></loadmore>
         </div>
     </scroll>
 </template>
@@ -30,6 +33,7 @@
 <script>
 	import scroll from '@/base/scroll/scroll'
     import star from '@/base/star/star'
+    import loadmore from '@/base/loadmore/loadmore'
     import { searchMovie } from '@/api/search/searchMovie'
     import { Toast } from 'mint-ui'
     const count = 20
@@ -38,7 +42,10 @@
 			return {
 				pullup:true,
                 result:[],
-                searchIndex:0
+                searchIndex:0,
+                isShow:true,
+                flag:false,
+
 			}
 		},
 		props:{
@@ -47,10 +54,13 @@
                 default:''
             }
 		},
-		components:{ scroll , star },
+
+		components:{ scroll , star ,loadmore},
         methods:{
             search(){
-                this.result =[];
+                this.result =[] ;
+                this.flag=false ;//重置
+                this.isShow =true ;
                 this.searchIndex =0;
                 if(this.query===""){return false} //去掉空格
                 searchMovie(this.query,this.searchIndex,count).then(res=>{
@@ -60,6 +70,10 @@
                     this.$store.dispatch('saveSearchHistory',{
                         query:this.query
                     })
+                    if(!this.result.length){
+                        this.flag =true
+                        this.isShow =false
+                    }
                 }).catch(err=>{
                     Toast({
                           message: '网络错误',
@@ -133,6 +147,26 @@
                 text-align: center;
                 color: #777;
                 font-size: 16px;
+            }
+            .loading{
+                position: fixed;
+                top: 3.7rem;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+                text-align: center;
+                color: #777;
+                font-size: 16px;
+                z-index: 999;
+                opacity: 1;
+                    .show{
+                        position: absolute;
+                        top: 40%;
+                        width: 100%;
+                        left: 0;
+                        transform: translateY(-50%);
+                        text-align: center;
+                    }
             }
 	}
 </style>
