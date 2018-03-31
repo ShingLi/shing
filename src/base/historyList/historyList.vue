@@ -11,14 +11,14 @@
 					</div>
 				</li>
 			</ul> -->
-			<mt-cell-swipe v-for='item in searchs'
+			<mt-cell-swipe v-for='(item ,index) of searchs' :key='index'
 				  :title="item.name"
 				  :right="[
-				    {
-				      content: '删 除',
-				      style: { background: 'red', color: '#fff' },
-				      handler: () => this.$messagebox('delete')
-				    }
+					    {
+					      content: '删 除',
+					      style: { background: 'red', color: '#fff' },
+					      handler: () => deleteOne(index)
+					    }
 				  ]">
 				  <i class="icon iconfont icon-jiantou-copy-copy-copy"></i>
 			</mt-cell-swipe>
@@ -43,7 +43,8 @@
 		methods:{
 			deleteOne(index){
 				this.$emit('delete',index)
-			}
+			},
+
 		},
 		components:{ 'mtCellSwipe':CellSwipe }
 	}
