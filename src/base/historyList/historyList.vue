@@ -11,17 +11,20 @@
 					</div>
 				</li>
 			</ul> -->
-			<mt-cell-swipe v-for='(item ,index) of searchs' :key='index'
-				  :title="item.name"
-				  :right="[
-					    {
-					      content: '删 除',
-					      style: { background: 'red', color: '#fff' },
-					      handler: () => deleteOne(index)
-					    }
-				  ]">
-				  <i class="icon iconfont icon-jiantou-copy-copy-copy"></i>
-			</mt-cell-swipe>
+			<cell-swipe
+				:right-width="50"
+				v-for="(item , index) of searchs" :key='index'
+				:on-close="onClose"
+
+			>
+				<cell-group>
+				    <cell :title="item.name" @click='historySearch(item.name)'>
+						<i class="icon iconfont icon-jiantou-copy-copy-copy"></i>
+				    </cell>
+				</cell-group>
+				<span slot="right" class="delete_item">删除</span>
+			</cell-swipe>
+
 		</div>
 		<div class="nomore-history" v-show="!searchs.length">
 			<span>还没有搜索记录，赶快去搜索吧&nbsp;!</span>
@@ -30,7 +33,8 @@
 	</div>
 </template>
 <script>
-	import { CellSwipe } from 'mint-ui'
+	import { CellSwipe , CellGroup , Cell , Dialog} from 'vant';
+	import 'vant/lib/vant-css/base.css';
 	export default {
 
 		name:'historyList',
@@ -42,23 +46,56 @@
 		},
 		methods:{
 			deleteOne(index){
+				alert(1)
 				this.$emit('delete',index)
 			},
+			historySearch(query){
+				this.$emit('historySearch',query)
+			},
+			onClose(clickPosition, instance) {
+		    	switch (clickPosition) {
+		        	case 'left':
+		        	case 'cell':
+		        	case 'outside':
+		       			instance.close();
+		          	break;
+		        	case 'right':
+			        	console.dir(instance);
+						// Dialog.confirm({
+		   				// 	message: '确定删除吗？'
+		 				// }).then(() => {
+						//
+		   					instance.close();
+		 				// });
+			        break;
+		      }
+    }
+
 
 		},
-		components:{ 'mtCellSwipe':CellSwipe }
+		components:{ CellSwipe ,CellGroup , Cell}
 	}
 </script>
-<style>
-	.mint-cell-wrapper{
-		padding: 0 !important;
-		font-size: 1rem !important;
-		background-image:none !important;
-	}
-</style>
+
 <style scoped lang='less'>
 	@import '../../common/less/color.less';
-
+	.van-cell{
+		padding:10px 0;
+	}
+	[class*=van-hairline]::after{
+		border: none
+	}
+	.delete_item{
+		width: 50px;
+		height: 44px;
+		display: inline-block;
+		text-align: center;
+		line-height: 44px;
+		background-color: #f44;
+		color: #fff;
+		font-size: 15px;
+		border-radius: 3px;
+	}
 	.history-list-wrap{
 		.has-history{
 			i{

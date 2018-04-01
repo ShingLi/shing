@@ -21,7 +21,7 @@
                             <h2>搜索历史</h2>
                             <i class="icon iconfont icon-lajitong" @click='clearAll'></i>
                         </div>
-                        <history-list :searchs='searchs' @delete='deleteOne'></history-list>
+                        <history-list :searchs='searchs'  @historySearch= 'historySearch'></history-list>
                     </div>
                 </div>
             </scroll>
@@ -83,6 +83,9 @@
             deleteOne(index){
                 // console.log(index);
                 this.searchs.splice(index,1)
+            },
+            historySearch(q){
+                this.query = q
             },
             clearAll(){
                 if(!this.searchs.length)return false

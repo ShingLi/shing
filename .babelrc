@@ -12,15 +12,17 @@
     ]
   ],
   "plugins": [
-    "transform-runtime",
-    ["component",
-        [
-          {
-            "libraryName":"mint-ui",
-            "style":true
-          }
+        "transform-runtime",
+        ["import", { "libraryName": "vant", "style": true }],
+        ["component",
+            [
+              {
+                "libraryName":"mint-ui",
+                "style":true
+              }
+            ]
         ]
-    ]
+
     ],
   "env": {
     "test": {
