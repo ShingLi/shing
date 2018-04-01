@@ -21,7 +21,7 @@
                             <h2>搜索历史</h2>
                             <i class="icon iconfont icon-lajitong" @click='clearAll'></i>
                         </div>
-                        <history-list :searchs='searchs'  @historySearch= 'historySearch'></history-list>
+                        <history-list :searchs='searchs'  @historySearch= 'historySearch' @delete='deleteOne'></history-list>
                     </div>
                 </div>
             </scroll>

@@ -14,7 +14,7 @@
 			<cell-swipe
 				:right-width="50"
 				v-for="(item , index) of searchs" :key='index'
-				:on-close="onClose"
+				:on-close="onClose(index)"
 
 			>
 				<cell-group>
@@ -45,31 +45,32 @@
 			}
 		},
 		methods:{
-			deleteOne(index){
-				alert(1)
-				this.$emit('delete',index)
-			},
+
 			historySearch(query){
 				this.$emit('historySearch',query)
 			},
-			onClose(clickPosition, instance) {
-		    	switch (clickPosition) {
-		        	case 'left':
-		        	case 'cell':
-		        	case 'outside':
-		       			instance.close();
-		          	break;
-		        	case 'right':
-			        	console.dir(instance);
-						// Dialog.confirm({
-		   				// 	message: '确定删除吗？'
-		 				// }).then(() => {
-						//
-		   					instance.close();
-		 				// });
-			        break;
-		      }
-    }
+			onClose(index) {
+				return ( clickPosition , instance)=>{
+					switch (clickPosition) {
+			        	case 'left':
+			        	case 'cell':
+			        	case 'outside':
+			       			instance.close();
+			          	break;
+			        	case 'right':
+
+							 Dialog.confirm({
+			   				 	message: '确定删除吗？'
+			 				 }).then(() => {
+								console.log(index);
+								this.$emit('delete',index)
+			   					instance.close();
+			 				 });
+				        break;
+			      	}
+				}
+
+    		}
 
 
 		},
