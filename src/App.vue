@@ -37,13 +37,24 @@ export default {
           if(this.$route.name!='index')return true;
       }
   },
-
+  created(){
+    this.readSession()
+  },
   methods:{
     // 这个方法是进入主页后读取到数据然后inex.vue emit('isShow') 然后关闭欢迎页
       isShow(){
           setTimeout(()=>{
-            this.show = true
+            this.show = true //关闭欢迎页
+            // 写值到session里面 欢迎页只显示一次 刷新不显示欢迎页
+            window.sessionStorage.setItem('show','true')
           },1500)
+      },
+      readSession(){
+          let zhen = window.sessionStorage.getItem('show')
+          if(zhen){
+            
+            this.show = true
+          }
       }
   }
 }

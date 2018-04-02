@@ -33,7 +33,7 @@
 <script type='text/ecmascript-6'>
     import searchBox from '@/base/header/header'
     import scroll    from '@/base/scroll/scroll'
-    import { MessageBox } from 'mint-ui' //引入mint-ui 组件
+    import { Dialog } from 'vant' //vant
 
     export default{
         data(){
@@ -89,8 +89,14 @@
             },
             clearAll(){
                 if(!this.searchs.length)return false
-                MessageBox.confirm('确定清空搜索记录?').then(action => {
-                    this.searchs  = []
+                Dialog.confirm({
+                    title: '',
+                    message: '确定清空搜索记录?'
+                }).then(() => {
+                    this.searchs = []
+                // on confirm
+                }).catch(() => {
+                // on cancel
                 });
             }
         },
