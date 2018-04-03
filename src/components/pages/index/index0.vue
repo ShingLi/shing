@@ -110,7 +110,7 @@
 		methods:{
 
 			loadData(){
-				
+
 				axios.all(
 				[
 					axios.get("/static/data/data_banner.php"),
@@ -192,11 +192,12 @@
 			//activated()这个神器
 			//
 			// })
-			
+
 			next()
 		},
 		activated(){
 			// keep-alive 的生命周期钩子 再次加载组件的时候进行调用
+			this.$refs.swipers.swiper(); //这里防止搜索组件返回的时候导致banner图不轮播
 			this.scrollTo()
 		}
 
