@@ -90,7 +90,7 @@ const routes =[
 //    2  const routes  这里必须是routes  ===>母鸡不知道换成其他的就不可以
 //    3
 const router = new Router({
-	// mode:'history',
+	mode:'history',
   routes,
   // scrollBehavior(to,from,savedPosition){
   // 	// if(to.name==='index'){

@@ -21,7 +21,7 @@
 	    props:{
 	    	popular_reviews:{
 	    		type:Array,
-	    		default:[]
+	    		default:()=>[] //对象和数组的默认值必须是一个工厂函数返回
 	    	}
 	    },
 	    components:{

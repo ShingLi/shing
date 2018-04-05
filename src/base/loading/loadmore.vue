@@ -7,7 +7,9 @@
             <span></span>
         </div>
         <div class="nomore" v-else>
-            <Divider>我是有底线的</Divider>
+            <div class="line"></div>
+            <div class="text">我是有底线的</div>
+            <div class="line"></div>
         </div>
     </div>
 </template>
@@ -31,8 +33,8 @@ export default {
 
 <style lang="less" scoped rel='stylesheet/less'>
     div.loadmore{
-        width: 15rem;;
-        height: 2rem;
+        // width: 15rem;
+        width:100%;
         margin:0 auto;
         text-align: center;
         padding-bottom: 1rem;
@@ -85,15 +87,19 @@ export default {
         }
     }
     div.nomore{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        height: 2rem;
-        padding-bottom: 1rem;
+        display:flex;
+        width:80%;
+        margin:0 auto;
             .line{
-                height: 1px;
-                width: 30%;
-                background-color: #f5f5f5;
+                flex:1;
+                position:relative;
+                top:-8px;
+                border-bottom: 1px solid rgba(7,17,27,.2)
+            }
+            .text{
+                margin:0 auto;
+                padding: 0 12px;
+                font-size: 14px;
             }
     }
 </style>
