@@ -166,7 +166,6 @@
                 right: 0;
                 z-index: 999;
                 background-color: #555;
-
             }
     }
 </style>

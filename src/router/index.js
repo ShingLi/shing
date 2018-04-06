@@ -83,6 +83,11 @@ const routes =[
 		path:'/celebrity/:id',//影人
 		// component:()=>import(/*webpackChunkName:'celebrity'*/'@/components/celebrity/celebrity') 坑  生命周期不执行动态路由
 		component:resolve=>require(['@/components/celebrity/celebrity'],resolve),
+	},
+	{
+		path:'/list/:id',
+		component:resolve=>require(['@/components/index-detail/index-detail'],resolve),
+
 	}
 ]
 

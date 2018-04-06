@@ -39,7 +39,12 @@
 							<img src="../../../common/images/ic_mine_notification.png" alt="" class="m-cell-icon" slot='icon'>
 						</cell>
 					<!-- 媒体数据部分 -->
-						<media-cell :author="item.author" :source="item.category_name"  v-for='(item,index) of events' :key="index" v-cloak>
+						<media-cell :author="item.category_name" 
+									:source="item.subcategory_name"  
+									v-for='(item,index) of events' 
+									:key="index" v-cloak
+									@click.native='selectList(item)'
+						>
 							<div class="m-media_cell-title text" slot='title'>{{item.title}}</div>
 							<div class="m-media_cell-detail text" slot='detail'>{{item.content}}</div>
 							<img alt="" v-lazy='item.image_hlarge'>
@@ -72,7 +77,7 @@
 	import scroll from '@/base/scroll/scroll'
 	import axios from "axios"
 	import getCellList from '@/api/index/getCellList'
-	import {mapState} from 'vuex'
+	import { mapState , mapMutations } from 'vuex'
 	const cellListCount = 10
 	export default {
 		name:'index',
@@ -143,10 +148,10 @@
 					this.loadingFlag = true;
 					return
 				}
-				this.skip += cellListCount;
+				
 				getCellList(this.skip,cellListCount).then(res=>{
                     // console.log(res.events)
-
+                    this.skip += cellListCount;
 					this.events = this.events.concat(res.events)
                     // console.log(this.events)
 
@@ -181,7 +186,15 @@
 				this.$refs.full.scrollTo(0,this.scrollY)//切换回来的时候保存之前的浏览记录
 
 			},
-
+			selectList(item){
+				this.saveListId(item.id)
+				this.$router.push({
+					path:`/list/${item.id}`
+				})
+			},
+			...mapMutations([
+					"saveListId"
+				])
 
 		},
 		beforeRouteLeave(to,from,next){

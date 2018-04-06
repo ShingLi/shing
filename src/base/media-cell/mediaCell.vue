@@ -1,5 +1,5 @@
 <template>
-	<a href="#" class="m-media_cell-wrap">
+	<a class="m-media_cell-wrap">
 		<div class="m-media_cell-top">
 			<div class="m-media_cell-top-left">
 				<slot name='title'></slot>
@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div class="m-media_cell-bottom">
-			<p class="author" v-if='author' slot='author'>作者:{{author}}</p>
+			<p class="author" v-if='author' slot='author'>{{author}}</p>
 			<p v-if='source' class='source'>来自栏目:{{source}}</p>
 		</div>
 	</a>
