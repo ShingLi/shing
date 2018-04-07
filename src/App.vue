@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <section>
-        <keep-alive exclude='movieDetail,celebrity ,index-detail'>
+        <keep-alive exclude='movieDetail,celebrity,index-detail'>
             <router-view @isShow='isShow' :class="{'is-height':hide}"></router-view>
         </keep-alive>
     </section>
@@ -52,7 +52,7 @@ export default {
       readSession(){
           let zhen = window.sessionStorage.getItem('show')
           if(zhen){
-            
+
             this.show = true
           }
       }
