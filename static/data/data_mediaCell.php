@@ -16,12 +16,5 @@
 		"content":"遥远的赛博坦星球，擎天柱打败了威震天带着火种重塑了他的家园，然后美滋滋",
 		"image_hlarge":"/static/images/cell/6.JPG",
 		"author":"擎天柱"
-	},
-	{
-		"title":"一个倾国倾城的女子",
-		"content":"从前，我喜欢一个女孩。虽然老实说她并不漂亮，但是从接触她那一刻起，我就认定了，我很喜欢很喜欢他",
-		"image_hlarge":"/static/images/cell/11111.JPG",
-		"author":"Stephen.shing",
-		"category_name":"来自CCTV"
 	}
 ]

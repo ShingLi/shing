@@ -15,7 +15,8 @@
 			<div class="list-content">
 				<h2 class="title">{{listCell.title}}</h2>
 				<div class="img" v-if="listCell.image_hlarge">
-					<img v-lazy='replaceUrl(listCell.image_hlarge)'>
+					<!-- <img v-lazy="replaceUrl(listCell.image_hlarge)" width="207" height="310"> -->
+					<img :src='listCell.image_hlarge' >
 				</div>
 				<ul class="details">
 					<li>
@@ -46,9 +47,13 @@
 				<ol class="tags" v-if='listCell.tags'>
 					<li v-for='item in tags'>
 						<span>{{item}}</span>
-						
 					</li>
 				</ol>
+				<!-- 活动详情 -->
+				<div class="content">
+					<h2>活动详情</h2>
+					<p v-html='listCell.content'></p>
+				</div>
 			</div>
 		</scroll>
 		<!-- 加载动画 -->
@@ -79,6 +84,11 @@
 			}),
 			tags(){
 				let original = this.listCell.tags.split(',')
+					// original.forEach(item=>{
+					// 	if(item.length>3){
+					// 		console.log(item.substring(0,3));
+					// 	}
+					// })
 					return original
 			}
 		},
@@ -86,6 +96,10 @@
 		methods:{
 			_getListCell(){
 				// 当前页刷新返回首页
+				 if(!this.listId){
+					this.$router.go(-1)
+					
+				}
 				getCellList(this.listId).then(res=>{
 					// console.log(res)
 					this.listCell = res
@@ -93,6 +107,7 @@
 				}).catch(err=>{
 					alert("加载失败")
 				})
+
 			},
 			replaceUrl(srcUrl) {
                 if (srcUrl !== undefined) { // 图片防盗链处理
@@ -104,7 +119,7 @@
 </script>
 <style lang='less' scoped>
 	.detail-wrapper{
-		height:100%; 
+		height:100%;
 		background-color:#fff;
 		.detail-head{
 			position: fixed;
@@ -176,8 +191,6 @@
 								vertical-align: top;
 								font-size:14px;
 								color:#666;
-								
-
 							}
 							p{
 								display:inline-block;
@@ -192,6 +205,7 @@
 						display:flex;
 						li{
 							margin-right:10px;
+							white-space: nowrap;
 							span{
 								padding:5px 15px;
 								background-color:#f5f5f5;
@@ -202,7 +216,22 @@
 								margin-right:0;
 							}
 						}
-						
+
+					}
+					.content{
+						h2{
+							margin:2rem 0;
+							color: #072;
+							font-weight: normal;
+							font-size: 15px;
+						}
+						p{
+							text-indent: 2em;
+							line-height: 20px;
+
+							color: #555;
+
+						}
 					}
 
 				}
