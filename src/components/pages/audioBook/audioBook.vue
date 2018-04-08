@@ -39,12 +39,12 @@
 	</div>
 </template>
 <script>
-	import mHeader from '@/base/header/header'
-	import navbar  from '@/base/navbar/navbar'
-	import scroll  from '@/base/scroll/scroll'
-	import movieList from '@/base/movie-list/movie-list'
-	import {getMovie} from '@/api/movie-show'
-	import {createMovieList} from '@/api/movieList'
+	import mHeader from 'base/header/header'
+	import navbar  from 'base/navbar/navbar'
+	import scroll  from 'base/scroll/scroll'
+	import movieList from 'base/movie-list/movie-list'
+	import {getMovie} from 'api/movie-show'
+	import {createMovieList} from 'api/movieList'
 	import {mapMutations} from 'vuex'
 	import { Toast } from 'vux'
 

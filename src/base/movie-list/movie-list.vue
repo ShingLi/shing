@@ -25,8 +25,8 @@
 </template>
 
 <script>
-    import star from '@/base/star/star'
-    import loadmore from '@/base/loading/loadmore'
+    import star from 'base/star/star'
+    import loadmore from 'base/loading/loadmore'
     export default {
         name:'movieList',
         props:{

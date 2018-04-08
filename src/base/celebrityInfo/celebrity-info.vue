@@ -47,8 +47,8 @@
 </template>
 
 <script>
-    import mHeader from '@/base/header/header'
-    import scroll from '@/base/scroll/scroll'
+    import mHeader from 'base/header/header'
+    import scroll from 'base/scroll/scroll'
     export default {
         name:'celebrityInfo',
         data(){

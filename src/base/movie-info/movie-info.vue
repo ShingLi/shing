@@ -60,9 +60,9 @@
 </template>
 
 <script>
-    import star from '@/base/star/star'
-    import scroll from '@/base/scroll/scroll'
-    import { getCelebrity } from '@/api/get-movie/get-movie'
+    import star from 'base/star/star'
+    import scroll from 'base/scroll/scroll'
+    import { getCelebrity } from 'api/get-movie/get-movie'
     import {mapGetters}  from 'vuex'
     export default {
         name:"movie-info",

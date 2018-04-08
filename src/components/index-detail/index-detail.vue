@@ -64,11 +64,11 @@
 	</div>
 </template>
 <script>
-	import scroll from '@/base/scroll/scroll'
-	import loadmore from '@/base/loading/loadmore'
-	import bouncingLoader from '@/base/bounch-loader/bouncing-loader'
+	import scroll from 'base/scroll/scroll'
+	import loadmore from 'base/loading/loadmore'
+	import bouncingLoader from 'base/bounch-loader/bouncing-loader'
 	import { mapState } from 'vuex'
-	import { getCellList } from '@/api/online/getListCell'
+	import { getCellList } from 'api/online/getListCell'
 	export default {
 		name:'index-detail',
 		data(){

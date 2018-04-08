@@ -31,10 +31,10 @@
 </template>
 
 <script>
-	import scroll from '@/base/scroll/scroll'
-    import star from '@/base/star/star'
-    import loadmore from '@/base/loadmore/loadmore'
-    import { searchMovie } from '@/api/search/searchMovie'
+	import scroll from 'base/scroll/scroll'
+    import star from 'base/star/star'
+    import loadmore from 'base/loadmore/loadmore'
+    import { searchMovie } from 'api/search/searchMovie'
     import { Toast } from 'mint-ui'
     const count = 20
 	export default {

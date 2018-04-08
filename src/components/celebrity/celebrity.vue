@@ -72,12 +72,12 @@
 	</div>
 </template>
 <script>
-	import scroll from '@/base/scroll/scroll'
-	import { celebrity } from "@/api/get-movie/get-movie"
-	import star from "@/base/star/star"
-	import celebrityInfo from "@/base/celebrityInfo/celebrity-info"
+	import scroll from 'base/scroll/scroll'
+	import { celebrity } from "api/get-movie/get-movie"
+	import star from "base/star/star"
+	import celebrityInfo from "base/celebrityInfo/celebrity-info"
 	import { mapGetters , mapState } from 'vuex'
-	import { createMovieList } from '@/api/movieList'
+	import { createMovieList } from 'api/movieList'
 	import { Toast } from 'mint-ui'
 	export default{
 		name:'celebrity',

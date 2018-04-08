@@ -11,7 +11,7 @@
 	</div>
 </template>
 <script>
-	import mHeader from '@/base/header/header'
+	import mHeader from 'base/header/header'
 	export default {
 		name:'group',
 		components:{

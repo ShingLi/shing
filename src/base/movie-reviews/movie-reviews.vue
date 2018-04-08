@@ -14,8 +14,8 @@
 	</div>
 </template>
 <script>
-	import navbar from "@/base/navbar/navbar"
-	import comments from "@/base/movie-reviews/comments/comments"
+	import navbar from "base/navbar/navbar"
+	import comments from "base/movie-reviews/comments/comments"
 
 	export default {
 		name:'movie-reviews',

@@ -62,21 +62,21 @@
 	</div>
 </template>
 <script>
-	import mHeader from '@/base/header/header'
-	import swiper  from "@/base/swiper/swiper"
-	import cell  from "@/base/cell/cell"
-	import mediaCell from "@/base/media-cell/mediaCell"
+	import mHeader from 'base/header/header'
+	import swiper  from "base/swiper/swiper"
+	import cell  from "base/cell/cell"
+	import mediaCell from "base/media-cell/mediaCell"
 	// 加载组件
-	import loading from "@/base/loadmore/loadmore"
+	import loading from "base/loadmore/loadmore"
 	// awesome vue无限滚动的组件
 	//import infiniteLoading from 'vue-infinite-loading'
 	// 使用mint的toast组件
 	import { Toast , Loadmore} from 'mint-ui'
 
 // 纠结想来想去还是使用better-scroll
-	import scroll from '@/base/scroll/scroll'
+	import scroll from 'base/scroll/scroll'
 	import axios from "axios"
-	import getCellList from '@/api/index/getCellList'
+	import getCellList from 'api/index/getCellList'
 	import { mapState , mapMutations } from 'vuex'
 	const cellListCount = 10
 	export default {
