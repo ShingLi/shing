@@ -58,13 +58,15 @@
 		</scroll>
 		<!-- 加载动画 -->
 		<div class="modal" v-show='isShow'>
-            <loadmore :fullScreen='true'></loadmore>
+           <!--  <loadmore :fullScreen='true'></loadmore> -->
+			<bouncing-loader :fullScreen='true'></bouncing-loader>
         </div>
 	</div>
 </template>
 <script>
 	import scroll from '@/base/scroll/scroll'
 	import loadmore from '@/base/loading/loadmore'
+	import bouncingLoader from '@/base/bounch-loader/bouncing-loader'
 	import { mapState } from 'vuex'
 	import { getCellList } from '@/api/online/getListCell'
 	export default {
@@ -92,7 +94,7 @@
 					return original
 			}
 		},
-		components:{ scroll , loadmore },
+		components:{ scroll , loadmore , bouncingLoader },
 		methods:{
 			_getListCell(){
 				// 当前页刷新返回首页
