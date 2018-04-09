@@ -31,8 +31,8 @@
     </div>
 </template>
 <script type='text/ecmascript-6'>
-    import searchBox from '@/base/header/header'
-    import scroll    from '@/base/scroll/scroll'
+    import searchBox from 'base/header/header'
+    import scroll    from 'base/scroll/scroll'
     import { Dialog } from 'vant' //vant
 
     export default{

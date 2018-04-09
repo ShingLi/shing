@@ -10,7 +10,7 @@
 	</div>
 </template>
 <script>
-	import tabbar from '@/components/footer/tabbar'
+	import tabbar from 'components/footer/tabbar'
 
 	export default{
 		name:'pages',

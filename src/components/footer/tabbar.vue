@@ -34,8 +34,8 @@
 	</tabbar>
 </template>
 <script>
-	import tabbar from '@/base/tabbar/tabbar'
-	import tabbarItem from '@/base/tabbar-item/tabbar-item'
+	import tabbar from 'base/tabbar/tabbar'
+	import tabbarItem from 'base/tabbar-item/tabbar-item'
 	export default{
 		
 		data(){

@@ -25,7 +25,7 @@
 
 <script>
     import {getComments} from "../../../api/get-movie/get-movie"
-    import star from "@/base/star/star"
+    import star from "base/star/star"
     import {mapGetters,mapActions} from 'vuex'
     export default {
         name:'comments',

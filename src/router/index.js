@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/components/pages/index/index0'
-import pages from '@/components/pages/pages'
+import index from 'components/pages/index/index0'
+import pages from 'components/pages/pages'
 import store from '../store'
 
 // import index from '@/components/common/loading'
@@ -23,17 +23,17 @@ const routes =[
 				path:'/audioBook',
 				name:'audioBook',
 				// component:resolve=>require(['../components/pages/audioBook/audioBook.vue'],resolve) //路由的懒加载
-				component:()=>import(/* webpackChunkName: 'audioBook' */'@/components/pages/audioBook/audioBook')
+				component:()=>import(/* webpackChunkName: 'audioBook' */'components/pages/audioBook/audioBook')
 			},
 			{
 				path:'/broadCast',
 				name:'broadCast',
-				component:()=>import(/*webpackChunkName:'broadCast'*/'@/components/pages/broadCast/broadCast')
+				component:()=>import(/*webpackChunkName:'broadCast'*/'components/pages/broadCast/broadCast')
 			},
 			{
 				path:'/group',
 				name:'group',
-				component:()=>import(/*webpackChunkName:'group'*/'@/components/pages/group/group')
+				component:()=>import(/*webpackChunkName:'group'*/'components/pages/group/group')
 
 			},
 			{
@@ -42,7 +42,7 @@ const routes =[
 				meta:{
 					auth:true
 				},
-				component:()=>import(/*webpackChunkName:'mine'*/'@/components/pages/Mine/mine')
+				component:()=>import(/*webpackChunkName:'mine'*/'components/pages/Mine/mine')
 
 			},
 			{
@@ -82,11 +82,11 @@ const routes =[
 	{
 		path:'/celebrity/:id',//影人
 		// component:()=>import(/*webpackChunkName:'celebrity'*/'@/components/celebrity/celebrity') 坑  生命周期不执行动态路由
-		component:resolve=>require(['@/components/celebrity/celebrity'],resolve),
+		component:resolve=>require(['components/celebrity/celebrity'],resolve),
 	},
 	{
 		path:'/list/:id',
-		component:resolve=>require(['@/components/index-detail/index-detail'],resolve),
+		component:resolve=>require(['components/index-detail/index-detail'],resolve),
 
 	}
 ]

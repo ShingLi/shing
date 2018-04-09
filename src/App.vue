@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import welcome from '@/base/welcome/welcome'
+import welcome from 'base/welcome/welcome'
 
 export default {
   name: 'app',
