@@ -1,16 +1,39 @@
-.border-1px(@location){
-	position: absolute;
-	width: 100%;
-	content: "";
-	top:0;
 
-}
+.border-1px(@color){
+	position: relative;
+	&:after{
+		position:absolute;
+		content: "";
+		display:block;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		border-bottom: 1px solid @color;
+		transform:scaleY(0.5);
 
-@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2){
-        height: 1px;
-        transform: scaleY(.5);
+	}
 }
-@media (-webkit-min-device-pixel-ratio: 1),(min-device-pixel-ratio: 1){
-        height: 1px;
-        transform: scaleY(.7);
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-device-pixel-ratio: 1.5){ 
+	.border-1px  {
+	  	&::after  {
+			-webkit-transform: scaleY(0.7) ; 
+	      	transform:scaleY(0.7) ; 
+	  	}
+    }
+}
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-device-pixel-ratio: 2){ 
+	.border-1px  {
+	  	&::after  {
+			-webkit-transform: scaleY(0.5)  ;
+	      	transform:scaleY(0.5)  ;
+	  	}
+    }
+}
+@media (-webkit-min-device-pixel-ratio: 3),(min-device-device-pixel-ratio: 3){ 
+	.border-1px  {
+	  	&::after  {
+			-webkit-transform: scaleY(0.4); 
+	      	transform:scaleY(0.4);
+	  	}
+    }
 }

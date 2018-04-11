@@ -71,12 +71,15 @@
     @import "../../common/less/mixin";
     div.star{
         font-size: 0;
+        star-item{
+            display: inline-block;
+            background-repeat: no-repeat;
+        }
         &.size-24{
             .star-item{
                 height: 10px;
                 width: 10px;
-                margin-right: 3px;
-                display: inline-block;
+                margin-right: 3px; 
                 background-size: 10px 10px;
                 &:last-child{
                     margin-right: 0;
@@ -97,6 +100,33 @@
             }
             .no-score{
                 font-size: 12px;
+            }
+        }
+        &.size-36{
+            .star-item{
+                height: 22px;
+                width: 22.5px;
+                margin-right: 8px; 
+                background-size: 22.5px 22px;
+                &:last-child{
+                    margin-right: 0;
+                }
+                &.on{
+                    .bg-image(star36_on);
+                }
+                &.half{
+                    .bg-image(star36_half);
+                }
+                &.off{
+                    .bg-image(star36_off);
+
+                }
+            }
+            .show-score{
+                font-size: 14px;
+            }
+            .no-score{
+                font-size: 14px;
             }
         }
     }
