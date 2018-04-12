@@ -34,6 +34,7 @@ export default {
 </script>
 
 <style lang="less">
+    @import '../../common/less/border-1px' ;
     div.navbar{
         height:3.5rem;
             .flex(){
@@ -55,7 +56,7 @@ export default {
                     }
                     &.is-active{
                         color: #42bd56;
-                        border-bottom: 1px solid #42bd56;
+                        .border-1px(#42bd56)
                     }
                 }
             }

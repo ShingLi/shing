@@ -1,0 +1,62 @@
+.broadCast_wrapper .head {
+  position: relative;
+}
+.broadCast_wrapper .head::after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid #ccc;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+  .broadCast_wrapper .head::after {
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+  .broadCast_wrapper .head::after {
+    -webkit-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+}
+.broadCast_wrapper .list-scroll {
+  position: absolute;
+  top: 3.7rem;
+  bottom: 4.2rem;
+  left: 0;
+  width: 100%;
+  background-color: #F2F1EE;
+}
+.broadCast_wrapper .list-scroll .wrapper {
+  padding: 0 15px;
+}
+.broadCast_wrapper .list-scroll .wrapper .findWorld {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+}
+.broadCast_wrapper .list-scroll .wrapper .findWorld img {
+  margin-right: 20px;
+}
+.broadCast_wrapper .list-scroll .wrapper .findWorld .top_text h2 {
+  font-weight: normal;
+  font-size: 16px;
+  color: #454545;
+  line-height: 25px;
+  letter-spacing: 2px;
+}
+.broadCast_wrapper .list-scroll .wrapper .findWorld .top_text span {
+  font-size: 10px;
+  color: #A5A5A4;
+}
+.broadCast_wrapper .list-scroll .wrapper .header {
+  padding: 15px 10px;
+  border-radius: 3px;
+  background-color: #fff;
+  width: 100%;
+  min-height: 50px;
+}
