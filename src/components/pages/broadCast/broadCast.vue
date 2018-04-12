@@ -10,7 +10,10 @@
 		</m-header>
 		<!-- 滚动部分 -->
 		<scroll class='list-scroll'>
-			<div class="wrapper"></div>
+			<div class="wrapper">
+				<!-- 图书 -->
+				
+			</div>
 		</scroll>
 	</div>
 </template>
