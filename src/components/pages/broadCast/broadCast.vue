@@ -39,9 +39,18 @@
 	import scroll from 'base/scroll/scroll'
 	export default {
 		name:'broadCast',
+		data(){
+
+		},
+		created(){
+
+		},
 		components:{
 			MHeader,
 			scroll
+		},
+		methods:{
+
 		}
 	}
 </script>
