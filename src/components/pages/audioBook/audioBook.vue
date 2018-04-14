@@ -26,14 +26,16 @@
 					<movie-list :movies='hotMovies' :hasMore = 'hasMoreHotMovies' @select = 'selectMovie'></movie-list>
 				</div>
 			</scroll>
-			<!-- 即将上映的电影 -->
-			<scroll v-show="currentIndex!=0">
+			<!-- 图书 -->
+			<scroll v-show="currentIndex===1"
+				class='list-scroll'
+			>
 				<div class="list-inner">
-
+					<book-list></book-list>
 				</div>
 			</scroll>
 			<!-- tab切换的时候显示加载的动画 -->
-			<loadmore :fullScreen='true' v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&!comingMovies.length"></loadmore>
+			<loadmore :fullScreen='true' v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&bookList.length"></loadmore>
 		</div>
 		<Toast type='warn' v-model='toastShow'>网络错误</Toast>
 	</div>
@@ -55,7 +57,7 @@
 			return {
 				switchs:[
 					{id:0,name:'正在热映'},
-					{id:1,name:'即将上映'}
+					{id:1,name:'关注图书'}
 				],
 				currentIndex:0,//tab切换的当前索引
 				hotMovies:[],//正在热映电影列表
@@ -66,10 +68,12 @@
 				hasMoreHotMovies:true, //显示底线的
 				scrollY:-1,//默认的滚动位置
 				toastShow:false,//默认toast 是不显示的
+				bookList:[] //图书
 			}
 		},
 		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,
-			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore')
+			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore'),
+			bookList:()=>import(/* webpackChunkName:'loadmore'*/'base/book-list/book-list')
 		},
 
 		created(){
