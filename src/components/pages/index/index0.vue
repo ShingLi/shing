@@ -27,10 +27,10 @@
 			<div class="wrapper">
 				<div class="content">
 					<!-- Carousel-->
-						<swiper :pagination="true" ref='swipers'>
+						<swiper :pagination="true" ref='swipers' v-if='bannerList.length'>
 							<template slot='swiper-img'>
 								<div class="swiper-slide" v-for="(item,index) in bannerList">
-									<img :src="item.src" alt="" class="banner_index">
+									<img :src="item.src"  class="banner_index">
 								</div>
 							</template>
 						</swiper>
@@ -41,9 +41,10 @@
 					<!-- 媒体数据部分 -->
 						<media-cell :author="item.category_name"
 									:source="item.subcategory_name"
+									:key="index" 
+									v-cloak
+									@click.native='selectList(item,index)'
 									v-for='(item,index) of events'
-									:key="index" v-cloak
-									@click.native='selectList(item)'
 						>
 							<div class="m-media_cell-title text" slot='title'>{{item.title}}</div>
 							<div class="m-media_cell-detail text" slot='detail'>{{item.content}}</div>
@@ -59,6 +60,18 @@
       			<span>因上努力，果上随缘！</span>
     		</div> -->
 		</scroll>
+		<!-- popup -->
+		<div v-transfer-dom>
+			<popup
+	  			v-model="popupVisible"
+	  			position="top"
+	  			:show-mask=false
+	  			class='popup'
+
+	  			>
+	  			前3个不能点击！从第4个开始哦！
+			</popup>
+		</div>
 	</div>
 </template>
 <script>
@@ -71,8 +84,8 @@
 	// awesome vue无限滚动的组件
 	//import infiniteLoading from 'vue-infinite-loading'
 	// 使用mint的toast组件
-	import { Toast , Loadmore} from 'mint-ui'
-
+	import { Toast , Loadmore } from 'mint-ui'
+	import { Popup , TransferDom } from 'vux';
 // 纠结想来想去还是使用better-scroll
 	import scroll from 'base/scroll/scroll'
 	import axios from "axios"
@@ -80,7 +93,11 @@
 	import { mapState , mapMutations } from 'vuex'
 	const cellListCount = 10
 	export default {
+		
 		name:'index',
+		directives: {
+    		TransferDom
+  		},
 		data(){
 			return {
 				zhen:"",//v-model绑定的双向数组
@@ -92,23 +109,21 @@
 				loadingFlag:true,//每次加载完成后成功的标志
 				show:true,//true是默认有数据的
 				scrollY:0,//默认的滚动位置
+				popupVisible:false, //点击提示
+				
 
 			}
 		},
 
-		components:{ mHeader,swiper,cell,mediaCell,loading,'mtLoadmore':Loadmore,scroll },
+		components:{ mHeader,swiper,cell,mediaCell,loading,'mtLoadmore':Loadmore,scroll ,Popup },
 
 		created(){
 			this.loadData();
 			this.probeType =3
 		},
-		mounted(){
-			// console.log(this.$route.query.user)
-		},
 		computed:{
 			...mapState({
 				pageIndex :state=>state.scrollY.index,//目前点击在首页
-
 			})
 		},
 
@@ -120,21 +135,14 @@
 					axios.get("/static/data/data_mediaCell.php")
 				])
 				.then(axios.spread((banner,cell)=>{
-					this.bannerList = banner.data
-					let that = this;
-					// 实例的方法     vm.$nexTick()
-					that.$nextTick(function(){
-						// 坑啊
-						that.$refs.swipers.swiper();
+					this.bannerList = banner.data ;
+					this.$nextTick(()=>{
+						// DOM更新了
+						this.$refs.swipers.swiper();
 					})
-					
-					this.events  = cell.data
-					//
-
+					this.events  = cell.data ;
 					//触发进入页面的模态框关闭欢迎页
 					this.$emit('isShow');
-
-
 				})).catch(err=>{
 					console.log(err)
 					alert('网络错误，不能访问！')
@@ -185,12 +193,26 @@
 				this.$refs.full.scrollTo(0,this.scrollY)//切换回来的时候保存之前的浏览记录
 
 			},
-			selectList(item){
-				this.saveListId(item.id)
-				this.$router.push({
-					path:`/list/${item.id}`
-				})
+			selectList(item,index){
+				switch(index){
+					case 0 :
+						this.popupVisible = true
+						break;
+					case 1 :
+						this.popupVisible = true
+						break;
+					case 2 :
+						this.popupVisible = true
+						break;
+					default:
+						this.saveListId(item.id)
+						this.$router.push({
+							path:`/list/${item.id}`
+						})
+				}
+				
 			},
+
 			...mapMutations([
 					"saveListId"
 				])
@@ -209,8 +231,21 @@
 		},
 		activated(){
 			// keep-alive 的生命周期钩子 再次加载组件的时候进行调用
-			this.$refs.swipers.swiper(); //这里防止搜索组件返回的时候导致banner图不轮播
-			this.scrollTo()
+			//这里防止搜索组件返回的时候导致banner图不轮播
+			if(!this.bannerList.length)
+				return 
+			else{
+				this.$refs.swipers.swiper(); 
+			}
+			this.scrollTo() ;
+		},
+		watch:{
+			popupVisible(){
+				setTimeout(()=>{
+					this.popupVisible = false;
+				},1000)
+			},
+			
 		}
 
 	}
@@ -293,5 +328,11 @@
 	.is-height{
 		height: 563px;
 	}
-
+	.popup{
+		height:3.5rem;
+		line-height: 3.5rem;
+		text-align:center;
+		color:#fff;
+		background-color:rgba(0,0,0,.5);
+	}
 </style>

@@ -71,7 +71,7 @@
     @import "../../common/less/mixin";
     div.star{
         font-size: 0;
-        star-item{
+        .star-item{
             display: inline-block;
             background-repeat: no-repeat;
         }

@@ -9,7 +9,46 @@
 			</a>
 		</m-header>
 		<!-- tab切换 -->
-		<navbar :items = 'switchs' @switchs='switchItem' :currentIndex='currentIndex'></navbar>
+		<tab :line-width=1 active-color='#fc378c' v-model="currentIndex">
+        	<tab-item class="vux-center" 
+        		:selected="switchs === item" 
+        		v-for="(item, index) in switchs" 
+        		@click="switchs = item" :key="index"
+        	>
+        	{{item.name}}
+        	</tab-item>
+        	<!-- <swiper v-model="currentIndex"  :show-dots="false" class="wrap" height='auto'>
+		        <swiper-item>
+					<scroll v-show='currentIndex===0'
+							class="list-scroll"
+							:data='hotMovies'
+							:pullup='pullup'
+							:probeType='probeType'
+							:listenScroll = 'true'
+							@scrollToEnd='loadMore'
+							@scroll = 'scroll'
+
+					>
+						<div class="list-inner">
+							<movie-list :movies='hotMovies' 
+										:hasMore = 'hasMoreHotMovies' 
+										@select = 'selectMovie'></movie-list>
+						</div>
+					</scroll>
+		        </swiper-item>
+		        <swiper-item>
+		        	<scroll v-show="currentIndex===1"
+						class='list-scroll'
+					>
+						<div class="list-inner">
+							<book-list></book-list>
+						</div>
+					</scroll>
+		        </swiper-item>
+      		</swiper> -->
+     	</tab>
+   
+		<!-- <navbar :items = 'switchs' @switchs='switchItem' :currentIndex='currentIndex'></navbar> -->
 		<!-- 主内容区域 -->
 		<div class="wrap">
 			<!-- 正在热映的电影 -->
@@ -21,6 +60,7 @@
 					:listenScroll = 'true'
 					@scrollToEnd='loadMore'
 					@scroll = 'scroll'
+
 			>
 				<div class="list-inner">
 					<movie-list :movies='hotMovies' :hasMore = 'hasMoreHotMovies' @select = 'selectMovie'></movie-list>
@@ -35,7 +75,9 @@
 				</div>
 			</scroll>
 			<!-- tab切换的时候显示加载的动画 -->
-			<loadmore :fullScreen='true' v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&bookList.length"></loadmore>
+			<loadmore :fullScreen='true' 
+						v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&bookList.length"
+			></loadmore>
 		</div>
 		<Toast type='warn' v-model='toastShow'>网络错误</Toast>
 	</div>
@@ -48,9 +90,9 @@
 	import {getMovie} from 'api/movie-show'
 	import {createMovieList} from 'api/movieList'
 	import {mapMutations} from 'vuex'
-	import { Toast } from 'vux'
-
+	import { Tab, TabItem,  Swiper, SwiperItem ,Toast} from 'vux'
 	const search_more = 10; //每次请求数据的长度 count
+	
 	export default {
 		name:'audioBook',
 		data(){
@@ -68,10 +110,11 @@
 				hasMoreHotMovies:true, //显示底线的
 				scrollY:-1,//默认的滚动位置
 				toastShow:false,//默认toast 是不显示的
-				bookList:[] //图书
+				bookList:[] ,//图书
+				
 			}
 		},
-		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,
+		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,Tab,TabItem, Swiper,SwiperItem,
 			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore'),
 			bookList:()=>import(/* webpackChunkName:'loadmore'*/'base/book-list/book-list')
 		},
@@ -155,6 +198,7 @@
 	div.wrap{
 		position: absolute;
 		width: 100%;
+		height:100%;
 		top: 7.25rem;
 		bottom: 4.2rem;
 			.list-scroll{

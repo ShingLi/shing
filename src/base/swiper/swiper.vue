@@ -17,12 +17,12 @@
 				default:false
 			}
 		},
-		beforeMount(){
+		mounted(){
 			this.swiper();
 		},
 		methods:{
 			swiper(){
-				var mySwiper = new Swiper ('.swiper-container', {
+				const mySwiper = new Swiper ('.swiper-container', {
     				pagination: '.swiper-pagination',
         			paginationClickable: true,
         			autoplayDisableOnInteraction:false,
