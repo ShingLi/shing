@@ -39,9 +39,9 @@
 							<img src="../../../common/images/ic_mine_notification.png" alt="" class="m-cell-icon" slot='icon'>
 						</cell>
 					<!-- 媒体数据部分 -->
-						<media-cell :author="item.category_name" 
-									:source="item.subcategory_name"  
-									v-for='(item,index) of events' 
+						<media-cell :author="item.category_name"
+									:source="item.subcategory_name"
+									v-for='(item,index) of events'
 									:key="index" v-cloak
 									@click.native='selectList(item)'
 						>
@@ -113,9 +113,7 @@
 		},
 
 		methods:{
-
 			loadData(){
-
 				axios.all(
 				[
 					axios.get("/static/data/data_banner.php"),
@@ -129,6 +127,7 @@
 						// 坑啊
 						that.$refs.swipers.swiper();
 					})
+					
 					this.events  = cell.data
 					//
 
@@ -148,7 +147,7 @@
 					this.loadingFlag = true;
 					return
 				}
-				
+
 				getCellList(this.skip,cellListCount).then(res=>{
                     // console.log(res.events)
                     this.skip += cellListCount;
