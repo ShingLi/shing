@@ -17,35 +17,6 @@
         	>
         	{{item.name}}
         	</tab-item>
-        	<!-- <swiper v-model="currentIndex"  :show-dots="false" class="wrap" height='auto'>
-		        <swiper-item>
-					<scroll v-show='currentIndex===0'
-							class="list-scroll"
-							:data='hotMovies'
-							:pullup='pullup'
-							:probeType='probeType'
-							:listenScroll = 'true'
-							@scrollToEnd='loadMore'
-							@scroll = 'scroll'
-
-					>
-						<div class="list-inner">
-							<movie-list :movies='hotMovies' 
-										:hasMore = 'hasMoreHotMovies' 
-										@select = 'selectMovie'></movie-list>
-						</div>
-					</scroll>
-		        </swiper-item>
-		        <swiper-item>
-		        	<scroll v-show="currentIndex===1"
-						class='list-scroll'
-					>
-						<div class="list-inner">
-							<book-list></book-list>
-						</div>
-					</scroll>
-		        </swiper-item>
-      		</swiper> -->
      	</tab>
    
 		<!-- <navbar :items = 'switchs' @switchs='switchItem' :currentIndex='currentIndex'></navbar> -->
@@ -116,7 +87,7 @@
 		},
 		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,Tab,TabItem, Swiper,SwiperItem,
 			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore'),
-			bookList:()=>import(/* webpackChunkName:'loadmore'*/'base/book-list/book-list')
+			bookList:()=>import(/* webpackChunkName:'bookList'*/'base/book-list/book-list')
 		},
 
 		created(){
@@ -201,6 +172,7 @@
 		height:100%;
 		top: 7.25rem;
 		bottom: 4.2rem;
+		background-color: #fff;
 			.list-scroll{
 					position: relative;
 					height: 100%;
