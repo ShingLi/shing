@@ -169,7 +169,6 @@
 	div.wrap{
 		position: absolute;
 		width: 100%;
-		height:100%;
 		top: 7.25rem;
 		bottom: 4.2rem;
 		background-color: #fff;
