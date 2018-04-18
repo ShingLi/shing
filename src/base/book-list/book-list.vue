@@ -16,7 +16,7 @@
 						v-for='(item,index) of book_fiction'
 						:key='index'
 						>
-						<img v-lazy='item.cover.url'>
+						<img v-lazy='replaceUrl(item.cover.url) '>
 						<p>{{item.title}}</p>
 						<star 
 							:score='item.rating.value' 
@@ -43,7 +43,7 @@
 						v-for='(item,index) of book_nonfiction'
 						:key='index'
 						>
-						<img v-lazy='item.cover.url'>
+						<img v-lazy='replaceUrl(item.cover.url) '>
 						<p>{{item.title}}</p>
 						<star 
 							:score='item.rating.value' 
