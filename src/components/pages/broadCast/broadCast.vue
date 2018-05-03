@@ -2,7 +2,7 @@
 	<div class="broadCast_wrapper">
 		<m-header title='广播' class='head'>
 			<a  slot='right' @click="$router.push({path:'/search'})">
-				<img src="../../../common/images/ic_status_search_user.png"  
+				<img src="../../../common/images/ic_status_search_user.png"
 				class="m-icon-img is-margin">
 			</a>
 			<a href="javascript:void" slot='right'>
@@ -26,7 +26,7 @@
 							<img src="" alt="">
 						</div>
 						<div class="info">
-							
+
 						</div>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 	export default {
 		name:'broadCast',
 		data(){
-
+			return {}
 		},
 		created(){
 
