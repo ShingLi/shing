@@ -10,7 +10,7 @@
 				<input type="file" class="search-img">
 			</div>
 			<a href="" slot='right'>
-				<img src="../../../assets/images/ic_chat_white.png" alt="" class="m-icon-img">
+				<img src="../../../common/images/ic_chat_white.png" alt="" class="m-icon-img">
 			</a>
 		</m-header>
 		<!-- 滚动的部分 -->
@@ -27,7 +27,7 @@
 						</swiper>
 					<!-- cell部分的格局 -->
 						<cell title='设置' is-link to="/emplace">
-							<img src="../../../assets/images/ic_mine_notification.png" alt="" class="m-cell-icon" slot='icon'>
+							<img src="../../../common/images/ic_mine_notification.png" alt="" class="m-cell-icon" slot='icon'>
 						</cell>
 					<!-- 媒体数据部分 -->
 						<media-cell :author="item.author" :source="item.category_name"  v-for='(item,index) of events' :key="index" v-cloak>
@@ -50,18 +50,19 @@
 	</div>
 </template>
 <script>
-	import mHeader from '@/components/common/header'
-	import swiper  from "@/components/common/swiper"
-	import cell  from "@/components/common/cell"
-	import mediaCell from "@/components/common/mediaCell"
+	import mHeader from 'base/header/header'
+	import swiper  from "base/swiper/swiper"
+	import cell  from "base/cell/cell"
+	import mediaCell from "base/media-cell/mediaCell"
 	// 自定义的加载图标
-	import loadimg from "@/components/common/loadmore"
+	import loadimg from "base/loadmore/loadmore"
 	// 无线滚动
 	import infiniteLoading from 'vue-infinite-loading'
 	// 使用mint的toast组件
 	import { Toast } from 'mint-ui'
 	import { Loadmore } from 'mint-ui'
 	import axios from "axios"
+	import { mapState } from 'vuex'
 
 	export default {
 		name:'index',
@@ -71,7 +72,8 @@
 				bannerList:[],
 				events:[],
 				skip:0,
-				topStatus:0 //mint-ui 的上拉状态
+				topStatus:0, //mint-ui 的上拉状态
+				
 			}
 		},
 
@@ -96,7 +98,10 @@
 			},
 			pullup(){
 				return true
-			}
+			},
+			...mapState({
+				he:state=>state.index.scrollY,
+			})
 		},
 
 		methods:{
@@ -139,8 +144,7 @@
 
 			loadmore($state){
 				let that = this.skip;
-
-				axios.get("/api/event/list?loc=108288&start="+that+'&count=5')
+				axios.get("/api/v2/event/list?loc=108288&start="+that+'&count=5')
 					.then(res=>{
 							console.dir(res)
 							if(res.data.events.length){
@@ -157,7 +161,23 @@
 							iconClass:'icon iconfont icon-shibai'
 						})
 					})
-			}
+			},
+			// 读取VUEX中的方法
+			
+		},
+		beforeRouteLeave(to,from,next){
+				let h = document.documentElement.scrollTop;
+				console.log(h)
+				this.$store.commit({
+					type:'saveScrollY',
+					Y:h
+				})
+				next();
+		},
+		activated(){
+			// console.log(this.he)
+			if(this.he > 0)
+				window.scrollTo(0, this.he);
 		}
 	}
 </script>
@@ -176,7 +196,7 @@
 			border: none;
 			outline: none;
 			display: inline-block;
-			background: url('../../../assets/images/ic_search_gray.png')  no-repeat;
+			background: url('../../../common/images/ic_search_gray.png')  no-repeat;
 			text-indent: -99px;
 			width: 20px;
 			height: 20px;
@@ -190,7 +210,7 @@
 			font-size: 1rem;
 		}
 		.search-img{
-			background:url('../../../assets/images/ic_scan_gray.png');
+			background:url('../../../common/images/ic_scan_gray.png');
 			background-repeat: no-repeat;
 			text-indent:-99px;
 			background-size: cover;
