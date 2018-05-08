@@ -16,10 +16,10 @@
 						v-for='(item,index) of book_fiction'
 						:key='index'
 						>
-						<img v-lazy='replaceUrl(item.cover.url) '>
+						<img v-lazy='replaceUrl(item.images.large) '>
 						<p>{{item.title}}</p>
 						<star 
-							:score='item.rating.value' 
+							:score='item.rating.average' 
 							:size='24'
 							:showScore='true'
 						></star>
@@ -43,16 +43,20 @@
 						v-for='(item,index) of book_nonfiction'
 						:key='index'
 						>
-						<img v-lazy='replaceUrl(item.cover.url) '>
+						<img v-lazy='replaceUrl(item.images.large) '>
 						<p>{{item.title}}</p>
 						<star 
-							:score='item.rating.value' 
+							:score='item.rating.average' 
 							:size='24'
 							:showScore='true'
 						></star>
 					</li>
 				</ul>
 			</scroll>
+		</div>
+		<!-- 豆瓣书店 -->
+		<div class="book_header">
+			<h2>豆瓣书店</h2>
 		</div>
 	</div>
 </template>
@@ -82,12 +86,13 @@
 		components:{ scroll , star } ,
 		methods:{
 			_getBookFiction(){
-				const url_1 ='/m/rexxar/api/v2/subject_collection/book_fiction/items?start=0&count=8',
-						url_2  = '/m/rexxar/api/v2/subject_collection/book_nonfiction/items?start=0&count=8';
+				const url_1 ='/api/v2/book/search?q=虚构类&start=0&count=8',
+						url_2  = '/api/v2/book/search?q=非虚构类&start=0&count=8';
 				axios.all([(axios.get(url_1)),(axios.get(url_2))]).then(
 						axios.spread((acct,perms)=>{
-							this.book_fiction = acct.data.subject_collection_items;
-							this.book_nonfiction = perms.data.subject_collection_items;
+							this.book_fiction = acct.data.books;
+							// console.log(acct.data.books)
+							this.book_nonfiction = perms.data.books;
 							this.$nextTick(()=>{
 								this._setWidth();
 							})

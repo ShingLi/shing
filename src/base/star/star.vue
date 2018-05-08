@@ -23,7 +23,7 @@
                 default:0
             },
             score:{
-                type:Number,
+                type:Number|String,
                 default:0
             },
             needNullStar:{
