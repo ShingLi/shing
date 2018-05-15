@@ -27,13 +27,23 @@
 			<div class="wrapper">
 				<div class="content">
 					<!-- Carousel-->
-						<swiper :pagination="true" ref='swipers' v-if='bannerList.length'>
+						<!-- <swiper :pagination="true" ref='swipers' v-if='bannerList.length'>
 							<template slot='swiper-img'>
 								<div class="swiper-slide" v-for="(item,index) in bannerList">
 									<img :src="item.src"  class="banner_index">
 								</div>
 							</template>
-						</swiper>
+						</swiper> -->
+						<swipe :autoplay="3000">
+  							<swipe-item 
+  								v-for="(item,index) in bannerList" 
+  								class="swiper-slide"
+  								:key='index'
+  								> 
+									<img :src="item.src"  
+									class="banner_index" style="width:100%;height:15rem">
+  							</swipe-item>
+						</swipe>
 					<!-- cell -->
 						<cell title='设置' is-link to="/emplace">
 							<img src="../../../common/images/ic_mine_notification.png" alt="" class="m-cell-icon" slot='icon'>
@@ -85,7 +95,8 @@
 	//import infiniteLoading from 'vue-infinite-loading'
 	// 使用mint的toast组件
 	import { Toast , Loadmore } from 'mint-ui'
-	import { Popup , TransferDom } from 'vux';
+	import { Popup , TransferDom } from 'vux'
+	import { Swipe, SwipeItem } from 'vant'
 // 纠结想来想去还是使用better-scroll
 	import scroll from 'base/scroll/scroll'
 	import axios from "axios"
@@ -115,7 +126,12 @@
 			}
 		},
 
-		components:{ mHeader,swiper,cell,mediaCell,loading,'mtLoadmore':Loadmore,scroll ,Popup },
+		components:{ mHeader,swiper,cell,mediaCell,loading,
+			'mtLoadmore':Loadmore,
+			scroll ,Popup,
+			Swipe,
+			SwipeItem
+			},
 
 		created(){
 			this.loadData();
@@ -138,7 +154,7 @@
 					this.bannerList = banner.data ;
 					this.$nextTick(()=>{
 						// DOM更新了
-						this.$refs.swipers.swiper();
+						// this.$refs.swipers.swiper();
 					})
 					this.events  = cell.data ;
 					//触发进入页面的模态框关闭欢迎页
@@ -235,7 +251,7 @@
 			if(!this.bannerList.length)
 				return 
 			else{
-				this.$refs.swipers.swiper(); 
+				// this.$refs.swipers.swiper(); 
 			}
 			this.scrollTo() ;
 		},
@@ -250,7 +266,14 @@
 
 	}
 </script>
+<style>
+	.van-swipe__indicators{
+		left: 80% !important;
+		
+	}
+</style>
 <style lang='less' scoped>
+	
 	div.search-warp{
 		height: 2.8rem;
 		background-color: #fff;

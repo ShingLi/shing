@@ -174,11 +174,17 @@
 				})
 				next();
 		},
-		activated(){
-			// console.log(this.he)
-			if(this.he > 0)
-				window.scrollTo(0, this.he);
+		beforeRouteEnter(to,from,next){
+			next(vm=>{
+				if(vm.he > 0)
+				window.scrollTo(0, vm.he);
+			})
 		}
+		// activated(){
+		// 	// console.log(this.he)
+		// 	if(this.he > 0)
+		// 		window.scrollTo(0, this.he);
+		// }
 	}
 </script>
 <style lang='less' scoped>

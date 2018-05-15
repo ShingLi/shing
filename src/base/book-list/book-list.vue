@@ -6,20 +6,20 @@
 				<h2>最受关注图书｜虚构类</h2>
 				<router-link to='/'>更多</router-link>
 			</header>
-			<scroll 
+			<scroll
 				:data='book_fiction'
 				:scrollX='true'
 
 			>
 				<ul class="book_content" ref = 'list'>
-					<li 
+					<li
 						v-for='(item,index) of book_fiction'
 						:key='index'
 						>
 						<img v-lazy='replaceUrl(item.images.large) '>
 						<p>{{item.title}}</p>
-						<star 
-							:score='item.rating.average' 
+						<star
+							:score='item.rating.average'
 							:size='24'
 							:showScore='true'
 						></star>
@@ -33,20 +33,20 @@
 				<h2>最受关注图书｜非虚构类</h2>
 				<router-link to='/'>更多</router-link>
 			</header>
-			<scroll 
+			<scroll
 				:data='book_nonfiction'
 				:scrollX='true'
 
 			>
 				<ul class="book_content" ref = 'nonlist'>
-					<li 
+					<li
 						v-for='(item,index) of book_nonfiction'
 						:key='index'
 						>
 						<img v-lazy='replaceUrl(item.images.large) '>
 						<p>{{item.title}}</p>
-						<star 
-							:score='item.rating.average' 
+						<star
+							:score='item.rating.average'
 							:size='24'
 							:showScore='true'
 						></star>
@@ -88,6 +88,7 @@
 			_getBookFiction(){
 				const url_1 ='/api/v2/book/search?q=虚构类&start=0&count=8',
 						url_2  = '/api/v2/book/search?q=非虚构类&start=0&count=8';
+
 				axios.all([(axios.get(url_1)),(axios.get(url_2))]).then(
 						axios.spread((acct,perms)=>{
 							this.book_fiction = acct.data.books;
@@ -105,10 +106,10 @@
 						iconClass:'icon iconfont icon-shibai'
 					})
 				})
-				
+
 			},
 			_setWidth(){
-				
+
 				let w = 90,
 					r = 10,
 					n = this.book_fiction.length ,
