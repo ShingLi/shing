@@ -10,20 +10,22 @@
 		</m-header>
 		<!-- tab切换 -->
 		<tab :line-width=1 active-color='#fc378c' v-model="currentIndex">
-        	<tab-item class="vux-center" 
-        		:selected="switchs === item" 
+        	<tab-item 
+        		class="vux-center" 
         		v-for="(item, index) in switchs" 
-        		@click="switchs = item" :key="index"
+        		@click="switchs = item" 
+        		:key="index"
+        		:selected="switchs === item" 
         	>
         	{{item.name}}
         	</tab-item>
      	</tab>
    
 		<!-- 主内容区域 -->
-		<slider>
+		<slider @switchItem='switchItem' :currentIndex='currentIndex'>
 			
 			<!-- 正在热映的电影 -->
-			<scroll v-show='currentIndex===0'
+			<scroll 
 					class="list-scroll"
 					:data='hotMovies'
 					:pullup='pullup'
@@ -31,7 +33,6 @@
 					:listenScroll = 'true'
 					@scrollToEnd='loadMore'
 					@scroll = 'scroll'
-
 			>
 				<div class="list-inner">
 					<movie-list :movies='hotMovies' :hasMore = 'hasMoreHotMovies' @select = 'selectMovie'></movie-list>
@@ -49,6 +50,7 @@
 			<!-- tab切换的时候显示加载的动画 -->
 			<loadmore :fullScreen='true' 
 						v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&bookList.length"
+						style='width:50%'
 			></loadmore>
 			
 		</slider>
@@ -101,6 +103,7 @@
 		},
 		methods:{
 			switchItem(index){
+				
 				this.currentIndex= index;
 			},
             // 获取正在上映的电影

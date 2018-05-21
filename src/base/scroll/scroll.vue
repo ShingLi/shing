@@ -71,6 +71,10 @@
 	      refreshDelay: {
 	        type: Number,
 	        default: 0
+	      },
+	      stopPropagation:{
+	      	type: Boolean,
+	        default: false
 	      }
 	    },
 	    mounted() {
@@ -90,6 +94,7 @@
 		          probeType: this.probeType,
 		          click: this.click,
 		          scrollX: this.scrollX,
+		          stopPropagation:this.stopPropagation
 		          
 		        })
 

@@ -9,7 +9,7 @@
 			<scroll
 				:data='book_fiction'
 				:scrollX='true'
-
+				:stopPropagation='true'
 			>
 				<ul class="book_content" ref = 'list'>
 					<li
@@ -36,7 +36,7 @@
 			<scroll
 				:data='book_nonfiction'
 				:scrollX='true'
-
+				:stopPropagation='true'
 			>
 				<ul class="book_content" ref = 'nonlist'>
 					<li
@@ -123,6 +123,9 @@
                 if (srcUrl !== undefined) { // 图片防盗链处理
                   return ('https://images.weserv.nl/?url=' + srcUrl.replace(/http\w{0,1}:\/\//, ''));
                 }
+            },
+            he(){
+            	alert(1)
             }
 		}
 	}
