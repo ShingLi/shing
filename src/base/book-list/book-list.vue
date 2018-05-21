@@ -86,8 +86,8 @@
 		components:{ scroll , star } ,
 		methods:{
 			_getBookFiction(){
-				const url_1 ='/api/v2/book/search?q=虚构类&start=0&count=8',
-						url_2  = '/api/v2/book/search?q=非虚构类&start=0&count=8';
+				const url_1 ='/api/v2/book/search?apikey=0b2bdeda43b5688921839c8ecb20399b&q=虚构类&start=0&count=8',
+						url_2  = '/api/v2/book/search?apikey=0b2bdeda43b5688921839c8ecb20399b&q=非虚构类&start=0&count=8';
 
 				axios.all([(axios.get(url_1)),(axios.get(url_2))]).then(
 						axios.spread((acct,perms)=>{

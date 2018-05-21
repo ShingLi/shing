@@ -19,9 +19,9 @@
         	</tab-item>
      	</tab>
    
-		<!-- <navbar :items = 'switchs' @switchs='switchItem' :currentIndex='currentIndex'></navbar> -->
 		<!-- 主内容区域 -->
-		<div class="wrap">
+		<slider>
+			
 			<!-- 正在热映的电影 -->
 			<scroll v-show='currentIndex===0'
 					class="list-scroll"
@@ -38,8 +38,9 @@
 				</div>
 			</scroll>
 			<!-- 图书 -->
-			<scroll v-show="currentIndex===1"
+			<scroll 
 				class='list-scroll'
+				
 			>
 				<div class="list-inner">
 					<book-list></book-list>
@@ -49,7 +50,9 @@
 			<loadmore :fullScreen='true' 
 						v-show ="currentIndex===0&&!hotMovies.length||currentIndex===1&&bookList.length"
 			></loadmore>
-		</div>
+			
+		</slider>
+		
 		<Toast type='warn' v-model='toastShow'>网络错误</Toast>
 	</div>
 </template>
@@ -58,6 +61,7 @@
 	import navbar  from 'base/navbar/navbar'
 	import scroll  from 'base/scroll/scroll'
 	import movieList from 'base/movie-list/movie-list'
+	import Slider from 'base/slider/slider'
 	import {getMovie} from 'api/movie-show'
 	import {createMovieList} from 'api/movieList'
 	import {mapMutations} from 'vuex'
@@ -87,7 +91,8 @@
 		},
 		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,Tab,TabItem, Swiper,SwiperItem,
 			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore'),
-			bookList:()=>import(/* webpackChunkName:'bookList'*/'base/book-list/book-list')
+			bookList:()=>import(/* webpackChunkName:'bookList'*/'base/book-list/book-list'),
+			Slider
 		},
 
 		created(){
@@ -166,19 +171,13 @@
 	}
 </script>
 <style lang="less" scoped>
-	div.wrap{
-		position: absolute;
-		width: 100%;
-		top: 7.25rem;
-		bottom: 4.2rem;
-		background-color: #fff;
-			.list-scroll{
-					position: relative;
-					height: 100%;
-					overflow: hidden;
-						div.list-inner{
-							padding: 0 15px;
-						}
-			}
+	.list-scroll{
+		position: relative;
+		height: 100%;
+		overflow: hidden;
+		float: left;
+		div.list-inner{
+			padding: 0 15px;
+		}
 	}
 </style>
