@@ -36,12 +36,16 @@
 						</swiper> -->
 						<swipe :autoplay="3000">
   							<swipe-item 
-  								v-for="(item,index) in bannerList" 
+  								v-for="item,index in bannerList" 
   								class="swiper-slide"
   								:key='index'
+  								ref='slider'
   								> 
 									<img :src="item.src"  
-									class="banner_index" style="width:100%;height:15rem">
+										class="banner_index" 
+										style="width:100%;height:15rem"
+										@load='loadImage'
+									>
   							</swipe-item>
 						</swipe>
 					<!-- cell -->
@@ -122,20 +126,22 @@
 				scrollY:0,//默认的滚动位置
 				popupVisible:false, //点击提示
 				
-
 			}
 		},
-
 		components:{ mHeader,swiper,cell,mediaCell,loading,
 			'mtLoadmore':Loadmore,
 			scroll ,Popup,
 			Swipe,
 			SwipeItem
-			},
-
+		},
 		created(){
-			this.loadData();
+			this.loadData()
 			this.probeType =3
+		},
+		mounted(){
+			setTimeout(()=>{
+				this._initSetSliderWidth()
+			},20)
 		},
 		computed:{
 			...mapState({
@@ -228,7 +234,18 @@
 				}
 				
 			},
-
+			_initSetSliderWidth(){
+				// 2018/5/26 留着
+				// addEVentListener('resize') 当窗口改变的时候改变图片的大小
+			},
+			loadImage(){
+				// 这个解决在一定一定概率下scroll滚动问题
+				if(!this.checkLoad){
+					// alert(1)
+					this.$refs.full.refresh();
+					this.checkLoad =true
+				}
+			},
 			...mapMutations([
 					"saveListId"
 				])
