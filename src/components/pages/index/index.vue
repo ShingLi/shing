@@ -164,22 +164,23 @@
 			},
 			// 读取VUEX中的方法
 			
-		},
-		beforeRouteLeave(to,from,next){
-				let h = document.documentElement.scrollTop;
-				console.log(h)
-				this.$store.commit({
-					type:'saveScrollY',
-					Y:h
-				})
-				next();
-		},
-		beforeRouteEnter(to,from,next){
-			next(vm=>{
-				if(vm.he > 0)
-				window.scrollTo(0, vm.he);
-			})
-		}
+        },
+        // 这个是一种可以解决滚动位置的办法还有一个是scrollBehavior
+		// beforeRouteLeave(to,from,next){
+		// 		let h = document.documentElement.scrollTop;
+		// 		console.log(h)
+		// 		this.$store.commit({
+		// 			type:'saveScrollY',
+		// 			Y:h
+		// 		})
+		// 		next();
+		// },
+		// beforeRouteEnter(to,from,next){
+		// 	next(vm=>{
+		// 		if(vm.he > 0)
+		// 		window.scrollTo(0, vm.he);
+		// 	})
+		// }
 		// activated(){
 		// 	// console.log(this.he)
 		// 	if(this.he > 0)

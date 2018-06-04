@@ -35,14 +35,14 @@
 							</template>
 						</swiper> -->
 						<swipe :autoplay="3000">
-  							<swipe-item 
-  								v-for="item,index in bannerList" 
+  							<swipe-item
+  								v-for="item,index in bannerList"
   								class="swiper-slide"
   								:key='index'
   								ref='slider'
-  								> 
-									<img :src="item.src"  
-										class="banner_index" 
+  								>
+									<img :src="item.src"
+										class="banner_index"
 										style="width:100%;height:15rem"
 										@load='loadImage'
 									>
@@ -55,7 +55,7 @@
 					<!-- 媒体数据部分 -->
 						<media-cell :author="item.category_name"
 									:source="item.subcategory_name"
-									:key="index" 
+									:key="index"
 									v-cloak
 									@click.native='selectList(item,index)'
 									v-for='(item,index) of events'
@@ -108,7 +108,7 @@
 	import { mapState , mapMutations } from 'vuex'
 	const cellListCount = 10
 	export default {
-		
+
 		name:'index',
 		directives: {
     		TransferDom
@@ -125,7 +125,7 @@
 				show:true,//true是默认有数据的
 				scrollY:0,//默认的滚动位置
 				popupVisible:false, //点击提示
-				
+
 			}
 		},
 		components:{ mHeader,swiper,cell,mediaCell,loading,
@@ -232,7 +232,7 @@
 							path:`/list/${item.id}`
 						})
 				}
-				
+
 			},
 			_initSetSliderWidth(){
 				// 2018/5/26 留着
@@ -266,9 +266,9 @@
 			// keep-alive 的生命周期钩子 再次加载组件的时候进行调用
 			//这里防止搜索组件返回的时候导致banner图不轮播
 			if(!this.bannerList.length)
-				return 
+				return
 			else{
-				// this.$refs.swipers.swiper(); 
+				// this.$refs.swipers.swiper();
 			}
 			this.scrollTo() ;
 		},
@@ -278,7 +278,7 @@
 					this.popupVisible = false;
 				},1000)
 			},
-			
+
 		}
 
 	}
@@ -286,11 +286,11 @@
 <style>
 	.van-swipe__indicators{
 		left: 80% !important;
-		
+
 	}
 </style>
 <style lang='less' scoped>
-	
+
 	div.search-warp{
 		height: 2.8rem;
 		background-color: #fff;

@@ -16,7 +16,10 @@ const routes =[
 			{
 				path:'',
 				name:'index',
-				component:index
+                component:index,
+                meta:{
+                    scrollToTop:true
+                }
 			},
 
 			{
@@ -94,18 +97,28 @@ const routes =[
 // 坑 1.官网的教程是new VueRouter   这里是因为官网使用了Vue.use(Vue.router )
 //    2  const routes  这里必须是routes  ===>母鸡不知道换成其他的就不可以
 //    3
+// 滚动行为
+const  scrollBehavior = (to,from,savedPosition)=>{
+    if(savedPosition){
+        return savedPosition
+    }else{
+        const position = {}
+        if(to.hash){
+            position.selector = to.hash
+        }
+        if (from.matched.some(m => m.meta.scrollToTop)) {
+            
+            position.x = 0
+            position.y = document.body.scrollTop
+          }
+        
+        return position
+    }
+}
+// 路由的配置
 const router = new Router({
 	mode:'history',
-  routes,
-  // scrollBehavior(to,from,savedPosition){
-  // 	// if(to.name==='index'){
-  // 	// 	return {
-  // 	// 		x:0,
-  // 	// 		y:500
-  // 	// 	}
-  // 	// }
-
-  // }
+    routes
 })
 
 router.beforeEach(( to , from ,next )=>{
