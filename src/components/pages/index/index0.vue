@@ -34,7 +34,7 @@
 								</div>
 							</template>
 						</swiper> -->
-						<swipe :autoplay="3000">
+						<swipe :autoplay="3000" ref='swipe'>
   							<swipe-item
   								v-for="item,index in bannerList"
   								class="swiper-slide"
@@ -45,6 +45,7 @@
 										class="banner_index"
 										style="width:100%;height:15rem"
 										@load='loadImage'
+										ref='img_item'
 									>
   							</swipe-item>
 						</swipe>
@@ -139,9 +140,13 @@
 			this.probeType =3
 		},
 		mounted(){
-			setTimeout(()=>{
+			window.addEventListener('resize',()=>{
+				if(!this.bannerList){
+					return 
+				}
 				this._initSetSliderWidth()
-			},20)
+				// this.$refs.full.refresh()
+			})
 		},
 		computed:{
 			...mapState({
@@ -158,6 +163,7 @@
 				])
 				.then(axios.spread((banner,cell)=>{
 					this.bannerList = banner.data ;
+
 					this.$nextTick(()=>{
 						// DOM更新了
 						// this.$refs.swipers.swiper();
@@ -236,7 +242,8 @@
 			},
 			_initSetSliderWidth(){
 				// 2018/5/26 留着
-				// addEVentListener('resize') 当窗口改变的时候改变图片的大小
+				let swipeWidth = document.body.clientWidth
+				this.$refs.img_item.style.width = swipeWidth+ 'px'
 			},
 			loadImage(){
 				// 这个解决在一定一定概率下scroll滚动问题
