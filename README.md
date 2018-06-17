@@ -3,5 +3,5 @@
 <br/>
 
 <br/>
-git clone 很慢备注 解决C:\Windows\System32\drivers\etc\hosts文件，在文件中追加
-219.76.4.4 github-cloud.s3.amazonaws.com
+自己的demo
+线上地址：wap.shinglove.com
