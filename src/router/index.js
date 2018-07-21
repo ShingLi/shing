@@ -117,7 +117,7 @@ const  scrollBehavior = (to,from,savedPosition)=>{
 }
 // 路由的配置
 const router = new Router({
-	mode:'history',
+	mode:'hash',
     routes
 })
 

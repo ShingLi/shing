@@ -1,171 +1,135 @@
-<template lang="html">
-    <div class="detail-wrapper">
-        <div class="detail-head">
-            <span class="arrow" @click='$router.go(-1)'>
-                <i class="icon iconfont icon-fanhui1"></i>
-            </span>
-            <span class="title-description">
-                <i class="icon iconfont icon-dianying"></i>
-                <span v-text='movieDetail.title'></span>
-            </span>
-        </div>
-        <!-- 主体部分 -->
-        <scroll class="list-scroll"
+<template>
+    <transition name='slide'>
+        <div class="movie-detail">
+           <div>
+                <div class="back" @click='$router.go(-1)'>
+                    <i class="icon iconfont icon-fanhui1"></i>
+                </div>
+                <div class="title">
+                    {{movie.title.substr(0,11)}}
+                </div>
+                <!-- 背景图片 -->
+                <div class="bgImage" :style='bgImage' ref='bgImage'></div>
+           </div>
+           <scroll class="list"
             ref="scroll"
-            :data = "movieDetail"
         >
             <div class="scroll-wrapper">
                 <!-- 电影图片 -->
-                <div class="scroll-content">
-                    <div class="movie-pic">
-                        <div v-if="movieDetail.images">
-                            <img v-lazy="replaceUrl(movieDetail.images.large)">
-                        </div>
-                    </div>
-                    <!-- 电影信息 -->
-                    <movie-info :movieDetail ="movieDetail"></movie-info>
-                    <!-- 影评 -->
-                    <movie-reviews :movieDetail='movieDetail'></movie-reviews>
-                </div>
+                <!-- 电影信息 -->
+                <movie-info :movieDetail ="movies"></movie-info>
+                <!-- 影评 -->
+                <movie-reviews :movieDetail='movies'></movie-reviews>
             </div>
         </scroll>
-        <div class="modal" v-show='isShow'>
-            <loadmore :fullScreen='true'></loadmore>
         </div>
-    </div>
-
+    </transition>
 </template>
-
 <script>
-    import scroll from 'base/scroll/scroll'
-    import movieInfo from 'base/movie-info/movie-info' //电影的信息
-    import loadmore from 'base/loading/loadmore' //加载点遮罩层
-    import {getMovieDetail} from 'api/get-movie/get-movie' //获取电影详情的api
-    import movieReviews from "base/movie-reviews/movie-reviews"
-    import {mapState , mapGetters } from 'vuex'
+    import { mapGetters } from 'vuex'
+    import { getMovieDetail } from 'api/get-movie/get-movie' //获取电影详情的api
+    import MovieInfo from 'base/movie-info/movie-info' //电影的信息
+    import MovieReviews from "base/movie-reviews/movie-reviews"
+    
+    import Scroll from 'base/scroll/scroll'
+
     export default {
-        name:"movieDetail",
-
-        data(){
+        name:'movieDetail',
+        data() {
             return {
-                movieDetail:{},
-                isShow:true,
-
+                movies:{}
             }
         },
-        created(){
+        created() {
             this._getDetail()
         },
         mounted(){
-            this.$nextTick(()=>{
-                this.$refs.scroll.refresh();
-            })
+            let bgImageHeight = this.$refs.bgImage.clientHeight
+            console.log(this.$refs.scroll)
         },
-        components:{scroll,movieInfo,movieReviews,loadmore},
         computed:{
-
-            ...mapGetters ([
+            ...mapGetters([
                 'movie'
-            ])
+            ]),
+            bgImage(){
+               return `background-image:url(${this.movie.photo})`
+            }
+        },
+        components:{
+            Scroll,
+            MovieInfo,
+            MovieReviews
         },
         methods:{
-            _getDetail(){
-                if(!this.movie.id){//当前页面刷新就返回
+             _getDetail() {
+                if (!this.movie.id) {//当前页面刷新就返回
                     this.$router.go(-1)
                     return
                 }
 
                 getMovieDetail(this.movie.id).then(res=>{
-                    this.movieDetail = res;
+                    this.movies = res;
 
-                    this.isShow = !this.isShow;
-                    this.$nextTick(()=>{
-                        this.$refs.scroll.refresh();
-                    })
+                    
                 }).catch(err=>{
                     console.log(err)
                 })
             },
-            replaceUrl(srcUrl) {
-                if (srcUrl !== undefined) { // 图片防盗链处理
-                  return ('https://images.weserv.nl/?url=' + srcUrl.replace(/http\w{0,1}:\/\//, ''));
-                }
-            }
-        },
-        // watch:{
-        //     '$route'(to,from){
-        //         this._getDetail(to.path)
-        //     }
-        // }
+        }
     }
-</script>
+</script>-
+<style lang='less'>
+    .movie-detail{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        bottom: 0;
+        background: #555;
+        z-index: 99;
+        .back{
+            position: absolute;
+            top:0;
+            left: 6px;
+            z-index: 50;
+            i{
+                display: inline-block;
+                padding: .7rem;
+                font-size: 1.5rem;
+                color:#fff;
 
-<style lang="less">
-    .detail-wrapper{
-        height: 100%;
-            .detail-head{
-                position: fixed;
-                top:0;
-                width: 100%;
-                height: 40px;
-                z-index: 10;
-                background-color:rgba(85,85,85,.6);
-                    .arrow{
-                        position: absolute;
-                        top: 0;
-                        left: .6rem;
-                        .icon{
-                            color: #fff;
-                            font-size: 1.7rem;
-                            display: inline-block;
-                            line-height: 40px;
-                        }
-                    }
-                    .title-description{
-                        position: absolute;
-                        left: 50%;
-                        top: 0;
-                        bottom: 0;
-                        display:flex;
-                        transform:translateX(-50%);
-                            span{
-                                line-height: 40px;
-                                color: #fff;
-                                font-size: 1.2rem;
-                            }
-                            i{
-                                .arrow>.icon
-                            }
-                    }
             }
-            .list-scroll{
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                width: 100%;
-                overflow: hidden;
-                background-color:rgb(85,85,85);
-                    .scroll-wrapper{
-                            .scroll-content{
-                                    .movie-pic{
-                                        padding: 50px 0 20px 0;
-                                        text-align: center;
-                                        img{
-                                            width: 50%;
-                                            border-radius: 4px;
-                                        }
-                                    }
-                            }
-                    }
-            }
-            .modal{
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                z-index: 999;
-                background-color: #555;
-            }
+        }
+        .title{
+            position: absolute;
+            top: 0%;
+            left:50%;
+            line-height: 3rem;
+            transform: translateX(-50%);
+            color:#fff;
+            font-size:1.3rem;
+            z-index: 50;
+        }
+        .bgImage{
+            width: 100%;
+            height: 0;
+            padding-top: 60%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .list{
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            
+        }
+    }
+    .slide-enter-active, .slide-leave-active{
+        transition: all .3s
+    }
+    .slide-enter, .slide-leave-to{
+        transform: translate3d(100%,0,0);
     }
 </style>

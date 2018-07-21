@@ -1,8 +1,10 @@
 // ES6创建一个类
 // JAVA中习惯首字母大写这个和构造函数类似
+let Base64 = require('js-base64').Base64
+
 export default class Movie{
     // 类的参数需要constructor
-    constructor({ id , title, director, casts, collectCount, rating, image, data, pubdates, subtype}){
+    constructor({ id , title, director, casts, collectCount, rating, image, data, pubdates, subtype , photo}){
         this.id=id;//id 号
         this.title=title;//标题
         this.director = director; //导演
@@ -13,6 +15,7 @@ export default class Movie{
         this.data = data ||"";    //时间戳
         this.pubdates = pubdates ||'';
         this.subtype = subtype ||'';
+        this.photo = photo //获得高清图片
     }
 }
 
@@ -24,15 +27,16 @@ export function createMovieList(movieList){
     //movieList = res.subjects
     movieList.forEach((movie,index)=>{
         ret.push(new Movie({
-              id: movie.id,
-              title: movie.title,
-              director: filterDirector(movie.directors),
-              casts: filterCasts(movie.casts),
-              collectCount: movie.collect_count,
-              rating: movie.rating.average,
-              image: movie.images.large,
-              date: filterDate(movie.mainland_pubdate, movie.pubdates), // 该条目只用于首页热映电影和即将上映电影
-              pubdates: movie.pubdates
+            id: movie.id,
+            title: movie.title,
+            director: filterDirector(movie.directors),
+            casts: filterCasts(movie.casts),
+            collectCount: movie.collect_count,
+            rating: movie.rating.average,
+            image: movie.images.large,
+            date: filterDate(movie.mainland_pubdate, movie.pubdates), // 该条目只用于首页热映电影和即将上映电影
+            pubdates: movie.pubdates,
+            photo:filterPhoto(movie.images.large)//获得高清图片
         }))
     })
     // console.dir(ret)
@@ -41,6 +45,17 @@ export function createMovieList(movieList){
 // 获取主导演
 function filterDirector(directors){
     return directors.length ? directors[0].name : '';
+}
+// 获得高清图片
+function filterPhoto(imgStr) {
+    const baseImgUrl = 'https://images.weserv.nl/?url=img3.doubanio.com/view/photo/m/public/'
+    
+    let reg=/p\d+.jpg/g;
+        imgStr.replace(reg,function(des,value){
+            imgStr = des.slice(0,-4)
+        });
+    return `${baseImgUrl}${imgStr}.jpg`
+
 }
 // 演员信息
 function filterCasts(casts){
