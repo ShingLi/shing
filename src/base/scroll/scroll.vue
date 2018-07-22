@@ -101,6 +101,7 @@
 	        	// 是否派发滚动事件
 		        if (this.listenScroll) {
 		          this.scroll.on('scroll', (pos) => {
+		    
 		            this.$emit('scroll', pos)
 		          })
 		        }

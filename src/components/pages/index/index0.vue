@@ -27,23 +27,16 @@
 			<div class="wrapper">
 				<div class="content">
 					<!-- Carousel-->
-						<!-- <swiper :pagination="true" ref='swipers' v-if='bannerList.length'>
-							<template slot='swiper-img'>
-								<div class="swiper-slide" v-for="(item,index) in bannerList">
-									<img :src="item.src"  class="banner_index">
-								</div>
-							</template>
-						</swiper> -->
+						
 						<swipe :autoplay="3000" ref='swipe'>
   							<swipe-item
   								v-for="item,index in bannerList"
   								class="swiper-slide"
   								:key='index'
-  								ref='slider'
   								>
 									<img :src="item.src"
 										class="banner_index"
-										style="width:100%;height:15rem"
+										style="height:15rem;width:100%"
 										@load='loadImage'
 										ref='img_item'
 									>
@@ -135,17 +128,18 @@
 			Swipe,
 			SwipeItem
 		},
-		created(){
+		created() {
 			this.loadData()
 			this.probeType =3
 		},
-		mounted(){
+		mounted() {
 			window.addEventListener('resize',()=>{
 				if(!this.bannerList){
 					return 
 				}
 				this._initSetSliderWidth()
 				// this.$refs.full.refresh()
+				
 			})
 		},
 		computed:{
@@ -155,19 +149,14 @@
 		},
 
 		methods:{
-			loadData(){
+			loadData() {
 				axios.all(
 				[
 					axios.get("/static/data/data_banner.php"),
 					axios.get("/static/data/data_mediaCell.php")
 				])
 				.then(axios.spread((banner,cell)=>{
-					this.bannerList = banner.data ;
-
-					this.$nextTick(()=>{
-						// DOM更新了
-						// this.$refs.swipers.swiper();
-					})
+					this.bannerList = banner.data 
 					this.events  = cell.data ;
 					//触发进入页面的模态框关闭欢迎页
 					this.$emit('isShow');
@@ -176,10 +165,10 @@
 					alert('网络错误，不能访问！')
 				})
 			},
-			loadMore(){
-				if(!this.loadingFlag)return ;//没有加载完成不加载
+			loadMore (){
+				if (!this.loadingFlag) return ;//没有加载完成不加载
 				this.loadingFlag = false;
-				if(!this.show){
+				if (!this.show) {
 					this.loadingFlag = true;
 					return
 				}
@@ -204,7 +193,7 @@
 				})
 
 			},
-			_checkMore(data){
+			_checkMore(data) {
 				if(!data.events.length){
 					this.show = false;//没有数据了
 				}
@@ -212,16 +201,16 @@
 
 			},
 			//记录滚动的位置
-			scroll(pos){
+			scroll(pos) {
 				this.scrollY = pos.y;
 
 			},
-			scrollTo(){
+			scrollTo() {
 				this.$refs.full.refresh();//确保获得正确的高度
 				this.$refs.full.scrollTo(0,this.scrollY)//切换回来的时候保存之前的浏览记录
 
 			},
-			selectList(item,index){
+			selectList(item,index) {
 				switch(index){
 					case 0 :
 						this.popupVisible = true
@@ -240,25 +229,30 @@
 				}
 
 			},
-			_initSetSliderWidth(){
+			_initSetSliderWidth() {
 				// 2018/5/26 留着
 				let swipeWidth = document.body.clientWidth
-				this.$refs.img_item.style.width = swipeWidth+ 'px'
+				this.$refs.img_item.forEach (item=>{
+					item.style.width = `${swipeWidth}px`
+					// console.log(item,swipeWidth)
+				})
+				this.$refs.swipe.width = swipeWidth
+				// console.log(this.$refs.swipe)
 			},
-			loadImage(){
+			loadImage() {
 				// 这个解决在一定一定概率下scroll滚动问题
-				if(!this.checkLoad){
+				if (!this.checkLoad) {
 					// alert(1)
 					this.$refs.full.refresh();
-					this.checkLoad =true
+					this.checkLoad = true
 				}
 			},
 			...mapMutations([
-					"saveListId"
-				])
+				"saveListId"
+			])
 
 		},
-		beforeRouteLeave(to,from,next){
+		beforeRouteLeave(to,from,next) {
 			// 这段代码当初的想法是从index切换其他页面的时候吧当前页面的y记录下来
 			// 然后提交vuex里面
 			//然后使用守卫导航 afterEach((to,from)=>{
@@ -269,18 +263,17 @@
 
 			next()
 		},
-		activated(){
+		activated() {
 			// keep-alive 的生命周期钩子 再次加载组件的时候进行调用
 			//这里防止搜索组件返回的时候导致banner图不轮播
-			if(!this.bannerList.length)
-				return
+			if (!this.bannerList.length) return
 			else{
 				// this.$refs.swipers.swiper();
 			}
 			this.scrollTo() ;
 		},
-		watch:{
-			popupVisible(){
+		watch: {
+			popupVisible() {
 				setTimeout(()=>{
 					this.popupVisible = false;
 				},1000)
