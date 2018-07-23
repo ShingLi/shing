@@ -112,7 +112,7 @@
 				getMovie(this.hotMovieIndex,search_more)
 					.then(res=>{
                     // res.subjects 数据中的数组部分
-					console.log(res.subjects);
+					// console.log(res.subjects);
 					//创建类封住数据  createMovieList(res.subjects)
 					this.hotMovies = createMovieList(res.subjects)
 				}).catch(err=>{

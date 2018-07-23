@@ -36,12 +36,21 @@
 </template>
 <script>
     import { mapGetters } from 'vuex'
-    import { getMovieDetail } from 'api/get-movie/get-movie' //获取电影详情的api
+
+    import { getMovieDetail } from 'api/get-movie/get-movie' 
+
+    import { prefixStyle } from 'common/js/dom'
+
     import MovieInfo from 'base/movie-info/movie-info' //电影的信息
+
     import MovieReviews from "base/movie-reviews/movie-reviews"
+
     import Loadmore from 'base/loading/loadmore'
+
     import Scroll from 'base/scroll/scroll'
+
     const TITLE_HEIGHT = 40
+    let transform = prefixStyle('transform')
     export default {
         name:'movieDetail',
 
@@ -103,7 +112,7 @@
                 let standardHeight = -this.bgImageHeight + TITLE_HEIGHT
                 let translateY = Math.max(newY,standardHeight)
 
-                this.$refs.bgLayer.style['transform'] = `translate3d(0 , ${translateY}px,0)`
+                this.$refs.bgLayer.style[transform] = `translate3d(0 , ${translateY}px,0)`
                 
                 let zindex = 0,
                     scale = 1 ;
