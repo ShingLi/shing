@@ -15,18 +15,20 @@ const routes =[
 		children:[
 			{
 				path:'',
-				name:'index',
-                component:index,
-                meta:{
-                    scrollToTop:true
-                }
+                redirect:{ name:'index'}
 			},
 
 			{
 				path:'/audioBook',
-				name:'audioBook',
-				// component:resolve=>require(['../components/pages/audioBook/audioBook.vue'],resolve) //路由的懒加载
-				component:()=>import(/* webpackChunkName: 'audioBook' */'components/pages/audioBook/audioBook')
+			
+				component:resolve=>require(['components/pages/audioBook/audioBook.vue'],resolve), //路由的懒加载
+				// component:()=>import(/* webpackChunkName: 'audioBook' */'components/pages/audioBook/audioBook'),
+				children:[
+					{
+						path:':id',
+						component:resolve=>require(['components/movie-detail/movie-detail.vue'],resolve),
+					}
+				]
 			},
 			{
 				path:'/broadCast',
@@ -50,9 +52,14 @@ const routes =[
 			},
 			{
 				path:'/index',
-				redirect:{
-					name:'index'
-				}
+				name:'index',
+				component:index,
+				children:[
+                	{
+                		path:':id',
+                		component:resolve=>require(['components/index-detail/index-detail'],resolve)
+                	}
+                ]
 			}
 		]
 	},
@@ -78,19 +85,14 @@ const routes =[
 		// component:resolve=>require(['../components/search/search'],resolve)
 		component:()=>import(/*webpackChunkName:'search'*/'../components/search/search')
 	},
-	{
-		path:'/movie/:id',//电影详情的页面
-		component:resolve=>require(['../components/movie-detail/movie-detail.vue'],resolve),
-	},
+	// {
+	// 	path:'/movie/:id',//电影详情的页面
+	// 	component:resolve=>require(['../components/movie-detail/movie-detail.vue'],resolve),
+	// },
 	{
 		path:'/celebrity/:id',//影人
 		// component:()=>import(/*webpackChunkName:'celebrity'*/'@/components/celebrity/celebrity') 坑  生命周期不执行动态路由
 		component:resolve=>require(['components/celebrity/celebrity'],resolve),
-	},
-	{
-		path:'/list/:id',
-		component:resolve=>require(['components/index-detail/index-detail'],resolve),
-
 	}
 ]
 

@@ -56,6 +56,7 @@
 		</slider>
 		
 		<Toast type='warn' v-model='toastShow'>网络错误</Toast>
+		<router-view/>
 	</div>
 </template>
 <script>
@@ -162,7 +163,7 @@
 				// console.log(movie);
 				this.setMovie(movie)
 				this.$router.push({
-                    path:`/movie/${movie.id}`
+                    path:`/audioBook/${movie.id}`
                 })
 			},
 			...mapMutations({
