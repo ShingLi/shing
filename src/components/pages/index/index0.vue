@@ -108,6 +108,9 @@
 		directives: {
     		TransferDom
   		},
+  		metaInfo:{
+  			title:'首页'
+  		},
 		data(){
 			return {
 				zhen:"",//v-model绑定的双向数组

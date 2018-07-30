@@ -92,6 +92,9 @@
 				
 			}
 		},
+		metaInfo:{
+			title:'书影音'
+		},
 		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,Tab,TabItem, Swiper,SwiperItem,
 			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore'),
 			bookList:()=>import(/* webpackChunkName:'bookList'*/'base/book-list/book-list'),

@@ -64,6 +64,9 @@ import axios from "axios"
 				err:''
 			}
 		},
+		metaInfo:{
+			title:'登陆'
+		},
 		computed:{
 			...mapState({
 				// 表单处理,读取vuex中存储的状态信息

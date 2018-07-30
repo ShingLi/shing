@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import index from 'components/pages/index/index0'
 import pages from 'components/pages/pages'
 import store from '../store'
-
+import Meta from 'vue-meta'
+Vue.use(Meta)
 // import index from '@/components/common/loading'
 Vue.use(Router)
 
@@ -20,8 +21,8 @@ const routes =[
 
 			{
 				path:'/audioBook',
-			
 				component:resolve=>require(['components/pages/audioBook/audioBook.vue'],resolve), //路由的懒加载
+				
 				children:[
 					{
 						path:':id',
@@ -53,6 +54,7 @@ const routes =[
 				path:'/index',
 				name:'index',
 				component:index,
+				
 				children:[
                 	{
                 		path:':id',
