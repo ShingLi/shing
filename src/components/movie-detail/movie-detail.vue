@@ -27,7 +27,7 @@
                     <movie-reviews :movieDetail='movies'></movie-reviews>
                 </div>
             </scroll>
-            <div class="modal" v-show='isShow'>
+            <div class="modal" v-show='!Object.keys(movies).length'>
                 <loadmore :fullScreen='true'></loadmore>
             </div>
         </div>
@@ -96,7 +96,7 @@
 
                 getMovieDetail(this.movie.id).then(res=>{
                     this.movies = res;
-                    this.isShow = false
+                    
                     
                 }).catch(err=>{
                     console.log(err)
