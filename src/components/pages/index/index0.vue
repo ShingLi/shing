@@ -80,6 +80,7 @@
 	  			前3个不能点击！从第4个开始哦！
 			</popup>
 		</div>
+		<router-view/>
 	</div>
 </template>
 <script>
@@ -106,6 +107,9 @@
 		name:'index',
 		directives: {
     		TransferDom
+  		},
+  		metaInfo:{
+  			title:'首页'
   		},
 		data(){
 			return {
@@ -224,7 +228,7 @@
 					default:
 						this.saveListId(item.id)
 						this.$router.push({
-							path:`/list/${item.id}`
+							path:`/index/${item.id}`
 						})
 				}
 

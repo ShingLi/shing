@@ -56,6 +56,7 @@
 		</slider>
 		
 		<Toast type='warn' v-model='toastShow'>网络错误</Toast>
+		<router-view/>
 	</div>
 </template>
 <script>
@@ -90,6 +91,9 @@
 				bookList:[] ,//图书
 				
 			}
+		},
+		metaInfo:{
+			title:'书影音'
 		},
 		components:{ mHeader,navbar,scroll,'movie-list':movieList,Toast,Tab,TabItem, Swiper,SwiperItem,
 			loadmore:()=>import (/* webpackChunkName:'loadmore'*/'@/base/loading/loadmore'),
@@ -162,7 +166,7 @@
 				// console.log(movie);
 				this.setMovie(movie)
 				this.$router.push({
-                    path:`/movie/${movie.id}`
+                    path:`/audioBook/${movie.id}`
                 })
 			},
 			...mapMutations({

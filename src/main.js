@@ -9,8 +9,12 @@ import store from './store'
 import VueLazyLoad from 'vue-lazyload'  //vue 的图片懒加载
 import FastClick from 'fastclick'
 
+
+
 Vue.use(VeeValidate)//vue 的表单验证
+
 FastClick.attach(document.body)
+
 
 Vue.use(VueLazyLoad,{
     loading:require('./common/images/ico/loading.gif')

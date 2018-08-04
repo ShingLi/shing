@@ -59,6 +59,9 @@
 	import cell from '@/base/cell/cell'
 	export default {
 		name:'mine',
+		metaInfo:{
+			title:'个人中心'
+		},
 		components:{
 			mHeader,
 			cell

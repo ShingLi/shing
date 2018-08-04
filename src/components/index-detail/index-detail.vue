@@ -45,7 +45,7 @@
 				</ul>
 				<!-- tag -->
 				<ol class="tags" v-if='listCell.tags'>
-					<li v-for='item in tags'>
+					<li v-for='(item,index) in tags' :key='index'>
 						<span>{{item}}</span>
 					</li>
 				</ol>

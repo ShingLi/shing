@@ -14,6 +14,9 @@
 	import mHeader from 'base/header/header'
 	export default {
 		name:'group',
+		metaInfo:{
+			title:"小组"
+		},
 		components:{
 			mHeader
 		}

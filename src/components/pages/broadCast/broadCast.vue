@@ -42,6 +42,9 @@
 		data(){
 			return {}
 		},
+		metaInfo:{
+			title:'广播'
+		},
 		created(){
 
 		},
